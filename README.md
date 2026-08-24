@@ -57,8 +57,13 @@
 
 ## 数据来源与致谢
 
-- 地图 SVG / 点位数据：the-hideout/tarkov-dev-svg-maps（tarkov.dev 社区数据），经 Re5pawnn/Tarkov_webmap 项目整理
-- 撤离点图标：Re5pawnn/Tarkov_webmap
-- 截图文件名解析参考：Re5pawnn/Tarkov_webmap（ScreenshotCoordinateParser）
+- **地图图片与点位数据**：源自 [the-hideout/tarkov-dev-svg-maps](https://github.com/the-hideout/tarkov-dev-svg-maps)（tarkov.dev 社区数据，作者 **Shebuka**），经 [Re5pawnn/Tarkov_webmap](https://github.com/Re5pawnn/Tarkov_webmap) 整理；实验室（the-lab）/迷宫（the-labyrinth）数据来自 [tarkov.dev](https://tarkov.dev)。
+- **撤离点图标**：取自 Re5pawnn/Tarkov_webmap。
+- **截图文件名解析**：参考 Re5pawnn/Tarkov_webmap（ScreenshotCoordinateParser）。
 
-本工具为个人自用项目，数据版权归原社区项目所有；公开发布前需自行核实授权与署名要求。
+### 许可证与署名说明
+
+- 本仓库**代码未附带开源许可证，默认保留所有权利**；仅作为个人项目发布/参考，作者未进行开源授权。
+- **地图图片与点位数据**（`Data/maps/*/map.png`、`map.json`、`Data/maps.json`）为 [the-hideout/tarkov-dev-svg-maps](https://github.com/the-hideout/tarkov-dev-svg-maps) 与 tarkov.dev 的衍生作品，依其 **CC BY-NC-SA 4.0（署名-非商业性使用-相同方式共享）** 授权：允许非商业性使用与修改，但需署名原作者、衍生内容须以相同许可证共享，**禁止商用**。
+- **撤离点图标**（`Data/icons/*.png`）取自 Re5pawnn/Tarkov_webmap，该仓库未附带许可证，来源授权情况不明；当前按“个人自用”保留，**作者不对再分发此图标承担授权承诺**，如需公开分发或商用请先替换/自绘。
+- 本项目仅读取游戏截图文件名定位，不读取游戏内存/进程，无联网、无注入，与反作弊系统零冲突。
