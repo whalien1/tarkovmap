@@ -40,6 +40,17 @@
 - 手工补录：编辑 `Tools/manual_overrides.json`（重新生成不丢失），或直接改 `Data/maps/<地图>/map.json` 的 markers 数组
 - 实测坐标方法：站在点位处游戏内截图，文件名自带精确 X/Z
 
+## 版本更新维护流程
+
+游戏大版本更新后（新地图 / 点位变动），按此流程出新版本：
+
+1. **更新数据源**：更新 `ref/` 下的参考数据仓库（重新 clone 或 pull 最新社区数据）
+2. **重新生成地图数据**：运行 `Tools/MapPackBuilder`（双击其 exe 或 `dotnet run`），一键重建全部 `Data/`，查看每张图的核查报告（点位数、非法点位数）
+3. **抽查校准**：开本地模式在 2–3 个已知点位截图，对照地图上 Marker 位置确认坐标无偏移
+4. **手工补录检查**：`Tools/manual_overrides.json` 里的补录点位不受影响；新地图（如破冰船）用社区高清 PNG + 两个已知点截图校准边界后新增
+5. **Boss 名单检查**：新增/移除 Boss 改 `Program.cs` 里的 `ExcludedBosses`
+6. **打包发布**：更新版本号 → 重新打 ZIP → `git commit` + 打新标签（如 v1.1）
+
 ## 数据来源与致谢
 
 - 地图 SVG / 点位数据：the-hideout/tarkov-dev-svg-maps（tarkov.dev 社区数据），经 Re5pawnn/Tarkov_webmap 项目整理
