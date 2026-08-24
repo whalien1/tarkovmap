@@ -19,6 +19,13 @@ internal static class Program
     // 当前版本已移除的 Boss（数据生成时剔除，回归版本时从名单删除即可）
     private static readonly HashSet<string> ExcludedBosses = new(StringComparer.Ordinal) { "寻血猎犬" };
 
+    // 地图朝向旋转角人工修正（覆盖源数据的 coordinateRotation；实测校准后登记在此）
+    private static readonly Dictionary<string, double> RotationOverrides = new(StringComparer.Ordinal)
+    {
+        ["ground-zero"] = 90.0, // 中心区：源数据 180 有误，2026-08-24 实测 90（正对 Emercom 检查点校准）
+        ["customs"] = 90.0,     // 海关：源数据 180 有误，2026-08-24 实测 90（正对 Scav 检查站校准）
+    };
+
     private static int Main(string[] args)
     {
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
@@ -92,6 +99,13 @@ internal static class Program
                       rev.ValueKind is JsonValueKind.True or JsonValueKind.False && rev.GetBoolean();
         var coordRotation = data.TryGetProperty("coordinateRotation", out var cr) &&
                             cr.ValueKind == JsonValueKind.Number ? cr.GetDouble() : 0.0;
+
+        // 朝向旋转角人工修正（源数据有误时用，重新生成不丢失）：
+        // ground-zero 中心区源数据为 180，2026-08-24 实测应为 90（正对 Emercom 检查点校准）
+        if (RotationOverrides.TryGetValue(key, out var fixedRotation))
+        {
+            coordRotation = fixedRotation;
+        }
 
         // 图层过滤：仅保留主层高度范围内的点位（多层图的楼上/地下不画在 v0.1）
         double? minY = null, maxY = null;

@@ -4,8 +4,9 @@ using TarkovMap.Services;
 namespace TarkovMap.Controls;
 
 /// <summary>
-/// 地图画布：绘制底图与 Marker，维护 Zoom + PanOffset，
-/// 支持左键拖动、滚轮以鼠标为中心缩放、Marker 点击。
+/// 主地图画布：MapViewState 的 View。
+/// 地图数据 / 底图 / 玩家位置 / Marker 可见性全部来自共享状态（M0 重构），
+/// 自己只维护视图变换（Zoom + PanOffset）、拖拽交互与 Marker 点击选中。
 /// 事件驱动绘制：仅在状态变化时 Invalidate，空闲不消耗 CPU。
 /// </summary>
 public sealed class MapCanvas : Control
@@ -15,8 +16,7 @@ public sealed class MapCanvas : Control
     private const double HitRadiusScreenPx = 14.0;
     private const double DragThresholdPx = 5.0;
 
-    private MapDefinition? _map;
-    private Bitmap? _bitmap;
+    private MapViewState? _state;
     private IconCache? _icons;
 
     private double _zoom = 1.0;
@@ -28,9 +28,10 @@ public sealed class MapCanvas : Control
 
     private double _minZoom = 0.01;
 
-    private readonly Dictionary<MarkerType, bool> _visibility = new();
     private Marker? _selected;
-    private PlayerLocation? _player;
+
+    private MapDefinition? Map => _state?.Map;
+    private Bitmap? Bitmap => _state?.Bitmap;
 
     /// <summary>鼠标世界坐标变化（X, Z）。</summary>
     public event Action<double, double>? CursorWorldChanged;
@@ -58,59 +59,40 @@ public sealed class MapCanvas : Control
         _icons = icons;
     }
 
-    /// <summary>设置当前地图并适配窗口。Bitmap 所有权转移给画布。</summary>
-    public void SetMap(MapDefinition map, Bitmap bitmap)
+    /// <summary>挂接共享状态；此后画布跟随状态事件自动重绘。</summary>
+    public void SetViewState(MapViewState state)
     {
-        _bitmap?.Dispose();
-        _map = map;
-        _bitmap = bitmap;
+        _state = state;
+        _state.MapChanged += OnStateMapChanged;
+        _state.PlayerChanged += OnStatePlayerChanged;
+        _state.MarkerVisibilityChanged += OnStateVisibilityChanged;
+    }
+
+    /// <summary>地图切换：清空选中并适配窗口（行为同 v1.0 SetMap）。</summary>
+    private void OnStateMapChanged()
+    {
         _selected = null;
-        _player = null;
         FitToWindow();
     }
 
-    /// <summary>
-    /// 更新玩家位置并自动居中（Zoom 保持不变）。
-    /// 坐标不在当前地图 Bounds 内：清除玩家标记并返回 false。
-    /// </summary>
-    public bool SetPlayerLocation(PlayerLocation location)
+    /// <summary>定位更新：自动居中；被清除（越界/切图）则只重绘。</summary>
+    private void OnStatePlayerChanged()
     {
-        if (_map is null || _bitmap is null)
+        var player = _state?.Player;
+        if (player is not null)
         {
-            return false;
+            CenterOn(player.X, player.Z);
         }
-
-        if (!_map.Bounds.Contains(location.X, location.Z))
+        else
         {
-            _player = null;
             Invalidate();
-            return false;
         }
-
-        _player = location;
-        CenterOn(location.X, location.Z);
-        return true;
     }
 
-    /// <summary>平移到指定世界坐标居中，保持当前 Zoom。</summary>
-    public void CenterOn(double worldX, double worldZ)
+    /// <summary>可见性变化：若选中项被隐藏则取消选中（行为同 v1.0）。</summary>
+    private void OnStateVisibilityChanged()
     {
-        if (_map is null || _bitmap is null)
-        {
-            return;
-        }
-        var imagePt = MapCoordinateService.WorldToImage(
-            _map.Bounds, _bitmap.Width, _bitmap.Height, worldX, worldZ);
-        _pan.X = (float)(ClientSize.Width / 2.0 - imagePt.X * _zoom);
-        _pan.Y = (float)(ClientSize.Height / 2.0 - imagePt.Y * _zoom);
-        Invalidate();
-    }
-
-    /// <summary>设置某类 Marker 是否显示。</summary>
-    public void SetMarkerVisibility(MarkerType type, bool visible)
-    {
-        _visibility[type] = visible;
-        if (_selected is not null && !IsVisible(_selected))
+        if (_selected is not null && _state is not null && !_state.IsVisible(_selected))
         {
             _selected = null;
             MarkerClicked?.Invoke(null, null);
@@ -118,25 +100,36 @@ public sealed class MapCanvas : Control
         Invalidate();
     }
 
-    private bool IsVisible(Marker m) =>
-        _visibility.TryGetValue(m.Type, out var v) && v;
+    /// <summary>平移到指定世界坐标居中，保持当前 Zoom。</summary>
+    public void CenterOn(double worldX, double worldZ)
+    {
+        if (Map is null || Bitmap is null)
+        {
+            return;
+        }
+        var imagePt = MapCoordinateService.WorldToImage(
+            Map.Bounds, Bitmap.Width, Bitmap.Height, worldX, worldZ);
+        _pan.X = (float)(ClientSize.Width / 2.0 - imagePt.X * _zoom);
+        _pan.Y = (float)(ClientSize.Height / 2.0 - imagePt.Y * _zoom);
+        Invalidate();
+    }
 
     /// <summary>整张地图适配当前视口并居中。</summary>
     public void FitToWindow()
     {
-        if (_bitmap is null || ClientSize.Width <= 0 || ClientSize.Height <= 0)
+        if (Bitmap is null || ClientSize.Width <= 0 || ClientSize.Height <= 0)
         {
             return;
         }
 
-        var zx = (double)ClientSize.Width / _bitmap.Width;
-        var zy = (double)ClientSize.Height / _bitmap.Height;
+        var zx = (double)ClientSize.Width / Bitmap.Width;
+        var zy = (double)ClientSize.Height / Bitmap.Height;
         _zoom = Math.Min(zx, zy);
         _minZoom = _zoom * 0.5;
 
         _pan = new PointF(
-            (float)((ClientSize.Width - _bitmap.Width * _zoom) / 2),
-            (float)((ClientSize.Height - _bitmap.Height * _zoom) / 2));
+            (float)((ClientSize.Width - Bitmap.Width * _zoom) / 2),
+            (float)((ClientSize.Height - Bitmap.Height * _zoom) / 2));
 
         ZoomChanged?.Invoke(_zoom);
         Invalidate();
@@ -145,7 +138,8 @@ public sealed class MapCanvas : Control
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
-        if (_bitmap is null)
+        var bitmap = Bitmap;
+        if (bitmap is null)
         {
             return;
         }
@@ -159,8 +153,8 @@ public sealed class MapCanvas : Control
         var dest = new RectangleF(
             _pan.X,
             _pan.Y,
-            (float)(_bitmap.Width * _zoom),
-            (float)(_bitmap.Height * _zoom));
+            (float)(bitmap.Width * _zoom),
+            (float)(bitmap.Height * _zoom));
 
         if (dest.IntersectsWith(ClientRectangle))
         {
@@ -171,7 +165,7 @@ public sealed class MapCanvas : Control
             var srcW = (float)(vis.Width / _zoom);
             var srcH = (float)(vis.Height / _zoom);
             g.DrawImage(
-                _bitmap,
+                bitmap,
                 Rectangle.Round(vis),
                 new RectangleF(srcX, srcY, srcW, srcH),
                 GraphicsUnit.Pixel);
@@ -186,7 +180,9 @@ public sealed class MapCanvas : Control
     /// <summary>危险区（地雷区/狙击区等即死机制）：红色半透明多边形 + 红边框，画在 Marker 之下。</summary>
     private void DrawHazards(Graphics g)
     {
-        if (_map is null || _bitmap is null)
+        var map = Map;
+        var bitmap = Bitmap;
+        if (map is null || bitmap is null || _state is null)
         {
             return;
         }
@@ -194,10 +190,10 @@ public sealed class MapCanvas : Control
         using var fill = new SolidBrush(Color.FromArgb(64, 211, 47, 47));
         using var border = new Pen(Color.FromArgb(200, 229, 57, 53), 2f);
 
-        foreach (var m in _map.Markers)
+        foreach (var m in map.Markers)
         {
             if (m.Type != MarkerType.Hazard || m.Outline is null || m.Outline.Count < 3 ||
-                !IsVisible(m))
+                !_state.IsVisible(m))
             {
                 continue;
             }
@@ -206,7 +202,7 @@ public sealed class MapCanvas : Control
             for (var i = 0; i < m.Outline.Count; i++)
             {
                 var imagePt = MapCoordinateService.WorldToImage(
-                    _map.Bounds, _bitmap.Width, _bitmap.Height, m.Outline[i][0], m.Outline[i][1]);
+                    map.Bounds, bitmap.Width, bitmap.Height, m.Outline[i][0], m.Outline[i][1]);
                 points[i] = new PointF(
                     (float)(imagePt.X * _zoom + _pan.X),
                     (float)(imagePt.Y * _zoom + _pan.Y));
@@ -238,20 +234,23 @@ public sealed class MapCanvas : Control
     /// <summary>玩家箭头：固定屏幕像素大小（不随 Zoom 变化），方向 = Yaw + 地图坐标旋转角。</summary>
     private void DrawPlayer(Graphics g)
     {
-        if (_player is null || _map is null || _bitmap is null)
+        var player = _state?.Player;
+        var map = Map;
+        var bitmap = Bitmap;
+        if (player is null || map is null || bitmap is null)
         {
             return;
         }
 
         var imagePt = MapCoordinateService.WorldToImage(
-            _map.Bounds, _bitmap.Width, _bitmap.Height, _player.X, _player.Z);
+            map.Bounds, bitmap.Width, bitmap.Height, player.X, player.Z);
         var sx = (float)(imagePt.X * _zoom + _pan.X);
         var sy = (float)(imagePt.Y * _zoom + _pan.Y);
 
         var state = g.Save();
         g.TranslateTransform(sx, sy);
-        // 实测校准：Yaw + 地图旋转角基础上需再翻转 180°（用户本地模式验证）
-        g.RotateTransform((float)(_player.YawDegrees + _map.Bounds.CoordinateRotation + 180.0));
+        // 朝向 = Yaw + 地图坐标旋转角 + 90°（2026-08-24 海岸线实测校准：需顺时针补 90°）
+        g.RotateTransform((float)(player.YawDegrees + map.Bounds.CoordinateRotation + 90.0));
         g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
         // 箭头指向上方（屏幕北），随朝向旋转
@@ -279,7 +278,9 @@ public sealed class MapCanvas : Control
 
     private void DrawMarkers(Graphics g)
     {
-        if (_map is null || _bitmap is null || _icons is null)
+        var map = Map;
+        var bitmap = Bitmap;
+        if (map is null || bitmap is null || _icons is null || _state is null)
         {
             return;
         }
@@ -297,15 +298,15 @@ public sealed class MapCanvas : Control
         using var extractBrush = new SolidBrush(Color.FromArgb(255, 255, 214));
         using var extractShadow = new SolidBrush(Color.FromArgb(220, 0, 0, 0));
 
-        foreach (var m in _map.Markers)
+        foreach (var m in map.Markers)
         {
-            if (!IsVisible(m))
+            if (!_state.IsVisible(m))
             {
                 continue;
             }
 
             var imagePt = MapCoordinateService.WorldToImage(
-                _map.Bounds, _bitmap.Width, _bitmap.Height, m.X, m.Z);
+                map.Bounds, bitmap.Width, bitmap.Height, m.X, m.Z);
             var sx = (float)(imagePt.X * _zoom + _pan.X);
             var sy = (float)(imagePt.Y * _zoom + _pan.Y);
 
@@ -370,13 +371,15 @@ public sealed class MapCanvas : Control
 
     private void DrawSelection(Graphics g)
     {
-        if (_selected is null || _map is null || _bitmap is null)
+        var map = Map;
+        var bitmap = Bitmap;
+        if (_selected is null || map is null || bitmap is null)
         {
             return;
         }
 
         var imagePt = MapCoordinateService.WorldToImage(
-            _map.Bounds, _bitmap.Width, _bitmap.Height, _selected.X, _selected.Z);
+            map.Bounds, bitmap.Width, bitmap.Height, _selected.X, _selected.Z);
         var sx = (float)(imagePt.X * _zoom + _pan.X);
         var sy = (float)(imagePt.Y * _zoom + _pan.Y);
 
@@ -452,7 +455,9 @@ public sealed class MapCanvas : Control
 
     private Marker? HitTest(Point screen)
     {
-        if (_map is null || _bitmap is null)
+        var map = Map;
+        var bitmap = Bitmap;
+        if (map is null || bitmap is null || _state is null)
         {
             return null;
         }
@@ -460,15 +465,15 @@ public sealed class MapCanvas : Control
         Marker? best = null;
         var bestDist = double.MaxValue;
 
-        foreach (var m in _map.Markers)
+        foreach (var m in map.Markers)
         {
-            if (!IsVisible(m) || m.Type == MarkerType.Label)
+            if (!_state.IsVisible(m) || m.Type == MarkerType.Label)
             {
                 continue;
             }
 
             var imagePt = MapCoordinateService.WorldToImage(
-                _map.Bounds, _bitmap.Width, _bitmap.Height, m.X, m.Z);
+                map.Bounds, bitmap.Width, bitmap.Height, m.X, m.Z);
             var sx = imagePt.X * _zoom + _pan.X;
             var sy = imagePt.Y * _zoom + _pan.Y;
             var dist = Math.Sqrt(
@@ -488,7 +493,8 @@ public sealed class MapCanvas : Control
     protected override void OnMouseWheel(MouseEventArgs e)
     {
         base.OnMouseWheel(e);
-        if (_bitmap is null)
+        var bitmap = Bitmap;
+        if (bitmap is null)
         {
             return;
         }
@@ -515,12 +521,13 @@ public sealed class MapCanvas : Control
     protected override void OnResize(EventArgs e)
     {
         base.OnResize(e);
-        if (_bitmap is not null && !_dragging)
+        var bitmap = Bitmap;
+        if (bitmap is not null && !_dragging)
         {
             if (ClientSize.Width > 0 && ClientSize.Height > 0)
             {
-                var zx = (double)ClientSize.Width / _bitmap.Width;
-                var zy = (double)ClientSize.Height / _bitmap.Height;
+                var zx = (double)ClientSize.Width / bitmap.Width;
+                var zy = (double)ClientSize.Height / bitmap.Height;
                 _minZoom = Math.Min(zx, zy) * 0.5;
                 _zoom = Math.Max(_zoom, _minZoom);
             }
@@ -530,7 +537,9 @@ public sealed class MapCanvas : Control
 
     private void ReportCursorWorld(Point screen)
     {
-        if (_bitmap is null || _map is null || CursorWorldChanged is null)
+        var map = Map;
+        var bitmap = Bitmap;
+        if (bitmap is null || map is null || CursorWorldChanged is null)
         {
             return;
         }
@@ -538,17 +547,9 @@ public sealed class MapCanvas : Control
         var imageX = (screen.X - _pan.X) / _zoom;
         var imageY = (screen.Y - _pan.Y) / _zoom;
         var (x, z) = MapCoordinateService.ImageToWorld(
-            _map.Bounds, _bitmap.Width, _bitmap.Height, imageX, imageY);
+            map.Bounds, bitmap.Width, bitmap.Height, imageX, imageY);
         CursorWorldChanged(x, z);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            _bitmap?.Dispose();
-            _bitmap = null;
-        }
-        base.Dispose(disposing);
-    }
+    // 底图 Bitmap 归 MapViewState 所有，画布不 Dispose（模块文档：共享资源，View 只引用）。
 }

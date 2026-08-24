@@ -29,6 +29,9 @@ public sealed class MainForm : Form
 
     private readonly ConfigService _config;
     private readonly ScreenshotWatcher _watcher = new();
+    private readonly MapViewState _state = new();
+    private Forms.MiniMapForm? _miniMap;
+    private CheckBox? _miniMapToggle;
     private Label? _dirLabel;
     private Label? _locateStatusLabel;
 
@@ -67,6 +70,7 @@ public sealed class MainForm : Form
 
         _canvas = new MapCanvas { Dock = DockStyle.Fill };
         _canvas.SetIconCache(_icons);
+        _canvas.SetViewState(_state);
         _canvas.ZoomChanged += z => _zoomLabel.Text = $"Zoom {z * 100:0}%";
         _canvas.CursorWorldChanged += (x, z) => _coordLabel.Text = $"X:{x:0.0} Z:{z:0.0}";
         _canvas.MarkerClicked += (name, typeName) =>
@@ -92,6 +96,7 @@ public sealed class MainForm : Form
         FormClosed += (_, _) =>
         {
             _watcher.Dispose();
+            _state.Dispose();
             _icons.Dispose();
         };
     }
@@ -209,7 +214,7 @@ public sealed class MainForm : Form
             var captured = type;
             box.CheckedChanged += (_, _) =>
             {
-                _canvas.SetMarkerVisibility(captured, box.Checked);
+                _state.SetMarkerVisibility(captured, box.Checked);
                 if (!_loading)
                 {
                     _config.Config.MarkerVisibility[captured.ToString()] = box.Checked;
@@ -217,15 +222,143 @@ public sealed class MainForm : Form
                 }
             };
             group.Controls.Add(box);
-            _canvas.SetMarkerVisibility(type, visible);
+            _state.SetMarkerVisibility(type, visible);
         }
         _loading = false;
 
         // WinForms Dock 顺序：后加入的控件排在更靠上的位置
+        panel.Controls.Add(BuildMiniMapPanel());
         panel.Controls.Add(BuildLocatePanel());
         panel.Controls.Add(group);
         panel.Controls.Add(mapGroup);
         return panel;
+    }
+
+    /// <summary>悬浮小地图功能区：显示开关 + 形状/大小/透明度，全部立即生效。</summary>
+    private Control BuildMiniMapPanel()
+    {
+        var group = new GroupBox
+        {
+            Text = "悬浮小地图",
+            Dock = DockStyle.Top,
+            Height = 148
+        };
+
+        var settings = _config.Config.MiniMap;
+
+        var toggle = new CheckBox
+        {
+            Text = "显示悬浮小地图",
+            Left = 10,
+            Top = 22,
+            AutoSize = true,
+            Checked = settings.Visible
+        };
+        _miniMapToggle = toggle;
+        toggle.CheckedChanged += (_, _) =>
+        {
+            if (toggle.Checked)
+            {
+                ShowMiniMap();
+            }
+            else
+            {
+                _miniMap?.Hide();
+            }
+            if (!_loading)
+            {
+                settings.Visible = toggle.Checked;
+                _config.Save();
+            }
+        };
+        group.Controls.Add(toggle);
+
+        // 上次退出时小地图是开着的：本次启动自动恢复显示
+        if (settings.Visible)
+        {
+            ShowMiniMap();
+        }
+
+        // 三行下拉框：形状 / 大小 / 透明度（下拉框在高 DPI 下不会互相遮挡）
+        BuildComboRow(group, 46, "形状",
+            ("方形", MiniMapSettings.ShapeKind.Square), ("圆形", MiniMapSettings.ShapeKind.Circle),
+            settings.Shape, v => { settings.Shape = v; _miniMap?.ApplySettings(); });
+        BuildComboRow(group, 74, "大小",
+            ("小", MiniMapSettings.SizeKind.Small), ("大", MiniMapSettings.SizeKind.Large),
+            settings.Size, v => { settings.Size = v; _miniMap?.ApplySettings(); });
+        BuildComboRow(group, 102, "透明度",
+            ("低（50%）", MiniMapSettings.OpacityKind.Low), ("中（75%）", MiniMapSettings.OpacityKind.Medium),
+            settings.Opacity, v => { settings.Opacity = v; _miniMap?.ApplySettings(); },
+            third: ("高（100%）", MiniMapSettings.OpacityKind.High));
+
+        var hint = new Label
+        {
+            Text = "小地图可左键拖动，滚轮缩放",
+            Left = 10,
+            Top = 130,
+            Width = 180,
+            ForeColor = Color.Gray
+        };
+        group.Controls.Add(hint);
+        return group;
+    }
+
+    /// <summary>创建（如需要）并显示小地图；用户误关时同步取消勾选。</summary>
+    private void ShowMiniMap()
+    {
+        if (_miniMap is null)
+        {
+            _miniMap = new Forms.MiniMapForm(_state, _icons, _config.Config.MiniMap);
+            _miniMap.UserClosed += () =>
+            {
+                if (_miniMapToggle is not null)
+                {
+                    _miniMapToggle.Checked = false; // 触发 CheckedChanged → 隐藏 + 写配置
+                }
+            };
+        }
+        _miniMap.Show();
+    }
+
+    /// <summary>生成一行"标签 + 下拉框"，切换即时生效并写入配置。</summary>
+    private void BuildComboRow<T>(GroupBox group, int top, string label,
+        (string Text, T Value) first, (string Text, T Value) second,
+        T current, Action<T> apply, (string Text, T Value)? third = null) where T : struct
+    {
+        var caption = new Label { Text = label, Left = 8, Top = top + 4, AutoSize = true };
+        group.Controls.Add(caption);
+
+        var options = third is null ? new[] { first, second } : new[] { first, second, third.Value };
+        var combo = new ComboBox
+        {
+            Left = 62,
+            Top = top,
+            Width = 110,
+            DropDownStyle = ComboBoxStyle.DropDownList
+        };
+        var selectedIndex = 0;
+        for (var i = 0; i < options.Length; i++)
+        {
+            combo.Items.Add(options[i].Text);
+            if (EqualityComparer<T>.Default.Equals(current, options[i].Value))
+            {
+                selectedIndex = i;
+            }
+        }
+        combo.SelectedIndex = selectedIndex;
+        combo.SelectedIndexChanged += (_, _) =>
+        {
+            if (combo.SelectedIndex < 0)
+            {
+                return;
+            }
+            apply(options[combo.SelectedIndex].Value);
+            if (!_loading)
+            {
+                _config.Save();
+            }
+        };
+        group.Controls.Add(combo);
     }
 
     /// <summary>玩家定位功能区：截图目录选择 + 状态显示。</summary>
@@ -250,7 +383,7 @@ public sealed class MainForm : Form
 
         var browse = new Button
         {
-            Text = "选择截图目录...",
+            Text = "选择目录...",
             Left = 10,
             Top = 58,
             Width = 172
@@ -343,7 +476,7 @@ public sealed class MainForm : Form
         }
         BeginInvoke(() =>
         {
-            var ok = _canvas.SetPlayerLocation(location);
+            var ok = _state.SetPlayerLocation(location);
             if (ok)
             {
                 SetLocateStatus($"状态：已定位 X:{location.X:0.0} Z:{location.Z:0.0}", Color.DarkGreen);
@@ -378,10 +511,10 @@ public sealed class MainForm : Form
         }
         try
         {
-            // 切换时 Dispose 旧 Bitmap（MapCanvas.SetMap 内部处理），一次只持有一张大地图
+            // 切换时 Dispose 旧 Bitmap（MapViewState.SetMap 内部处理），一次只持有一张大地图
             var map = _repo.LoadMapDefinition(entry.Directory);
             var bitmap = _repo.LoadMapImage(map);
-            _canvas.SetMap(map, bitmap);
+            _state.SetMap(map, bitmap);
             _mapLabel.Text = map.Name;
             _infoLabel.Text = "";
 
@@ -500,8 +633,13 @@ public sealed class MainForm : Form
 
     private void OnFormClosing(object? sender, FormClosingEventArgs e)
     {
-        // 关闭：停止监听 → 保存配置 → 完全退出（无托盘、无后台）
+        // 关闭：停止监听 → 关闭小地图 → 保存配置 → 完全退出（无托盘、无后台）
         _watcher.Stop();
+        if (_miniMap is not null)
+        {
+            _miniMap.AllowClose = true;
+            _miniMap.Close();
+        }
 
         if (WindowState == FormWindowState.Normal)
         {

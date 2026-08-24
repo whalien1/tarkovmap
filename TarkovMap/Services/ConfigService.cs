@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using TarkovMap.Models;
 
 namespace TarkovMap.Services;
 
@@ -30,6 +31,10 @@ public sealed class AppConfig
     /// <summary>Marker 分类显示状态（key = MarkerType 枚举名）。</summary>
     [JsonPropertyName("markerVisibility")]
     public Dictionary<string, bool> MarkerVisibility { get; set; } = new();
+
+    /// <summary>悬浮小地图设置。</summary>
+    [JsonPropertyName("miniMap")]
+    public MiniMapSettings MiniMap { get; set; } = new();
 }
 
 public sealed class ConfigService
