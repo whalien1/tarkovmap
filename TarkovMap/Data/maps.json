@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "maps": [
+    {
+      "id": "streets-of-tarkov",
+      "name": "塔科夫街区",
+      "directory": "maps/streets-of-tarkov",
+      "enabled": true
+    },
+    {
+      "id": "ground-zero",
+      "name": "中心区",
+      "directory": "maps/ground-zero",
+      "enabled": true
+    },
+    {
+      "id": "customs",
+      "name": "海关",
+      "directory": "maps/customs",
+      "enabled": true
+    },
+    {
+      "id": "factory",
+      "name": "工厂",
+      "directory": "maps/factory",
+      "enabled": true
+    },
+    {
+      "id": "interchange",
+      "name": "立交桥",
+      "directory": "maps/interchange",
+      "enabled": true
+    },
+    {
+      "id": "the-lab",
+      "name": "实验室",
+      "directory": "maps/the-lab",
+      "enabled": true
+    },
+    {
+      "id": "lighthouse",
+      "name": "灯塔",
+      "directory": "maps/lighthouse",
+      "enabled": true
+    },
+    {
+      "id": "reserve",
+      "name": "储备站",
+      "directory": "maps/reserve",
+      "enabled": true
+    },
+    {
+      "id": "shoreline",
+      "name": "海岸线",
+      "directory": "maps/shoreline",
+      "enabled": true
+    },
+    {
+      "id": "woods",
+      "name": "森林",
+      "directory": "maps/woods",
+      "enabled": true
+    },
+    {
+      "id": "the-labyrinth",
+      "name": "迷宫",
+      "directory": "maps/the-labyrinth",
+      "enabled": true
+    }
+  ]
+}

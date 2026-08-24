@@ -1,0 +1,513 @@
+using TarkovMap.Controls;
+using TarkovMap.Infrastructure;
+using TarkovMap.Models;
+using TarkovMap.Services;
+
+namespace TarkovMap;
+
+/// <summary>
+/// 主窗口：只做 UI 协调（地图切换、Marker 开关、截图定位、置顶、菜单）。
+/// 坐标数学、JSON、Regex、图标加载都在各自 Service / 控件里。
+/// </summary>
+public sealed class MainForm : Form
+{
+    private readonly MapCanvas _canvas;
+    private readonly IconCache _icons;
+    private readonly StatusStrip _statusStrip;
+    private readonly ToolStripStatusLabel _mapLabel;
+    private readonly ToolStripStatusLabel _zoomLabel;
+    private readonly ToolStripStatusLabel _coordLabel;
+    private readonly ToolStripStatusLabel _infoLabel;
+    private FormWindowState _lastWindowState = FormWindowState.Normal;
+
+    private MapRepository? _repo;
+    private IReadOnlyList<MapListEntry> _mapEntries = [];
+    private ComboBox? _mapCombo;
+    private ToolStripMenuItem? _topMostItem;
+    private ToolStripMenuItem? _mapMenu;
+    private bool _loading;
+
+    private readonly ConfigService _config;
+    private readonly ScreenshotWatcher _watcher = new();
+    private Label? _dirLabel;
+    private Label? _locateStatusLabel;
+
+    public MainForm()
+    {
+        Text = "TarkovMap";
+        StartPosition = FormStartPosition.CenterScreen;
+
+        _config = new ConfigService(AppContext.BaseDirectory);
+        _config.Load();
+        ErrorLogger.Init(AppContext.BaseDirectory);
+        _watcher.LocationFound += OnLocationFound;
+
+        ClientSize = new Size(
+            Math.Max(800, _config.Config.WindowWidth),
+            Math.Max(500, _config.Config.WindowHeight));
+        TopMost = _config.Config.TopMost;
+
+        _mapLabel = new ToolStripStatusLabel { Text = "-" };
+        _zoomLabel = new ToolStripStatusLabel { Text = "Zoom -" };
+        _coordLabel = new ToolStripStatusLabel { Text = "X:- Z:-" };
+        _infoLabel = new ToolStripStatusLabel { Text = "" };
+
+        _statusStrip = new StatusStrip();
+        _statusStrip.Items.Add(_mapLabel);
+        _statusStrip.Items.Add(new ToolStripSeparator());
+        _statusStrip.Items.Add(_zoomLabel);
+        _statusStrip.Items.Add(new ToolStripSeparator());
+        _statusStrip.Items.Add(_coordLabel);
+        _statusStrip.Items.Add(new ToolStripSeparator());
+        _statusStrip.Items.Add(_infoLabel);
+        _statusStrip.Dock = DockStyle.Bottom;
+
+        var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
+        _icons = new IconCache(Path.Combine(dataDir, "icons"));
+
+        _canvas = new MapCanvas { Dock = DockStyle.Fill };
+        _canvas.SetIconCache(_icons);
+        _canvas.ZoomChanged += z => _zoomLabel.Text = $"Zoom {z * 100:0}%";
+        _canvas.CursorWorldChanged += (x, z) => _coordLabel.Text = $"X:{x:0.0} Z:{z:0.0}";
+        _canvas.MarkerClicked += (name, typeName) =>
+            _infoLabel.Text = name is null ? "" : $"{name} · {typeName}";
+
+        var split = new SplitContainer
+        {
+            Dock = DockStyle.Fill,
+            FixedPanel = FixedPanel.Panel1,
+            IsSplitterFixed = true,
+            Panel1MinSize = 200
+        };
+        split.Panel1.Controls.Add(BuildSidePanel());
+        split.Panel2.Controls.Add(_canvas);
+
+        Controls.Add(split);
+        Controls.Add(_statusStrip);
+        Controls.Add(BuildMenuStrip());
+
+        Load += OnFormLoad;
+        Resize += OnFormResize;
+        FormClosing += OnFormClosing;
+        FormClosed += (_, _) =>
+        {
+            _watcher.Dispose();
+            _icons.Dispose();
+        };
+    }
+
+    // ── 菜单栏 ─────────────────────────────────────────────
+
+    private MenuStrip BuildMenuStrip()
+    {
+        var menu = new MenuStrip { Dock = DockStyle.Top };
+
+        var fileMenu = new ToolStripMenuItem("文件(&F)");
+        fileMenu.DropDownItems.Add("重新加载地图数据(&R)", null, (_, _) => ReloadCurrentMap());
+        fileMenu.DropDownItems.Add(new ToolStripSeparator());
+        fileMenu.DropDownItems.Add("退出(&X)", null, (_, _) => Close());
+
+        _mapMenu = new ToolStripMenuItem("地图(&M)");
+
+        var viewMenu = new ToolStripMenuItem("视图(&V)");
+        _topMostItem = new ToolStripMenuItem("窗口置顶(&T)")
+        {
+            Checked = _config.Config.TopMost,
+            CheckOnClick = true
+        };
+        _topMostItem.CheckedChanged += (_, _) =>
+        {
+            TopMost = _topMostItem.Checked;
+            if (!_loading)
+            {
+                _config.Config.TopMost = _topMostItem.Checked;
+                _config.Save();
+            }
+        };
+        viewMenu.DropDownItems.Add(_topMostItem);
+        viewMenu.DropDownItems.Add("重置地图视图(&Z)", null, (_, _) => _canvas.FitToWindow());
+
+        var helpMenu = new ToolStripMenuItem("帮助(&H)");
+        helpMenu.DropDownItems.Add("关于(&A)", null, (_, _) =>
+            MessageBox.Show(this,
+                "TarkovMap v0.1\n\n《逃离塔科夫》本地互动地图\n\n" +
+                "· 纯本地运行，不联网\n" +
+                "· 只读截图文件名，不碰游戏进程\n" +
+                "· 地图数据来源：tarkov-dev 社区数据",
+                "关于 TarkovMap", MessageBoxButtons.OK, MessageBoxIcon.Information));
+
+        menu.Items.Add(fileMenu);
+        menu.Items.Add(_mapMenu);
+        menu.Items.Add(viewMenu);
+        menu.Items.Add(helpMenu);
+        return menu;
+    }
+
+    // ── 左侧功能区 ─────────────────────────────────────────
+
+    private Control BuildSidePanel()
+    {
+        var panel = new Panel { Dock = DockStyle.Fill, AutoScroll = true };
+
+        var mapGroup = new GroupBox
+        {
+            Text = "地图",
+            Dock = DockStyle.Top,
+            Height = 72
+        };
+        _mapCombo = new ComboBox
+        {
+            Left = 10,
+            Top = 24,
+            Width = 172,
+            DropDownStyle = ComboBoxStyle.DropDownList
+        };
+        _mapCombo.SelectedIndexChanged += (_, _) => OnMapSelected();
+        mapGroup.Controls.Add(_mapCombo);
+
+        var group = new GroupBox
+        {
+            Text = "地图标记",
+            Dock = DockStyle.Top,
+            Height = 300
+        };
+
+        // 默认开启：撤离点/出生点/Boss；默认关闭：物资/门锁/危险/固定武器/标注（文档 §14）
+        var items = new (MarkerType Type, string Text, bool DefaultOn)[]
+        {
+            (MarkerType.ExtractPmc, "PMC 撤离点", true),
+            (MarkerType.ExtractScav, "Scav 撤离点", true),
+            (MarkerType.ExtractShared, "共用撤离点", true),
+            (MarkerType.ExtractTransit, "转移点", true),
+            (MarkerType.SpawnPmc, "PMC 出生点", true),
+            (MarkerType.SpawnScav, "Scav 出生点", true),
+            (MarkerType.Boss, "Boss", true),
+            (MarkerType.LootContainer, "物资容器", false),
+            (MarkerType.Lock, "门锁 / 钥匙", false),
+            (MarkerType.Hazard, "危险区域", true),
+            (MarkerType.StationaryWeapon, "固定武器", false),
+            (MarkerType.Label, "地图标注", false),
+        };
+
+        _loading = true;
+        for (var i = 0; i < items.Length; i++)
+        {
+            var (type, text, defaultOn) = items[i];
+            // 有历史配置则用历史状态
+            var visible = _config.Config.MarkerVisibility.TryGetValue(type.ToString(), out var saved)
+                ? saved
+                : defaultOn;
+
+            var box = new CheckBox
+            {
+                Text = text,
+                Checked = visible,
+                AutoSize = true,
+                Left = 10,
+                Top = 22 + i * 22
+            };
+            var captured = type;
+            box.CheckedChanged += (_, _) =>
+            {
+                _canvas.SetMarkerVisibility(captured, box.Checked);
+                if (!_loading)
+                {
+                    _config.Config.MarkerVisibility[captured.ToString()] = box.Checked;
+                    _config.Save();
+                }
+            };
+            group.Controls.Add(box);
+            _canvas.SetMarkerVisibility(type, visible);
+        }
+        _loading = false;
+
+        // WinForms Dock 顺序：后加入的控件排在更靠上的位置
+        panel.Controls.Add(BuildLocatePanel());
+        panel.Controls.Add(group);
+        panel.Controls.Add(mapGroup);
+        return panel;
+    }
+
+    /// <summary>玩家定位功能区：截图目录选择 + 状态显示。</summary>
+    private Control BuildLocatePanel()
+    {
+        var group = new GroupBox
+        {
+            Text = "玩家定位",
+            Dock = DockStyle.Top,
+            Height = 130
+        };
+
+        _dirLabel = new Label
+        {
+            Left = 10,
+            Top = 22,
+            Width = 172,
+            Height = 32,
+            Text = "截图目录未配置",
+            ForeColor = Color.Gray
+        };
+
+        var browse = new Button
+        {
+            Text = "选择截图目录...",
+            Left = 10,
+            Top = 58,
+            Width = 172
+        };
+        browse.Click += (_, _) => OnBrowseScreenshotDirectory();
+
+        _locateStatusLabel = new Label
+        {
+            Left = 10,
+            Top = 92,
+            Width = 172,
+            Text = "状态：未配置",
+            ForeColor = Color.Gray
+        };
+
+        group.Controls.Add(_dirLabel);
+        group.Controls.Add(browse);
+        group.Controls.Add(_locateStatusLabel);
+        return group;
+    }
+
+    // ── 截图定位 ───────────────────────────────────────────
+
+    private void OnBrowseScreenshotDirectory()
+    {
+        using var dialog = new FolderBrowserDialog
+        {
+            Description = "选择塔科夫截图目录（游戏自带截图保存的文件夹）",
+            UseDescriptionForTitle = true
+        };
+        if (!string.IsNullOrEmpty(_config.Config.ScreenshotDirectory))
+        {
+            dialog.InitialDirectory = _config.Config.ScreenshotDirectory;
+        }
+
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            _config.Config.ScreenshotDirectory = dialog.SelectedPath;
+            _config.Save();
+            StartWatching();
+        }
+    }
+
+    private void StartWatching()
+    {
+        var dir = _config.Config.ScreenshotDirectory;
+        if (string.IsNullOrEmpty(dir))
+        {
+            SetLocateStatus("状态：未配置", Color.Gray);
+            return;
+        }
+
+        try
+        {
+            _watcher.Start(dir);
+            SetLocateStatus("状态：等待新截图", Color.DarkGreen);
+            _infoLabel.Text = "";
+        }
+        catch (Exception ex)
+        {
+            ErrorLogger.Log("ScreenshotWatcher", ex);
+            SetLocateStatus("状态：目录不存在，请重新选择", Color.DarkRed);
+            _infoLabel.Text = "截图目录不存在";
+        }
+    }
+
+    private void SetLocateStatus(string text, Color color)
+    {
+        if (_locateStatusLabel is not null)
+        {
+            _locateStatusLabel.Text = text;
+            _locateStatusLabel.ForeColor = color;
+        }
+        if (_dirLabel is not null)
+        {
+            _dirLabel.Text = string.IsNullOrEmpty(_config.Config.ScreenshotDirectory)
+                ? "截图目录未配置"
+                : _config.Config.ScreenshotDirectory;
+            _dirLabel.ForeColor = string.IsNullOrEmpty(_config.Config.ScreenshotDirectory)
+                ? Color.Gray : Color.Black;
+        }
+    }
+
+    /// <summary>截图事件（线程池线程）→ 切到 UI 线程处理。</summary>
+    private void OnLocationFound(PlayerLocation location)
+    {
+        if (IsDisposed)
+        {
+            return;
+        }
+        BeginInvoke(() =>
+        {
+            var ok = _canvas.SetPlayerLocation(location);
+            if (ok)
+            {
+                SetLocateStatus($"状态：已定位 X:{location.X:0.0} Z:{location.Z:0.0}", Color.DarkGreen);
+                _infoLabel.Text = $"已定位（{location.FileName}）";
+            }
+            else
+            {
+                // 坐标与当前地图不匹配：不绘制、不切图、只提示
+                SetLocateStatus("状态：位置与当前地图不匹配", Color.DarkOrange);
+                _infoLabel.Text = "当前位置与当前地图不匹配";
+            }
+        });
+    }
+
+    // ── 地图加载 ───────────────────────────────────────────
+
+    private void OnMapSelected()
+    {
+        if (_loading || _mapCombo is null || _mapCombo.SelectedIndex < 0 ||
+            _mapCombo.SelectedIndex >= _mapEntries.Count)
+        {
+            return;
+        }
+        LoadMap(_mapEntries[_mapCombo.SelectedIndex]);
+    }
+
+    private void LoadMap(MapListEntry entry)
+    {
+        if (_repo is null)
+        {
+            return;
+        }
+        try
+        {
+            // 切换时 Dispose 旧 Bitmap（MapCanvas.SetMap 内部处理），一次只持有一张大地图
+            var map = _repo.LoadMapDefinition(entry.Directory);
+            var bitmap = _repo.LoadMapImage(map);
+            _canvas.SetMap(map, bitmap);
+            _mapLabel.Text = map.Name;
+            _infoLabel.Text = "";
+
+            _config.Config.LastMapId = map.Id;
+            if (!_loading)
+            {
+                _config.Save();
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogger.Log("MapRepository", ex, entry.Id);
+            _infoLabel.Text = $"地图 {entry.Name} 加载失败";
+            MessageBox.Show(this, $"地图 {entry.Name} 加载失败。\n\n{ex.Message}",
+                "TarkovMap", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
+
+    private void ReloadCurrentMap()
+    {
+        if (_mapCombo is not null && _mapCombo.SelectedIndex >= 0 &&
+            _mapCombo.SelectedIndex < _mapEntries.Count)
+        {
+            LoadMap(_mapEntries[_mapCombo.SelectedIndex]);
+        }
+    }
+
+    // ── 窗口生命周期 ───────────────────────────────────────
+
+    private void OnFormLoad(object? sender, EventArgs e)
+    {
+        // 控件已完成布局，此时设置分隔条位置不会被初始尺寸挤压
+        var split = Controls.OfType<SplitContainer>().FirstOrDefault();
+        if (split is not null && split.Width > 260)
+        {
+            split.SplitterDistance = 200;
+        }
+
+        try
+        {
+            var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
+            _repo = new MapRepository(dataDir);
+            _mapEntries = _repo.LoadMapList().Where(m => m.Enabled).ToList();
+            if (_mapEntries.Count == 0)
+            {
+                throw new InvalidDataException("maps.json 中没有可用地图");
+            }
+
+            _loading = true;
+            foreach (var entry in _mapEntries)
+            {
+                _mapCombo?.Items.Add(entry.Name);
+            }
+
+            // 地图菜单同步生成
+            if (_mapMenu is not null)
+            {
+                for (var i = 0; i < _mapEntries.Count; i++)
+                {
+                    var index = i;
+                    _mapMenu.DropDownItems.Add(_mapEntries[i].Name, null, (_, _) =>
+                    {
+                        if (_mapCombo is not null)
+                        {
+                            _mapCombo.SelectedIndex = index;
+                        }
+                    });
+                }
+            }
+            _loading = false;
+
+            // 初始地图：优先上次使用的地图，否则第一张
+            var initialIndex = 0;
+            for (var i = 0; i < _mapEntries.Count; i++)
+            {
+                if (_mapEntries[i].Id == _config.Config.LastMapId)
+                {
+                    initialIndex = i;
+                    break;
+                }
+            }
+            if (_mapCombo is not null)
+            {
+                _mapCombo.SelectedIndex = initialIndex;
+            }
+            LoadMap(_mapEntries[initialIndex]);
+
+            // 恢复截图目录监听（未配置则状态提示，不影响看地图）
+            StartWatching();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogger.Log("Startup", ex);
+            MessageBox.Show(
+                this,
+                $"地图数据无法加载。\n请重新解压完整 TarkovMap 压缩包。\n\n{ex.Message}",
+                "TarkovMap",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            Close();
+        }
+    }
+
+    /// <summary>窗口最大化 / 还原时，地图重新适配视口；普通拖边框保持当前视图。</summary>
+    private void OnFormResize(object? sender, EventArgs e)
+    {
+        if (WindowState != _lastWindowState)
+        {
+            _lastWindowState = WindowState;
+            if (WindowState != FormWindowState.Minimized)
+            {
+                _canvas.FitToWindow();
+            }
+        }
+    }
+
+    private void OnFormClosing(object? sender, FormClosingEventArgs e)
+    {
+        // 关闭：停止监听 → 保存配置 → 完全退出（无托盘、无后台）
+        _watcher.Stop();
+
+        if (WindowState == FormWindowState.Normal)
+        {
+            _config.Config.WindowWidth = ClientSize.Width;
+            _config.Config.WindowHeight = ClientSize.Height;
+        }
+        _config.Save();
+    }
+}

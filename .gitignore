@@ -1,0 +1,9 @@
+ref/
+dist/
+test-shots/
+*.zip
+screenshot-full.png
+**/bin/
+**/obj/
+Config/
+Logs/

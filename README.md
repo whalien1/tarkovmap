@@ -1,0 +1,49 @@
+# TarkovMap v1.0
+
+《逃离塔科夫》本地互动地图工具（Windows 原生桌面程序）。
+
+**打开即地图。不联网、不碰游戏进程、不驻留后台，只做地图。**
+
+## 系统要求
+
+- Windows 10 / 11 x64
+- 安装 [.NET 10 桌面运行时（Desktop Runtime x64）](https://dotnet.microsoft.com/download)（未安装时程序会提示下载）
+
+## 安装与启动
+
+1. 解压 `TarkovMap-v1.0.zip` 到普通可写目录（如 `D:\Tools\TarkovMap\`，**不要**放 Program Files）
+2. 双击 `TarkovMap.exe`
+
+## 功能
+
+- **11 张地图**：街区 / 中心区 / 海关 / 工厂 / 立交桥 / 实验室 / 灯塔 / 储备站 / 海岸线 / 森林 / 迷宫
+- 左键拖动、滚轮缩放（以鼠标为中心）、最大化自动适配
+- Marker 分类开关：撤离点（大图标+名称）/ 出生点 / Boss（红圈红名）/ 危险区域（红色区域块，即死机制）/ 物资容器 / 门锁 / 固定武器 / 地图标注，勾选状态自动记忆
+- 点击 Marker 显示名称 + 类别
+- **截图定位**：游戏内用自带截图功能（PrintScreen）截图 → 程序通过文件名自动解析位置与朝向 → 地图画箭头并居中
+- 窗口置顶开关、上次地图/窗口尺寸记忆、单实例
+
+## 截图定位设置
+
+1. 左侧"玩家定位" → "选择截图目录"
+2. 选择游戏截图目录，默认为：
+   `C:\Users\<用户名>\Documents\Escape from Tarkov\Screenshots`
+3. 之后游戏内每截一张图，地图自动定位。坐标与当前地图不符时只在状态栏提示，不打断。
+
+## 安全说明
+
+程序只读取截图文件的**文件名**（不读图片内容、不读游戏内存、不注入、不修改游戏文件、无 Overlay），与反作弊系统零冲突。
+
+## 点位数据维护
+
+- 官方点位：来自社区数据集（tarkov.dev），游戏大版本更新后可用 `Tools/MapPackBuilder` 重新生成
+- 手工补录：编辑 `Tools/manual_overrides.json`（重新生成不丢失），或直接改 `Data/maps/<地图>/map.json` 的 markers 数组
+- 实测坐标方法：站在点位处游戏内截图，文件名自带精确 X/Z
+
+## 数据来源与致谢
+
+- 地图 SVG / 点位数据：the-hideout/tarkov-dev-svg-maps（tarkov.dev 社区数据），经 Re5pawnn/Tarkov_webmap 项目整理
+- 撤离点图标：Re5pawnn/Tarkov_webmap
+- 截图文件名解析参考：Re5pawnn/Tarkov_webmap（ScreenshotCoordinateParser）
+
+本工具为个人自用项目，数据版权归原社区项目所有；公开发布前需自行核实授权与署名要求。

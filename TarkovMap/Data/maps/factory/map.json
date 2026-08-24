@@ -1,0 +1,1970 @@
+{
+  "schemaVersion": 1,
+  "id": "factory",
+  "name": "工厂",
+  "image": {
+    "file": "map.png",
+    "width": 2000,
+    "height": 1852
+  },
+  "worldBounds": {
+    "x0": 77,
+    "z0": -64.5,
+    "x1": -65.5,
+    "z1": 67.4,
+    "reverseCoordinate": false,
+    "coordinateRotation": 90
+  },
+  "markers": [
+    {
+      "id": "ffb8b37a6390d2c3b00baeee3295492ea1e19a93",
+      "type": "extract_pmc",
+      "name": "地下室",
+      "x": 73.89,
+      "z": -29.08,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "a11f20d1f462bc4c8f39699e8a59fc0b58b71299",
+      "type": "extract_scav",
+      "name": "3号门",
+      "x": 58.71,
+      "z": 60.87,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "7ae0a08942ce71d8d713ef3628c86619598160f4",
+      "type": "extract_pmc",
+      "name": "3号门",
+      "x": 58.43,
+      "z": 63.3,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "7e582daaf3ef18c90132998441c217f246387a06",
+      "type": "extract_scav",
+      "name": "监控地堡大门",
+      "x": -15.72,
+      "z": 40.11,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "cbe6ccd60767142298488227e57ab554cf47cd2e",
+      "type": "extract_scav",
+      "name": "办公室窗户",
+      "x": 17.83,
+      "z": 39.89,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "4f953558d3d7bca7bd7b4d40a6429adc34cc1834",
+      "type": "extract_pmc",
+      "name": "0号门",
+      "x": -63.67,
+      "z": 55.88,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "7bb46d641d59983a58440a7a58d65933d981c211",
+      "type": "extract_pmc",
+      "name": "医疗帐篷大门",
+      "x": -17.53,
+      "z": -61.27,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "1846030b40983ab096b3d1e39f72da5697f39154",
+      "type": "extract_pmc",
+      "name": "庭院大门",
+      "x": 23.76,
+      "z": 68.94,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "3faf0c5c7f9dfe2c4ec9cf029fbe14ede9720cc1",
+      "type": "extract_pmc",
+      "name": "走私者小道",
+      "x": 48.03,
+      "z": -28.86,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "12",
+      "type": "extract_transit",
+      "name": "前往森林",
+      "x": 23.7,
+      "z": 61.61,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "13",
+      "type": "extract_transit",
+      "name": "前往海关",
+      "x": 18.51,
+      "z": -48.33,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "14",
+      "type": "extract_transit",
+      "name": "前往实验室",
+      "x": -26.54,
+      "z": -42.01,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_11423",
+      "type": "spawn_scav",
+      "name": "0246436c-7d69-4036-999d-ebcb956970b5",
+      "x": -45.4,
+      "z": 5.58,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_65509",
+      "type": "spawn_scav",
+      "name": "05e75eb3-eb43-46c6-94d3-59e1e9ba4435",
+      "x": 11.22,
+      "z": -42.11,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_10167",
+      "type": "spawn_scav",
+      "name": "0a92f51c-52b4-4e76-b839-f7ce82f2b36b",
+      "x": 56.86,
+      "z": 52.57,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_37892",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": -20.76,
+      "z": 22.77,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_71846",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 31.81,
+      "z": 21.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_40622",
+      "type": "spawn_scav",
+      "name": "120a0777-e825-4de7-a855-c3eaa8eba46b",
+      "x": -43.81,
+      "z": 6.74,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_73026",
+      "type": "spawn_scav",
+      "name": "13883982-2ab8-4dd5-a9b4-45e2c6d8e1cc",
+      "x": 12.6,
+      "z": -42.52,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_47898",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 57.7,
+      "z": 53.41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_46076",
+      "type": "spawn_scav",
+      "name": "1a5819f2-ff42-4632-af5e-fe5ea8f886fc",
+      "x": 58.18,
+      "z": 51.28,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_67825",
+      "type": "spawn_scav",
+      "name": "1facfcfc-9ee5-4638-83b3-117fce7b3303",
+      "x": -46.69,
+      "z": 8.39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_7585",
+      "type": "spawn_scav",
+      "name": "22a7740a-5a91-4bca-af36-668342522b42",
+      "x": 70.76,
+      "z": -72.8,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_89404",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": -19.94,
+      "z": 62.87,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_14410",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 31.75,
+      "z": -0.3,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_51720",
+      "type": "spawn_scav",
+      "name": "2497205e-6fc4-49cd-a1e3-f46c780e214f",
+      "x": 31.62,
+      "z": 18.28,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_82783",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 8.07,
+      "z": -8.61,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_12019",
+      "type": "spawn_scav",
+      "name": "2a1f1b80-72be-444d-9d8d-5f645a3fc019",
+      "x": 32.27,
+      "z": -34.01,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_38293",
+      "type": "spawn_scav",
+      "name": "2a5aad92-b5f9-40c0-a380-460247300227",
+      "x": 57.94,
+      "z": 49.65,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_29206",
+      "type": "spawn_scav",
+      "name": "2e1843a1-fd2a-4ccd-8b38-747c1a70f228",
+      "x": -16.91,
+      "z": -39.43,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_63795",
+      "type": "spawn_scav",
+      "name": "2eed18b6-9fbb-40de-979f-985f203f251e",
+      "x": -42.44,
+      "z": 7.44,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_69955",
+      "type": "spawn_scav",
+      "name": "30edcdf0-73e0-4ab5-a9e7-4d24a9a83aa9",
+      "x": 27.78,
+      "z": 20.57,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_44151",
+      "type": "spawn_scav",
+      "name": "336d3c25-9f38-475f-8eb9-db6393f06b6c",
+      "x": 71.73,
+      "z": -71.41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_73466",
+      "type": "spawn_scav",
+      "name": "38a8fe02-f871-4b79-91e5-69c2c68d1bbc",
+      "x": -16.98,
+      "z": -41.32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_87444",
+      "type": "spawn_scav",
+      "name": "3bcd754a-b299-4d63-9d7f-e4d05c2f13e3",
+      "x": -22.17,
+      "z": 23.77,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_2687",
+      "type": "spawn_scav",
+      "name": "4755c538-4ee5-4125-8cd3-885787da7ad5",
+      "x": 12.63,
+      "z": 60.15,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_91961",
+      "type": "spawn_scav",
+      "name": "4a4e5ee5-a314-4a78-939d-cf3c05818435",
+      "x": -16.78,
+      "z": -37.43,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_85252",
+      "type": "spawn_scav",
+      "name": "4bc2255b-75b0-44a3-91ed-c1b35499cbc5",
+      "x": 7.9,
+      "z": -44.61,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_87657",
+      "type": "spawn_scav",
+      "name": "503cf951-8e80-4ca0-aa2d-993f71a6a4a6",
+      "x": -44.19,
+      "z": 48.43,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_89163",
+      "type": "spawn_scav",
+      "name": "50560c89-4136-4cfb-b155-485519110c93",
+      "x": -17.69,
+      "z": -43.16,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_66245",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 22.37,
+      "z": 4.33,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_7367",
+      "type": "spawn_scav",
+      "name": "57254982-c470-440d-911a-e8854f42398a",
+      "x": -42.62,
+      "z": 48.35,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_91530",
+      "type": "spawn_scav",
+      "name": "5be1a535-4865-433c-b645-33c7ff65bd94",
+      "x": -46.27,
+      "z": 7.05,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_92237",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": -44.3,
+      "z": 38.87,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_45579",
+      "type": "spawn_scav",
+      "name": "683f2734-6398-4b77-9bab-b87f3be35938",
+      "x": 69.99,
+      "z": -71.35,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_42339",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 10.53,
+      "z": -43.56,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_45005",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 33.02,
+      "z": -33.12,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_66355",
+      "type": "spawn_scav",
+      "name": "6d7bf2bb-6211-4495-8509-58ceadea72e0",
+      "x": 9.99,
+      "z": -42.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_25583",
+      "type": "spawn_scav",
+      "name": "6d97a439-de10-42c5-99ef-6cf92e243aca",
+      "x": 10.23,
+      "z": 58.76,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_73165",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": -21.81,
+      "z": 32.56,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_57936",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 4.73,
+      "z": -35.1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_24583",
+      "type": "spawn_scav",
+      "name": "7ea1b4b8-a496-4bc0-bf61-e5ba4f3aa1fa",
+      "x": 32.23,
+      "z": -31.64,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_88490",
+      "type": "spawn_scav",
+      "name": "80532206-b2e1-4578-b559-99eae931a957",
+      "x": 32.67,
+      "z": -35.46,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_87465",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 70.02,
+      "z": -69.04,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_20639",
+      "type": "spawn_scav",
+      "name": "8429bed9-52e2-4731-a425-4912db8529a9",
+      "x": 58.41,
+      "z": 52.69,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_6672",
+      "type": "spawn_scav",
+      "name": "867576c4-1152-48ad-80bf-a802d7318379",
+      "x": -44.01,
+      "z": 50.14,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_68765",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": -19.27,
+      "z": -38.46,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_22822",
+      "type": "spawn_scav",
+      "name": "8df78011-1568-4e66-99b8-5c4ed736b99a",
+      "x": -19.11,
+      "z": -43.17,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_47408",
+      "type": "spawn_scav",
+      "name": "91ec8f79-6cc4-422d-966f-4cd6a02d5a87",
+      "x": 8.5,
+      "z": -43.58,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_72872",
+      "type": "spawn_scav",
+      "name": "92822146-7c98-4570-8bde-8d0d042ae3cf",
+      "x": 35.35,
+      "z": -34.51,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_56209",
+      "type": "spawn_scav",
+      "name": "9dd99893-91c5-4e64-b808-bbe46852022a",
+      "x": 60.09,
+      "z": 52.59,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_82247",
+      "type": "spawn_scav",
+      "name": "9f14e22f-3971-4440-8f48-c597cc7d9166",
+      "x": 30.26,
+      "z": 21.7,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_25648",
+      "type": "spawn_scav",
+      "name": "a5c47219-1ebc-4254-90cb-934d6f9d4790",
+      "x": -22.17,
+      "z": 30.39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_7245",
+      "type": "spawn_scav",
+      "name": "ad0cbd99-02ee-4ff1-b799-6b50b8a3fa0f",
+      "x": 72.06,
+      "z": -73.86,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_96492",
+      "type": "spawn_scav",
+      "name": "adee9078-b5a3-4f9e-b384-e984cbea15fc",
+      "x": -44.28,
+      "z": 46.33,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_52876",
+      "type": "spawn_scav",
+      "name": "ae4693d5-a309-4cbc-85db-ce8a59cf7ff4",
+      "x": 34.38,
+      "z": -33.25,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_81452",
+      "type": "spawn_scav",
+      "name": "afacfed6-7a03-418b-9fca-420590d639c0",
+      "x": 69.2,
+      "z": -73.44,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_46621",
+      "type": "spawn_scav",
+      "name": "b776e3ed-a02d-4141-8eba-35d4746547ca",
+      "x": -42.92,
+      "z": 39.1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_7606",
+      "type": "spawn_scav",
+      "name": "bcae7a9f-8b2f-4a4c-9cb0-589d4a227c70",
+      "x": 12.56,
+      "z": 52.73,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_52543",
+      "type": "spawn_scav",
+      "name": "c249a42b-3b54-4680-ac4d-2c923ca4f530",
+      "x": 28.74,
+      "z": 17.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_88580",
+      "type": "spawn_scav",
+      "name": "c671337f-e58f-4de6-a387-307d877954a3",
+      "x": 14.02,
+      "z": 58.12,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_91524",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": -5.89,
+      "z": -27.46,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_76199",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 2.1,
+      "z": 63.06,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_50485",
+      "type": "spawn_scav",
+      "name": "BotZone",
+      "x": 15,
+      "z": 3.79,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_82445",
+      "type": "spawn_scav",
+      "name": "e5cd7bad-0f60-4cc2-bdd9-8a8943232b01",
+      "x": -22.17,
+      "z": 29.19,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_84056",
+      "type": "spawn_scav",
+      "name": "e60d8dce-ee35-4b30-9c3a-afddf4c5445e",
+      "x": 13.76,
+      "z": 54.64,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_89072",
+      "type": "spawn_scav",
+      "name": "efb39132-1eff-4655-8fb0-d795f8f98eb3",
+      "x": 31.78,
+      "z": 19.45,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_48249",
+      "type": "spawn_scav",
+      "name": "f0864450-ffa8-4d7e-aa93-59ea6b218641",
+      "x": -22.17,
+      "z": 25.57,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "spawn_scav_14674",
+      "type": "spawn_scav",
+      "name": "f3c6d9ee-ca4e-44ca-abdf-0622a8249f1d",
+      "x": -22.17,
+      "z": 31.53,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "boss_93455",
+      "type": "boss",
+      "name": "Tagilla（Any scav spawn）",
+      "x": -20.76,
+      "z": 22.77,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "lock_81881",
+      "type": "lock",
+      "name": "工厂紧急出口钥匙",
+      "x": -19.08,
+      "z": -48.57,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "lock_4534",
+      "type": "lock",
+      "name": "工厂紧急出口钥匙",
+      "x": 66.83,
+      "z": -29.32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "lock_65535",
+      "type": "lock",
+      "name": "工厂紧急出口钥匙",
+      "x": 29.12,
+      "z": 36.52,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "lock_43089",
+      "type": "lock",
+      "name": "TerraGroup 仓库钥匙卡",
+      "x": -20.43,
+      "z": 44.06,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_65679",
+      "type": "label",
+      "name": "办公楼",
+      "x": 21,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_58591",
+      "type": "label",
+      "name": "主办公室",
+      "x": 15.5,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_29160",
+      "type": "label",
+      "name": "踹门房",
+      "x": 24.5,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_30210",
+      "type": "label",
+      "name": "上锁办",
+      "x": 30.5,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_65050",
+      "type": "label",
+      "name": "北楼梯",
+      "x": 35,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_38390",
+      "type": "label",
+      "name": "南楼梯",
+      "x": 9,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_74430",
+      "type": "label",
+      "name": "天桥",
+      "x": 34,
+      "z": 26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82847",
+      "type": "label",
+      "name": "连接",
+      "x": 29.5,
+      "z": 17,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_10878",
+      "type": "label",
+      "name": "更衣室",
+      "x": 29,
+      "z": 41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_46808",
+      "type": "label",
+      "name": "浴室",
+      "x": 15,
+      "z": 41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_23668",
+      "type": "label",
+      "name": "洞",
+      "x": 20,
+      "z": 42,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_73477",
+      "type": "label",
+      "name": "平台",
+      "x": -3,
+      "z": 37,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_59379",
+      "type": "label",
+      "name": "服务器",
+      "x": -21,
+      "z": 27,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_7824",
+      "type": "label",
+      "name": "医疗帐篷",
+      "x": -18,
+      "z": -29,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_99858",
+      "type": "label",
+      "name": "筒仓",
+      "x": 4.5,
+      "z": 10.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_86204",
+      "type": "label",
+      "name": "坠机",
+      "x": 30,
+      "z": -8.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_97751",
+      "type": "label",
+      "name": "坑道",
+      "x": -1,
+      "z": 16,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_40033",
+      "type": "label",
+      "name": "地下贮藏",
+      "x": -2,
+      "z": -24.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_91166",
+      "type": "label",
+      "name": "Scav 碉堡",
+      "x": -20.5,
+      "z": 23,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_17010",
+      "type": "label",
+      "name": "蓝集装箱",
+      "x": -18,
+      "z": 50,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_1689",
+      "type": "label",
+      "name": "木屋",
+      "x": -45.5,
+      "z": 61,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_53826",
+      "type": "label",
+      "name": "玻璃通",
+      "x": 68.25,
+      "z": -20,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_6030",
+      "type": "label",
+      "name": "锅炉",
+      "x": 56,
+      "z": 5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_33375",
+      "type": "label",
+      "name": "泵站",
+      "x": 41,
+      "z": -11,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_94983",
+      "type": "label",
+      "name": "东走廊",
+      "x": 44,
+      "z": -36,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_58098",
+      "type": "label",
+      "name": "叉车区",
+      "x": 66,
+      "z": -42,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_33710",
+      "type": "label",
+      "name": "起重机",
+      "x": 18,
+      "z": 4,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_11042",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 27.38,
+      "z": 40.12,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_4894",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 24.07,
+      "z": 43.62,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_15305",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 29.98,
+      "z": -11.98,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_21453",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 32.57,
+      "z": 19.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_41250",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 34.24,
+      "z": -31.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_51930",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 25.78,
+      "z": -33.32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_27289",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 32.45,
+      "z": 45,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_88287",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 33.04,
+      "z": 61.18,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_49721",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": 9.45,
+      "z": -41.34,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_32046",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": -22.13,
+      "z": 24.77,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_36225",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 73.76,
+      "z": -35,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_94637",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 12.28,
+      "z": 34.34,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_68222",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 27.15,
+      "z": 20.44,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_83936",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 16.82,
+      "z": -38.33,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_75103",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 29.96,
+      "z": -34.03,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_6218",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 14.43,
+      "z": -39.1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_50018",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 73.75,
+      "z": -35.42,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_14515",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 16.82,
+      "z": -37.91,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_23108",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 26.33,
+      "z": 45.09,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_19385",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": -46.05,
+      "z": 63.68,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_73649",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 26.33,
+      "z": 45.51,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_30988",
+      "type": "loot_container",
+      "name": "夹克",
+      "x": 27.15,
+      "z": 20.86,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_82663",
+      "type": "loot_container",
+      "name": "PMC尸体",
+      "x": 70.85,
+      "z": -45.65,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_47383",
+      "type": "loot_container",
+      "name": "死去的Scav",
+      "x": -18.9,
+      "z": 21.94,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_31192",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 97.36,
+      "z": 22.79,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_79243",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 32.68,
+      "z": 22.02,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_76419",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 8.3,
+      "z": 49.58,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_3914",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 8.42,
+      "z": 50.1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_57758",
+      "type": "loot_container",
+      "name": "SMU06 医疗包",
+      "x": -15.42,
+      "z": -27.63,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_10239",
+      "type": "loot_container",
+      "name": "SMU06 医疗包",
+      "x": -19.69,
+      "z": -27.04,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_2921",
+      "type": "loot_container",
+      "name": "SMU06 医疗包",
+      "x": -14.94,
+      "z": -29.06,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_31630",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 36.81,
+      "z": -12.57,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_99231",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 18.21,
+      "z": -13.62,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_18513",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 25.75,
+      "z": 39.26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_32736",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 18.78,
+      "z": 43.71,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_97363",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 20.78,
+      "z": 34.76,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_53883",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 42.89,
+      "z": -7.17,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_38406",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 38.66,
+      "z": -13.39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_10233",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 32.26,
+      "z": 15.73,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_43912",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 62.3,
+      "z": -12.54,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_19797",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": -4.52,
+      "z": -38.42,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_26700",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 53.97,
+      "z": 21.73,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_92672",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": -5.32,
+      "z": 48.8,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_15281",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 6.13,
+      "z": 50.91,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_90944",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 69.82,
+      "z": 41.74,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_44866",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 19.41,
+      "z": -36.96,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_25161",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": -21.26,
+      "z": 0.49,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_83428",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 25.98,
+      "z": -18.79,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_69881",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 1.92,
+      "z": -16.93,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_61307",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 20.73,
+      "z": 22.6,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_90956",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 13.66,
+      "z": 30.7,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_67186",
+      "type": "loot_container",
+      "name": "武器箱",
+      "x": 1.57,
+      "z": 23.52,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_34225",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 42.13,
+      "z": -50.29,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_73883",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": 59.77,
+      "z": -39.88,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_15955",
+      "type": "loot_container",
+      "name": "工具箱",
+      "x": -30.32,
+      "z": 10.09,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_71477",
+      "type": "loot_container",
+      "name": "技术物资箱",
+      "x": -18.66,
+      "z": -16,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_69249",
+      "type": "loot_container",
+      "name": "保险箱",
+      "x": 12.25,
+      "z": 38.75,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_73632",
+      "type": "loot_container",
+      "name": "旅行包",
+      "x": -47.22,
+      "z": 60.08,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_19260",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -23.63,
+      "z": 57.39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_14506",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -9.85,
+      "z": 65.52,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_82508",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 1.87,
+      "z": 60.98,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_6597",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -2.85,
+      "z": 44.9,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_31188",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -25.65,
+      "z": 66.62,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_23228",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -9.96,
+      "z": 38.19,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_9520",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 8.01,
+      "z": 32.34,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_65144",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 3.73,
+      "z": 26.03,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_97643",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 34.44,
+      "z": 33.75,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_69353",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 35.79,
+      "z": 19.85,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_6360",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 25.26,
+      "z": 17.7,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_79278",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 0.67,
+      "z": 10.45,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_54338",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -24.35,
+      "z": 10.55,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_67826",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 36.47,
+      "z": 8.9,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_49681",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 19.42,
+      "z": 10.3,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_46227",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 31.2,
+      "z": -0.27,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_25859",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -22.28,
+      "z": 17.62,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_15968",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 17.92,
+      "z": -29.63,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_63715",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 11.07,
+      "z": -19.3,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_46522",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -8.34,
+      "z": -36.02,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_87101",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": -12.58,
+      "z": -6.51,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_94391",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 55.44,
+      "z": -22.18,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_19080",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 56.64,
+      "z": 24.79,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_5603",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 58.37,
+      "z": -6.63,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_38277",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 26.5,
+      "z": 45.51,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "loot_container_91650",
+      "type": "loot_container",
+      "name": "木制板条箱",
+      "x": 14.44,
+      "z": 40.35,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    }
+  ]
+}

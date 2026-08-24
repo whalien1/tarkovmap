@@ -1,0 +1,13 @@
+{
+  "_说明": "手工补录点位：按地图 id 登记，MapPackBuilder 每次生成数据时自动合并。坐标可用游戏截图文件名实测。",
+  "interchange": [
+    {
+      "id": "manual_interchange_riverside",
+      "type": "extract_pmc",
+      "name": "河畔之路（信号弹）",
+      "x": 481.5,
+      "z": 69.4,
+      "_备注": "参考成品地图截图估算位置，待实测校准"
+    }
+  ]
+}
