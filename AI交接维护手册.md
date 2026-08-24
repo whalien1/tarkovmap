@@ -6,14 +6,23 @@
 
 ## 1. 环境与构建（最容易踩的坑）
 
-- 工作区：`D:\tarkov map\`（路径含空格，所有命令行参数必须加引号）。
-- 用户机器：Windows，已装 .NET SDK 10.0.400，dotnet 在 `C:\Program Files\dotnet\dotnet.exe`。
-- **编译必须用** `C:\Windows\Temp\build-tm.cmd`（内容与仓库根目录 `build.cmd` 相同）：
-  先 `set ProgramData=C:\ProgramData` 再 `dotnet build -c Release --no-restore`，成功后把 `Data` 拷进输出目录。
-  - **不要运行 `dotnet restore`**：`obj/project.assets.json` 是手工构造的，restore 会被环境变量问题搞坏。
-  - Git Bash 里调用：`cmd //c 'C:\Windows\Temp\build-tm.cmd'`（双斜杠转义）。
-- 可执行文件：`D:\tarkov map\TarkovMap\bin\Release\net10.0-windows\TarkovMap.exe`。
+> **路径说明**：本文出现的 `D:\tarkov map\` 等均为作者本机**示例路径**，**不是工程构建前提**。
+
+- **标准构建（推荐）**：在任意克隆目录执行 `dotnet restore` + `dotnet build -c Release`
+  （或直接运行仓库根目录的 `build.cmd`）即可完成。客户端依赖 `net10.0-windows` + WinForms，无第三方 NuGet；
+  `dotnet restore` **可以**正常执行（本项目**不是**靠手工构造 `obj/project.assets.json` 才能构建）。
+- **`build.cmd` 已是可移植脚本**：使用脚本自身相对路径（`%~dp0`），直接调用 PATH 中的 `dotnet`，
+  不依赖作者机器的绝对路径；构建成功后会把 `Data\` 拷进运行目录。
+- **历史教训（已废弃）**：早期为规避环境问题，本项目曾以"`--no-restore` + 保留手工 obj"的方式构建。
+  该认知有误——**删除 `bin/obj` 后 `dotnet restore` + `dotnet build -c Release` 可正常通过**。
+  此后请按标准流程构建，不要沿用"避免 restore"。
+- **重要教训**：不要把任何生成物放进**不被默认 glob 排除**的目录（如 `obj.bak/`）。只排除 `obj/`，
+  若新建 `obj.bak/`，其中的 `*.cs` 会被当源码二次编译，触发 CS0579（程序集特性重复）。
+- 本机示例：作者机器 .NET SDK 10.0.400，dotnet 在 `C:\Program Files\dotnet\dotnet.exe`；
+  可执行文件在 `D:\tarkov map\TarkovMap\bin\Release\net10.0-windows\TarkovMap.exe`。
 - 终端中文输出乱码：管道 `iconv -f GBK -t UTF-8//IGNORE`。
+- **核心算法自动测试**：位于 `TarkovMap.Tests/`（xUnit，仅测解析/朝向/坐标/边界等纯算法，不测 UI）。
+  运行：`dotnet test TarkovMap.Tests/TarkovMap.Tests.csproj -c Release`。改动截图解析、朝向、坐标换算、边界判定后务必跑一遍。
 - WinForms 分析器把 **WFO1000 当 error**（项目开了 warnings-as-errors）：Form 上新增公共属性必须加
   `[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]`，否则编译炸。
 

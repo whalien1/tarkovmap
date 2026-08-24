@@ -7,3 +7,5 @@ screenshot-full.png
 **/obj/
 Config/
 Logs/
+*.csproj.user
+*.user

@@ -1,3 +1,4 @@
+using System.Reflection;
 using TarkovMap.Controls;
 using TarkovMap.Infrastructure;
 using TarkovMap.Models;
@@ -134,12 +135,16 @@ public sealed class MainForm : Form
 
         var helpMenu = new ToolStripMenuItem("帮助(&H)");
         helpMenu.DropDownItems.Add("关于(&A)", null, (_, _) =>
+        {
+            // 版本号单一来源：csproj 的 <Version>，此处从程序集读取，避免硬编码。
+            var version = typeof(MainForm).Assembly.GetName().Version?.ToString(3) ?? "unknown";
             MessageBox.Show(this,
-                "TarkovMap v0.1\n\n《逃离塔科夫》本地互动地图\n\n" +
+                $"TarkovMap v{version}\n\n《逃离塔科夫》本地互动地图\n\n" +
                 "· 纯本地运行，不联网\n" +
                 "· 只读截图文件名，不碰游戏进程\n" +
                 "· 地图数据来源：tarkov-dev 社区数据",
-                "关于 TarkovMap", MessageBoxButtons.OK, MessageBoxIcon.Information));
+                "关于 TarkovMap", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        });
 
         menu.Items.Add(fileMenu);
         menu.Items.Add(_mapMenu);
