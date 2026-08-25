@@ -23,6 +23,9 @@
 - 终端中文输出乱码：管道 `iconv -f GBK -t UTF-8//IGNORE`。
 - **核心算法自动测试**：位于 `TarkovMap.Tests/`（xUnit，仅测解析/朝向/坐标/边界等纯算法，不测 UI）。
   运行：`dotnet test TarkovMap.Tests/TarkovMap.Tests.csproj -c Release`。改动截图解析、朝向、坐标换算、边界判定后务必跑一遍。
+- **逐图校准工具**：`Tools/RotationCalibrator`（开发期 console，复用客户端解析/坐标逻辑，不进入客户端）。
+  运行：`dotnet run --project Tools/RotationCalibrator -- <map.json> <截图A> <截图B> [<A2> <B2> ...]`。
+  方法见《TarkovMap_coordinateRotation_实测校准方法.md》：直线移动双截图反推 coordinateRotation；本工具只测算与提示，**绝不自动写入 RotationOverrides**。
 - WinForms 分析器把 **WFO1000 当 error**（项目开了 warnings-as-errors）：Form 上新增公共属性必须加
   `[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]`，否则编译炸。
 

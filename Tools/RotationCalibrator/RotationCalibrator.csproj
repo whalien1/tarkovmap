@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>RotationCalibrator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 复用客户端的解析器/坐标/朝向逻辑，保证校准与客户端一致 -->
+    <ProjectReference Include="..\..\TarkovMap\TarkovMap.csproj" />
+  </ItemGroup>
+
+</Project>
