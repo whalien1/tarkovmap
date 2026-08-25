@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TarkovMap.MapDataBuilder</AssemblyName>
+    <RootNamespace>MapPackBuilder.Gui</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MapPackBuilder\MapPackBuilder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\MapPackBuilder\calibration-v1.1.1.json"
+          Link="calibration-v1.1.1.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\MapPackBuilder\baseline-2026.08.25.5-pve.json"
+          Link="baseline-2026.08.25.5-pve.json"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TarkovMap\TarkovMap.csproj" />
     <ProjectReference Include="..\Tools\MapPackBuilder\MapPackBuilder.csproj" />
+    <ProjectReference Include="..\Tools\MapPackBuilder.Gui\MapPackBuilder.Gui.csproj" />
   </ItemGroup>
 
   <ItemGroup>

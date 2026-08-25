@@ -45,6 +45,7 @@
 - 官方点位：来自 json.tarkov.dev PvE 数据；当前优先提供撤离点、Transit、PMC/Scav 出生点、Boss 和危险区
 - 地图底图：10 张来自固定提交的 `the-hideout/tarkov-dev-svg-maps` SVG，迷宫暂时沿用已有 PNG
 - 游戏大版本更新后使用 `Tools/MapPackBuilder` 的抓取、快照重放、Validation、打包、应用和恢复流程
+- 日常更新可直接运行 `Tools/MapPackBuilder.Gui` 图形界面，无需记忆命令；人工验收后才能导出和应用正式包
 - 手工补录：编辑 `Tools/manual_overrides.json`（重新生成不丢失），或直接改 `Data/maps/<地图>/map.json` 的 markers 数组
 - 实测坐标方法：站在点位处游戏内截图，文件名自带精确 X/Z
 

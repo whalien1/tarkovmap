@@ -39,7 +39,8 @@
 - **Spawn 语义审计已完成：** 旧适配器错误地把 `categories` 当作互斥标签，导致 `player+sniper` 被整体丢弃、部分 `player/botpmc` 被误标为 Scav。现已按 tarkov.dev 同源地图实现对全部地图统一修正，并增加经 SHA-256 校验的 `pve-replay` 快照重放入口；详见 `Tools/MapPackBuilder/SPAWN_CLASSIFICATION_AUDIT.md`。
 - **Phase 6 已完成：** 项目所有者已通过独立客户端完成人工目测验收；精确审批后正式包 Validation 为 0 Error，确定性 ZIP 两次构建 SHA 一致，隔离环境应用/恢复后 27 个旧文件 SHA 差异为 0。`2026.08.25.4-pve` 已原子应用到正式 `TarkovMap/Data`，旧数据保留在本地唯一备份槽，新基线已建立；当前 56 个自动测试全部通过。详见 `Tools/MapPackBuilder/PHASE6_PACKAGE_REPORT.md`。
 - **Phase 7 已完成：** 8 个核心类别的自有 Marker 图标已完成设计和目测验收；`2026.08.25.5-pve` 已通过确定性打包、隔离应用/恢复演练并写入正式 MapData，`.4` 保留在唯一备份槽；详见 `Tools/MapPackBuilder/PHASE7_ICON_REPORT.md`。
-- **下一阶段：** Phase 8，为现有 CLI/Core 增加简单 GUI。
+- **Phase 8 已完成：** WinForms GUI 已覆盖获取、构建、Diff、校验、人工验收、导出、一键应用、恢复和报告入口；所有实际操作由独立 CLI 子进程执行，避免 GUI DPI 环境影响 SVG 确定性输出；详见 `Tools/MapPackBuilder/PHASE8_GUI_REPORT.md`。
+- **下一阶段：** Phase 9，完成长期维护文档与大版本模拟更新收口。
 
 ---
 
@@ -1254,6 +1255,8 @@ P1，但属于本轮正式交付前必做项。制作并替换撤离点、Transi
 ## Phase 8：简单 GUI
 
 P1，在 CLI/Core 稳定后开发，但必须在本轮收口前交付。只提供获取、构建、Diff、校验、导出、一键应用、恢复上一个可用版本和构建报告，不得变成地图编辑器。
+
+**状态：已完成。** GUI 只组织参数、显示日志和执行显式确认，不包含地图编辑能力；正式应用和恢复继续复用 CLI/Core 的验证、备份与原子切换逻辑。
 
 ---
 

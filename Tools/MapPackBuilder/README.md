@@ -2,6 +2,16 @@
 
 MapPackBuilder 是 TarkovMap 的独立地图数据构建工具。新版流程只生成 PvE MapData，并且默认输出到调用者指定的测试目录，不会覆盖正式 `TarkovMap/Data`。
 
+## 图形界面（推荐日常使用）
+
+```powershell
+dotnet run --project Tools/MapPackBuilder.Gui
+```
+
+界面会自动识别当前正式 Data、建议未使用的新版本号，并提供获取数据、构建、查看 Diff、重新校验、确认人工验收、导出 ZIP、一键应用和恢复上一版本。所有构建与应用仍由独立 `MapPackBuilder.exe` CLI 执行，GUI 只负责组织参数和显示日志，因此与命令行使用相同的安全校验和确定性输出。
+
+“确认验收”只会精确批准报告中超过 30% 的核心类别数量变化，并记录海关、中心区、街区、实验室四张代表地图的人工结论；其他 Validation Error 不允许人工绕过。只有实际完成目测后才能点击。
+
 ## 生成整批 PvE 测试包
 
 ```powershell

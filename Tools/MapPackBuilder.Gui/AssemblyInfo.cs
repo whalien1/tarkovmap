@@ -1,4 +1,3 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("TarkovMap.Tests")]
-[assembly: InternalsVisibleTo("TarkovMap.MapDataBuilder")]
