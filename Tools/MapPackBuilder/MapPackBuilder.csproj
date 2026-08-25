@@ -8,4 +8,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\TarkovMap\TarkovMap.csproj" />
+  </ItemGroup>
+
 </Project>

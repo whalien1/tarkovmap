@@ -28,6 +28,15 @@
 
 ---
 
+## 0.1 当前执行状态
+
+- **Phase 0 已完成：** 建立 TarkovMap v1.1.1 的 11 图数据基线；无上游 ID 的 Marker 已改用确定性 SHA-256 ID；连续两次完整构建的 23 个输出文件完全一致。
+- **Phase 1 已完成：** PvE maps 与中文翻译接口可用；三张代表地图的数据比较与字段边界见 `Tools/MapPackBuilder/PVE_DATA_FEASIBILITY.md`。
+- **Phase 2 已完成：** MapData Schema v1、`manifest.json` 模型、版本格式、客户端兼容读取与硬校验已经落地；正式规范见 `TarkovMap_MapData_Schema_v1.md`。
+- **下一阶段：** Phase 3，开发 `TarkovDevSource`、原始快照保存和独立校准元数据模型。
+
+---
+
 ## 1. 项目背景
 
 TarkovMap 当前已经完成本地互动地图、截图文件名定位、玩家朝向、小地图、Marker 分类、配置记忆等主要功能。现阶段主程序已经可以长期使用，项目下一阶段的主要短板不再是客户端功能，而是：

@@ -22,9 +22,28 @@ public sealed class MapRepository
         _dataDirectory = dataDirectory;
     }
 
+    /// <summary>
+    /// 读取并校验可选的 manifest.json。旧版 Data 没有 manifest 时保持兼容并返回 null。
+    /// </summary>
+    public MapDataManifest? LoadManifest()
+    {
+        var file = Path.Combine(_dataDirectory, "manifest.json");
+        if (!File.Exists(file))
+        {
+            return null;
+        }
+
+        var json = File.ReadAllText(file);
+        var manifest = JsonSerializer.Deserialize<MapDataManifest>(json, JsonOptions)
+                       ?? throw new InvalidDataException($"MapData manifest 为空：{file}");
+        MapDataManifestValidator.Validate(manifest);
+        return manifest;
+    }
+
     /// <summary>读取 Data/maps.json 清单。</summary>
     public IReadOnlyList<MapListEntry> LoadMapList()
     {
+        _ = LoadManifest();
         var file = Path.Combine(_dataDirectory, "maps.json");
         var json = File.ReadAllText(file);
         var list = JsonSerializer.Deserialize<MapList>(json, JsonOptions);

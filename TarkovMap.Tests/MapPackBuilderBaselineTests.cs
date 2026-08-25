@@ -1,4 +1,5 @@
 using System.Text.Json;
+using TarkovMap.Services;
 using Xunit;
 
 namespace TarkovMap.Tests;
@@ -14,6 +15,10 @@ public sealed class MapPackBuilderBaselineTests
 
         using var baselineDoc = JsonDocument.Parse(File.ReadAllText(baselineFile));
         using var mapListDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataDirectory, "maps.json")));
+
+        var repository = new MapRepository(dataDirectory);
+        Assert.Null(repository.LoadManifest());
+        Assert.Equal(11, repository.LoadMapList().Count);
 
         var expectedMaps = baselineDoc.RootElement.GetProperty("maps")
             .EnumerateArray()
