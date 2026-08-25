@@ -135,6 +135,9 @@ public sealed class TarkovDevSourceTests
 
             Assert.True(File.Exists(Path.Combine(directory, "snapshots", "2026.08.25.1-pve",
                 "json.tarkov.dev", "snapshot.json")));
+            var loaded = SourceSnapshotStore.Load(directory, "2026.08.25.1-pve");
+            Assert.Equal(snapshot.MapsJson, loaded.MapsJson);
+            Assert.Equal(snapshot.ChineseTranslationsJson, loaded.ChineseTranslationsJson);
         }
         finally
         {

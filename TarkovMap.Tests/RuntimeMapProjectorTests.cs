@@ -18,7 +18,10 @@ public sealed class RuntimeMapProjectorTests
                 new TarkovDevSpawn("pmc-zone", new SourcePosition(3, 0, 4), ["pmc"], ["player"]),
                 new TarkovDevSpawn("outside", new SourcePosition(4, 8, 5), ["scav"], ["player"]),
                 new TarkovDevSpawn("boss-zone", new SourcePosition(5, 0, 6), ["scav"], ["boss"]),
-                new TarkovDevSpawn("sniper", new SourcePosition(6, 0, 7), ["scav"], ["sniper"])
+                new TarkovDevSpawn("sniper", new SourcePosition(6, 0, 7), ["scav"], ["sniper"]),
+                new TarkovDevSpawn("mixed-player-sniper", new SourcePosition(7, 0, 8), ["all"], ["player", "sniper"]),
+                new TarkovDevSpawn("fallback-scav", new SourcePosition(8, 0, 9), ["scav"], ["boss", "bot"]),
+                new TarkovDevSpawn("invalid-player-side", new SourcePosition(9, 0, 10), ["scav"], ["player", "botpmc"])
             ],
             [new TarkovDevBoss("Boss 测试", [new TarkovDevBossLocation("宿舍", "boss-zone")])],
             [new TarkovDevHazard("hazard-id", "雷区", new SourcePosition(7, 0, 8),
@@ -32,9 +35,10 @@ public sealed class RuntimeMapProjectorTests
         var first = RuntimeMapProjector.Project(map, calibration);
         var second = RuntimeMapProjector.Project(map, calibration);
 
-        Assert.Equal(6, first.Count);
-        Assert.Single(first, marker => marker.Type == "spawn_pmc");
-        Assert.DoesNotContain(first, marker => marker.Type == "spawn_scav");
+        Assert.Equal(8, first.Count);
+        Assert.Equal(2, first.Count(marker => marker.Type == "spawn_pmc"));
+        Assert.Single(first, marker => marker.Type == "spawn_scav" && marker.Name == "fallback-scav");
+        Assert.DoesNotContain(first, marker => marker.Name is "sniper" or "invalid-player-side");
         Assert.Equal("Boss 测试（宿舍）", Assert.Single(first, marker => marker.Type == "boss").Name);
         Assert.All(first.Where(marker => marker.Type == "hazard"),
             marker => Assert.Equal(3, marker.Outline!.Count));

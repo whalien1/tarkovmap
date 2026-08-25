@@ -33,6 +33,17 @@ internal static class SourceSnapshotStore
         return records;
     }
 
+    public static TarkovDevRawSnapshot Load(string packRoot, string dataVersion)
+    {
+        var manifestFile = Path.Combine(packRoot, "snapshots", dataVersion,
+            "json.tarkov.dev", "snapshot.json");
+        var files = SnapshotRecordReader.Read(packRoot, manifestFile);
+        var maps = RequiredFile(files, "maps.json");
+        var translations = RequiredFile(files, "maps_zh.json");
+        return new TarkovDevRawSnapshot(maps.Content, translations.Content,
+            new[] { maps.Record.RetrievedAt, translations.Record.RetrievedAt }.Max());
+    }
+
     private static MapDataSourceSnapshot SaveFile(
         string outputDirectory,
         string relativeDirectory,
@@ -52,6 +63,12 @@ internal static class SourceSnapshotStore
             Sha256 = hash
         };
     }
+
+    private static VerifiedSnapshotFile RequiredFile(
+        IReadOnlyList<VerifiedSnapshotFile> files, string fileName) =>
+        files.SingleOrDefault(file => string.Equals(Path.GetFileName(file.FullPath), fileName,
+            StringComparison.OrdinalIgnoreCase))
+        ?? throw new InvalidDataException($"PvE API 快照缺少 {fileName}。");
 
     private static void WriteAtomic(string path, byte[] content)
     {

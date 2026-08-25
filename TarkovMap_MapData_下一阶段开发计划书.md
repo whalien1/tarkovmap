@@ -35,8 +35,9 @@
 - **Phase 2 已完成：** MapData Schema v1、`manifest.json` 模型、版本格式、客户端兼容读取与硬校验已经落地；正式规范见 `TarkovMap_MapData_Schema_v1.md`。
 - **Phase 3 已完成：** `TarkovDevSource` 可同时获取 PvE 地图与中文数据，原始响应按版本保存并记录 SHA-256；17 个上游地图/变体已转换为内部模型并分为 11 个现有地图、4 个默认跳过变体和 2 个待校准新地图；11 个现有地图的 Bounds、方向和高度范围已迁入独立校准配置。
 - **Phase 4 已完成：** Builder 可获取并固定 SVG 上游提交，筛选主楼层、按 Bounds 兼容比例渲染 PNG，并将 PvE 核心点位生成到独立整批测试包；10 张地图使用 SVG，迷宫回退现有 PNG。连续两次构建内容哈希一致，运行时读取冒烟检查通过；详见 `Tools/MapPackBuilder/PHASE4_TEST_PACK_REPORT.md`。
-- **Phase 5 已完成：** Validation + Diff 已覆盖 manifest/快照哈希、文件与图片、Bounds、Marker 字段与重复 ID、越界点位和核心类别数量差异；支持与数据版本和新旧数量精确绑定的人工审批。54 个自动测试全部通过；详见 `Tools/MapPackBuilder/PHASE5_VALIDATION_REPORT.md`。
-- **当前阻断：** Ground Zero Scav Spawn 从 114 降至 24（-78.9%）尚未确认，Validation 已按规则阻止正式打包。下一步先调查普通中心区、21+ 和教学变体的数据拆分，再决定修正数据或人工审批；在此之前不进入 Phase 6。
+- **Phase 5 已完成：** Validation + Diff 已覆盖 manifest/快照哈希、文件与图片、Bounds、Marker 字段与重复 ID、越界点位和核心类别数量差异；支持与数据版本和新旧数量精确绑定的人工审批。当前 55 个自动测试全部通过；详见 `Tools/MapPackBuilder/PHASE5_VALIDATION_REPORT.md`。
+- **Spawn 语义审计已完成：** 旧适配器错误地把 `categories` 当作互斥标签，导致 `player+sniper` 被整体丢弃、部分 `player/botpmc` 被误标为 Scav。现已按 tarkov.dev 同源地图实现对全部地图统一修正，并增加经 SHA-256 校验的 `pve-replay` 快照重放入口；详见 `Tools/MapPackBuilder/SPAWN_CLASSIFICATION_AUDIT.md`。
+- **当前阻断：** 修正后的测试包为 Error 10 / Warning 11 / Info 7；10 个 Error 均是 Scav Spawn 相对旧基线超过 30%。在代表地图人工实测 PMC/Scav 图层并建立可信新版基线前，不进入 Phase 6，也不批量创建审批。
 
 ---
 

@@ -65,17 +65,16 @@ internal static class RuntimeMapProjector
 
         foreach (var spawn in map.Spawns)
         {
-            if (!InMainHeightRange(spawn.Position, calibration) ||
-                spawn.Categories.Contains("boss", StringComparer.Ordinal) ||
-                spawn.Categories.Contains("sniper", StringComparer.Ordinal))
+            if (!InMainHeightRange(spawn.Position, calibration))
             {
                 continue;
             }
 
-            var type = spawn.Sides.Contains("pmc", StringComparer.Ordinal)
-                ? "spawn_pmc"
-                : "spawn_scav";
-            markers.Add(Create(map.MapId, type, spawn.ZoneName, spawn.Position, ""));
+            var type = ClassifySpawn(spawn, map);
+            if (type is not null)
+            {
+                markers.Add(Create(map.MapId, type, spawn.ZoneName, spawn.Position, ""));
+            }
         }
 
         AddBosses(markers, map);
@@ -130,6 +129,46 @@ internal static class RuntimeMapProjector
                 : $"{names}（{zone.LocationName}）";
             markers.Add(Create(map.MapId, "boss", displayName, zone.Position, ""));
         }
+    }
+
+    /// <summary>
+    /// 与 tarkov.dev 地图页保持相同的类别优先级。categories 是多用途标签，
+    /// 因此含 player+sniper 的点仍是玩家出生点，不能因出现 sniper 就整条丢弃。
+    /// 当前 Schema 没有独立 sniper_scav 类型，纯狙击 Scav 点继续不输出。
+    /// </summary>
+    private static string? ClassifySpawn(TarkovDevSpawn spawn, TarkovDevMap map)
+    {
+        if (spawn.Categories.Contains("boss", StringComparer.Ordinal))
+        {
+            var hasConfiguredBoss = map.Bosses
+                .Where(boss => !ExcludedBosses.Contains(boss.Name))
+                .Any(boss => boss.SpawnLocations.Any(location =>
+                    string.Equals(location.SpawnKey, spawn.ZoneName, StringComparison.Ordinal)));
+            return !hasConfiguredBoss &&
+                   spawn.Categories.Contains("bot", StringComparer.Ordinal) &&
+                   spawn.Sides.Contains("scav", StringComparer.Ordinal)
+                ? "spawn_scav"
+                : null;
+        }
+
+        if (spawn.Categories.Contains("player", StringComparer.Ordinal))
+        {
+            return spawn.Sides.Contains("pmc", StringComparer.Ordinal) ||
+                   spawn.Sides.Contains("all", StringComparer.Ordinal)
+                ? "spawn_pmc"
+                : null;
+        }
+
+        if (spawn.Categories.Contains("sniper", StringComparer.Ordinal))
+        {
+            return null;
+        }
+
+        return spawn.Sides.Contains("scav", StringComparer.Ordinal) &&
+               (spawn.Categories.Contains("bot", StringComparer.Ordinal) ||
+                spawn.Categories.Contains("all", StringComparer.Ordinal))
+            ? "spawn_scav"
+            : null;
     }
 
     private static RuntimeMarker Create(

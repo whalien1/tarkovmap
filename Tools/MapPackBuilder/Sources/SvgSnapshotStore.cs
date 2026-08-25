@@ -37,6 +37,34 @@ internal static class SvgSnapshotStore
         return records;
     }
 
+    public static SvgRepositorySnapshot Load(string packRoot, string dataVersion)
+    {
+        var manifestFile = Path.Combine(packRoot, "snapshots", dataVersion, "the-hideout",
+            "tarkov-dev-svg-maps", "snapshot.json");
+        var files = SnapshotRecordReader.Read(packRoot, manifestFile);
+        var license = files.SingleOrDefault(file => string.Equals(Path.GetFileName(file.FullPath),
+                          "LICENSE.md", StringComparison.OrdinalIgnoreCase))
+                      ?? throw new InvalidDataException("SVG 快照缺少 LICENSE.md。");
+        var assets = files
+            .Where(file => file.FullPath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+            .ToDictionary(file => Path.GetFileName(file.FullPath), file => file.Content,
+                StringComparer.Ordinal);
+        if (assets.Count == 0)
+        {
+            throw new InvalidDataException("SVG 快照没有地图资源。");
+        }
+
+        var revisions = files.Select(file => file.Record.Revision)
+            .Distinct(StringComparer.Ordinal).ToList();
+        if (revisions.Count != 1 || revisions[0].Length != 40)
+        {
+            throw new InvalidDataException("SVG 快照提交版本不一致或无效。");
+        }
+
+        return new SvgRepositorySnapshot(revisions[0], assets, license.Content,
+            files.Max(file => file.Record.RetrievedAt));
+    }
+
     private static MapDataSourceSnapshot SaveFile(
         string outputDirectory,
         string relativeDirectory,

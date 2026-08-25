@@ -52,6 +52,14 @@ dotnet run --project Tools/MapPackBuilder -- pve-validate <测试包目录> [基
 
 审批文件必须由人工复核后创建；Builder 不会自动批准数量骤变。
 
+## 从已验证快照离线重放
+
+```powershell
+dotnet run --project Tools/MapPackBuilder -- pve-replay <来源测试包> <来源版本> <新测试包目录> <新版本> <现有Data目录> [审批文件]
+```
+
+该命令先校验已保存 API、SVG、许可证和校准文件的 SHA-256，再使用这些固定输入重新生成 MapData，适合网络不可用时复现构建或验证适配器代码变化。它不会回退到未校验缓存，也不会覆盖正式 `TarkovMap/Data`。
+
 ## 只保存 PvE API 快照
 
 ```powershell

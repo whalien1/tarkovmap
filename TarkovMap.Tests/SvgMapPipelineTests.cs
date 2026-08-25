@@ -117,6 +117,34 @@ public sealed class SvgMapPipelineTests
         }
     }
 
+    [Fact]
+    public void SvgSnapshotStore_ReloadsVerifiedFiles()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"tarkov-svg-snapshot-{Guid.NewGuid():N}");
+        try
+        {
+            var snapshot = new SvgRepositorySnapshot(
+                new string('c', 40),
+                new Dictionary<string, byte[]> { ["Customs.svg"] = Encoding.UTF8.GetBytes(SimpleSvg) },
+                Encoding.UTF8.GetBytes("license"),
+                DateTimeOffset.Parse("2026-08-25T00:00:00Z"));
+
+            SvgSnapshotStore.Save(directory, "2026.08.25.1-pve", snapshot);
+            var loaded = SvgSnapshotStore.Load(directory, "2026.08.25.1-pve");
+
+            Assert.Equal(snapshot.CommitSha, loaded.CommitSha);
+            Assert.Equal(snapshot.Assets["Customs.svg"], loaded.Assets["Customs.svg"]);
+            Assert.Equal(snapshot.License, loaded.License);
+        }
+        finally
+        {
+            if (Directory.Exists(directory))
+            {
+                Directory.Delete(directory, recursive: true);
+            }
+        }
+    }
+
     private sealed class StubHandler(Func<HttpRequestMessage, HttpResponseMessage> responder)
         : HttpMessageHandler
     {

@@ -46,6 +46,11 @@ internal static class Program
             return RunPveValidate(args[1..]);
         }
 
+        if (args.Length > 0 && string.Equals(args[0], "pve-replay", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveReplay(args[1..]);
+        }
+
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
         var refDir = args.Length > 0 ? args[0] : Path.Combine(root, "ref", "Tarkov_webmap");
         var outDir = args.Length > 1 ? args[1] : Path.Combine(root, "TarkovMap", "Data");
@@ -172,22 +177,7 @@ internal static class Program
 
             Directory.Move(stagingDirectory, outputDirectory);
             Console.WriteLine("[5/5] 整批测试 MapData 已完成。");
-            foreach (var map in result.Maps)
-            {
-                var coreCounts = string.Join(" ", map.MarkerTypes.Select(pair => $"{pair.Key}×{pair.Value}"));
-                Console.WriteLine(
-                    $"  {map.Name}({map.MapId}) {map.ImageWidth}×{map.ImageHeight} 点位 {map.MarkerCount}  {coreCounts}");
-            }
-
-            Console.WriteLine($"SVG 版本: {svgSnapshot.CommitSha}");
-            Console.WriteLine($"内容哈希: {result.ContentHash}");
-            Console.WriteLine(
-                $"Validation: Error {validation.ErrorCount} / Warning {validation.WarningCount} / Info {validation.InfoCount}");
-            Console.WriteLine(validation.CanPackage
-                ? "Validation 已通过：允许进入正式打包。"
-                : "Validation 未通过：已阻止正式打包；测试包仍保留供检查。");
-            Console.WriteLine($"测试包目录: {outputDirectory}");
-            Console.WriteLine("正式 TarkovMap/Data 未修改。");
+            PrintPveSummary(outputDirectory, svgSnapshot, result, validation);
             return 0;
         }
         catch (Exception exception)
@@ -199,6 +189,104 @@ internal static class Program
             }
             return 1;
         }
+    }
+
+    private static int RunPveReplay(string[] args)
+    {
+        if (args.Length is < 5 or > 6)
+        {
+            Console.WriteLine(
+                "用法: MapPackBuilder.exe pve-replay <来源测试包> <来源版本> <新测试包目录> <新版本> <现有Data兼容目录> [审批文件]");
+            return 1;
+        }
+
+        var sourcePack = Path.GetFullPath(args[0]);
+        var sourceVersion = args[1];
+        var outputDirectory = Path.GetFullPath(args[2]);
+        var dataVersion = args[3];
+        var fallbackDataDirectory = Path.GetFullPath(args[4]);
+        var approvalsFile = args.Length == 6 ? Path.GetFullPath(args[5]) : null;
+        if (File.Exists(outputDirectory) || Directory.Exists(outputDirectory))
+        {
+            Console.WriteLine($"[错误] 测试包目录已经存在，请使用新的空路径：{outputDirectory}");
+            return 1;
+        }
+
+        if (!File.Exists(Path.Combine(fallbackDataDirectory, "maps.json")))
+        {
+            Console.WriteLine($"[错误] 现有 Data 兼容目录无效：{fallbackDataDirectory}");
+            return 1;
+        }
+
+        var stagingDirectory = $"{outputDirectory}.building-{Guid.NewGuid():N}";
+        try
+        {
+            Console.WriteLine("[1/4] 正在读取并校验已保存的 PvE/API 与 SVG 快照……");
+            var apiSnapshot = SourceSnapshotStore.Load(sourcePack, sourceVersion);
+            var svgSnapshot = SvgSnapshotStore.Load(sourcePack, sourceVersion);
+            var calibrationFile = SnapshotRecordReader.ReadManifestSnapshot(sourcePack,
+                sourceVersion, "TarkovMap calibration metadata").FullPath;
+            var calibration = MapCalibrationCatalog.Load(calibrationFile);
+            var maps = TarkovDevMapParser.Parse(apiSnapshot);
+
+            Console.WriteLine("[2/4] 正在复制已验证快照并重放 11 张测试地图……");
+            var apiRecords = SourceSnapshotStore.Save(stagingDirectory, dataVersion, apiSnapshot);
+            var svgRecords = SvgSnapshotStore.Save(stagingDirectory, dataVersion, svgSnapshot);
+            var result = PveTestPackBuilder.Build(
+                stagingDirectory,
+                dataVersion,
+                maps,
+                svgSnapshot,
+                calibration,
+                calibrationFile,
+                fallbackDataDirectory,
+                apiRecords.Concat(svgRecords).ToList(),
+                DateTimeOffset.UtcNow);
+
+            Console.WriteLine("[3/4] 正在执行 Validation + Diff……");
+            var validation = MapDataValidator.Validate(stagingDirectory,
+                Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json"), approvalsFile);
+            ValidationReportWriter.Write(stagingDirectory, validation);
+            Directory.Move(stagingDirectory, outputDirectory);
+
+            Console.WriteLine("[4/4] 快照重放测试包已完成。");
+            PrintPveSummary(outputDirectory, svgSnapshot, result, validation);
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] PvE 快照重放失败: {exception.Message}");
+            if (Directory.Exists(stagingDirectory))
+            {
+                Console.WriteLine($"失败现场保留在: {stagingDirectory}");
+            }
+
+            return 1;
+        }
+    }
+
+    private static void PrintPveSummary(
+        string outputDirectory,
+        SvgRepositorySnapshot svgSnapshot,
+        TestPackBuildResult result,
+        MapDataValidationReport validation)
+    {
+        foreach (var map in result.Maps)
+        {
+            var coreCounts = string.Join(" ", map.MarkerTypes.Select(pair => $"{pair.Key}×{pair.Value}"));
+            Console.WriteLine(
+                $"  {map.Name}({map.MapId}) {map.ImageWidth}×{map.ImageHeight} 点位 {map.MarkerCount}  {coreCounts}");
+        }
+
+        Console.WriteLine($"SVG 版本: {svgSnapshot.CommitSha}");
+        Console.WriteLine($"内容哈希: {result.ContentHash}");
+        Console.WriteLine(
+            $"Validation: Error {validation.ErrorCount} / Warning {validation.WarningCount} / Info {validation.InfoCount}");
+        Console.WriteLine(validation.CanPackage
+            ? "Validation 已通过：允许进入正式打包。"
+            : "Validation 未通过：已阻止正式打包；测试包仍保留供检查。");
+        Console.WriteLine($"测试包目录: {outputDirectory}");
+        Console.WriteLine("正式 TarkovMap/Data 未修改。");
     }
 
     private static int RunPveValidate(string[] args)
