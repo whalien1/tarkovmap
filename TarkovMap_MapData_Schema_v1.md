@@ -84,6 +84,13 @@ Schema v1 当前只接受 `pve`。不生成 PvP/PvE 双数据包，也不在客�
 
 代表除 `manifest.json` 自身外，运行时 MapData 文件集合的确定性 SHA-256。具体文件排序与组合算法由 Package 阶段固定，避免 manifest 自引用。
 
+Schema v1 固定算法：
+
+1. 递归枚举运行时 MapData 的全部文件，排除 `manifest.json`。
+2. 相对路径统一使用 `/`，按区分大小写的 Ordinal 顺序排列。
+3. 对每个文件依次写入 UTF-8 相对路径、一个 `0x00` 分隔字节和该文件内容的 SHA-256 原始 32 字节。
+4. 对上述连续字节流再计算 SHA-256，并输出 64 位小写十六进制字符串。
+
 ## 4. maps.json
 
 保持现有结构：

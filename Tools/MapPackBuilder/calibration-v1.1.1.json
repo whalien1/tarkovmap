@@ -5,6 +5,8 @@
     {
       "mapId": "streets-of-tarkov",
       "svgAsset": "StreetsOfTarkov.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 323,
       "z0": -298,
       "x1": -280,
@@ -17,6 +19,8 @@
     {
       "mapId": "ground-zero",
       "svgAsset": "GroundZero.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 249,
       "z0": -124,
       "x1": -99,
@@ -29,6 +33,8 @@
     {
       "mapId": "customs",
       "svgAsset": "Customs.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 698,
       "z0": -307,
       "x1": -372,
@@ -41,6 +47,8 @@
     {
       "mapId": "factory",
       "svgAsset": "Factory.svg",
+      "svgLayer": "Ground_Floor",
+      "svgRotationDegrees": 0,
       "x0": 77,
       "z0": -64.5,
       "x1": -65.5,
@@ -53,6 +61,8 @@
     {
       "mapId": "interchange",
       "svgAsset": "Interchange.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 600.7,
       "z0": -441,
       "x1": -435.7,
@@ -65,6 +75,8 @@
     {
       "mapId": "the-lab",
       "svgAsset": "Labs.svg",
+      "svgLayer": "First_Level",
+      "svgRotationDegrees": 0,
       "x0": -283,
       "z0": -478.5,
       "x1": -81,
@@ -77,6 +89,8 @@
     {
       "mapId": "lighthouse",
       "svgAsset": "Lighthouse.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 515,
       "z0": -998,
       "x1": -545,
@@ -89,6 +103,8 @@
     {
       "mapId": "reserve",
       "svgAsset": "Reserve.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 289,
       "z0": -273,
       "x1": -303,
@@ -101,6 +117,8 @@
     {
       "mapId": "shoreline",
       "svgAsset": "Shoreline.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 504,
       "z0": -415,
       "x1": -1056,
@@ -113,6 +131,8 @@
     {
       "mapId": "woods",
       "svgAsset": "Woods.svg",
+      "svgLayer": "Ground_Level",
+      "svgRotationDegrees": 0,
       "x0": 650,
       "z0": -919,
       "x1": -762,
@@ -125,6 +145,8 @@
     {
       "mapId": "the-labyrinth",
       "svgAsset": null,
+      "svgLayer": null,
+      "svgRotationDegrees": 0,
       "x0": -51.5,
       "z0": -36.5,
       "x1": 52,

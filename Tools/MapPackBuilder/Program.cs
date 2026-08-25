@@ -1,15 +1,15 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using MapPackBuilder.Calibration;
+using MapPackBuilder.Output;
 using MapPackBuilder.Sources;
 
 namespace MapPackBuilder;
 
 /// <summary>
 /// TarkovMap 地图数据构建工具（开发期使用，不进入正式客户端）。
-/// 读取 ref/Tarkov_webmap/data/maps_detail.json + assets/maps/native-cache/*.png，
-/// 生成 TarkovMap 自有 schema 的 Data/（maps.json + 每图 map.json + map.png）。
-/// 用法: MapPackBuilder.exe &lt;数据仓库ref目录&gt; &lt;输出Data目录&gt;
+/// 新流程读取 PvE API 与 SVG 上游，生成带来源快照的独立测试包；
+/// 同时保留旧版 ref → Data 构建入口用于基线回归。
 /// </summary>
 internal static class Program
 {
@@ -30,6 +30,11 @@ internal static class Program
 
     private static int Main(string[] args)
     {
+        if (args.Length > 0 && string.Equals(args[0], "pve-build", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveBuildAsync(args[1..]).GetAwaiter().GetResult();
+        }
+
         if (args.Length > 0 && string.Equals(args[0], "pve-fetch", StringComparison.OrdinalIgnoreCase))
         {
             return RunPveFetchAsync(args[1..]).GetAwaiter().GetResult();
@@ -93,6 +98,88 @@ internal static class Program
         Console.WriteLine($"完成: {mapList.Count} 张地图, 非法点位 {totalInvalid} 个");
         Console.WriteLine($"maps.json 已写入 {outDir}");
         return 0;
+    }
+
+    private static async Task<int> RunPveBuildAsync(string[] args)
+    {
+        if (args.Length != 3)
+        {
+            Console.WriteLine(
+                "用法: MapPackBuilder.exe pve-build <独立测试包目录> <YYYY.MM.DD.N-pve> <现有Data兼容目录>");
+            return 1;
+        }
+
+        var outputDirectory = Path.GetFullPath(args[0]);
+        var dataVersion = args[1];
+        var fallbackDataDirectory = Path.GetFullPath(args[2]);
+        if (File.Exists(outputDirectory) || Directory.Exists(outputDirectory))
+        {
+            Console.WriteLine($"[错误] 测试包目录已经存在，请使用新的空路径：{outputDirectory}");
+            return 1;
+        }
+
+        if (!File.Exists(Path.Combine(fallbackDataDirectory, "maps.json")))
+        {
+            Console.WriteLine($"[错误] 现有 Data 兼容目录无效：{fallbackDataDirectory}");
+            return 1;
+        }
+
+        var stagingDirectory = $"{outputDirectory}.building-{Guid.NewGuid():N}";
+        try
+        {
+            var calibrationFile = Path.Combine(AppContext.BaseDirectory, "calibration-v1.1.1.json");
+            var calibration = MapCalibrationCatalog.Load(calibrationFile);
+            using var httpClient = new HttpClient();
+
+            Console.WriteLine("[1/4] 正在读取 PvE 地图与中文点位……");
+            var apiSnapshot = await new TarkovDevSource(httpClient).FetchAsync();
+            var maps = TarkovDevMapParser.Parse(apiSnapshot);
+
+            Console.WriteLine("[2/4] 正在读取指定提交的 SVG 地图资源……");
+            var svgAssets = calibration.Maps
+                .Select(map => map.SvgAsset)
+                .Where(name => name is not null)
+                .Select(name => name!);
+            var svgSnapshot = await new GitHubSvgSource(httpClient).FetchAsync(svgAssets);
+
+            Console.WriteLine("[3/4] 正在保存来源快照并生成 11 张测试地图……");
+            var apiRecords = SourceSnapshotStore.Save(stagingDirectory, dataVersion, apiSnapshot);
+            var svgRecords = SvgSnapshotStore.Save(stagingDirectory, dataVersion, svgSnapshot);
+            var result = PveTestPackBuilder.Build(
+                stagingDirectory,
+                dataVersion,
+                maps,
+                svgSnapshot,
+                calibration,
+                calibrationFile,
+                fallbackDataDirectory,
+                apiRecords.Concat(svgRecords).ToList(),
+                DateTimeOffset.UtcNow);
+
+            Directory.Move(stagingDirectory, outputDirectory);
+            Console.WriteLine("[4/4] 整批测试 MapData 已完成。");
+            foreach (var map in result.Maps)
+            {
+                var coreCounts = string.Join(" ", map.MarkerTypes.Select(pair => $"{pair.Key}×{pair.Value}"));
+                Console.WriteLine(
+                    $"  {map.Name}({map.MapId}) {map.ImageWidth}×{map.ImageHeight} 点位 {map.MarkerCount}  {coreCounts}");
+            }
+
+            Console.WriteLine($"SVG 版本: {svgSnapshot.CommitSha}");
+            Console.WriteLine($"内容哈希: {result.ContentHash}");
+            Console.WriteLine($"测试包目录: {outputDirectory}");
+            Console.WriteLine("正式 TarkovMap/Data 未修改。");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] PvE 测试包生成失败: {exception.Message}");
+            if (Directory.Exists(stagingDirectory))
+            {
+                Console.WriteLine($"失败现场保留在: {stagingDirectory}");
+            }
+            return 1;
+        }
     }
 
     private static async Task<int> RunPveFetchAsync(string[] args)

@@ -1,6 +1,7 @@
 ref/
 dist/
 test-shots/
+.phase*/
 *.zip
 screenshot-full.png
 **/bin/

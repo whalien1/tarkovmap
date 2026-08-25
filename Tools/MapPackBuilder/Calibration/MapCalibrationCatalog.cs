@@ -5,6 +5,8 @@ namespace MapPackBuilder.Calibration;
 internal sealed record MapCalibration(
     string MapId,
     string? SvgAsset,
+    string? SvgLayer,
+    int SvgRotationDegrees,
     double X0,
     double Z0,
     double X1,
@@ -85,6 +87,16 @@ internal sealed class MapCalibrationCatalog
         if (values.Any(value => !double.IsFinite(value)) || map.X0 == map.X1 || map.Z0 == map.Z1)
         {
             throw new InvalidDataException($"地图 {map.MapId} 的 Bounds 或 Rotation 无效。");
+        }
+
+        if (map.SvgRotationDegrees is not (0 or 90 or 180 or 270))
+        {
+            throw new InvalidDataException($"地图 {map.MapId} 的 SVG 图像旋转角无效。");
+        }
+
+        if (map.SvgAsset is not null && string.IsNullOrWhiteSpace(map.SvgLayer))
+        {
+            throw new InvalidDataException($"地图 {map.MapId} 使用 SVG，但没有指定主楼层。");
         }
 
         if ((map.MinY is null) != (map.MaxY is null) ||
