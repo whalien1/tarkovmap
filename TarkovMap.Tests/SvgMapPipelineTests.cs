@@ -44,6 +44,34 @@ public sealed class SvgMapPipelineTests
     }
 
     [Fact]
+    public async Task SvgSource_UsesPublicPatchWhenGitHubApiIsRateLimited()
+    {
+        var commit = new string('b', 40);
+        using var client = new HttpClient(new StubHandler(request =>
+        {
+            if (request.RequestUri == GitHubSvgSource.HeadCommitUri)
+            {
+                return new HttpResponseMessage(HttpStatusCode.Forbidden);
+            }
+
+            var body = request.RequestUri == GitHubSvgSource.HeadCommitPatchUri
+                ? $"From {commit} Mon Sep 17 00:00:00 2001\n"
+                : request.RequestUri!.AbsolutePath.EndsWith("/LICENSE.md", StringComparison.Ordinal)
+                    ? "license"
+                    : SimpleSvg;
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(body, Encoding.UTF8)
+            };
+        }));
+
+        var snapshot = await new GitHubSvgSource(client).FetchAsync(["Customs.svg"]);
+
+        Assert.Equal(commit, snapshot.CommitSha);
+        Assert.Equal(Encoding.UTF8.GetBytes(SimpleSvg), snapshot.Assets["Customs.svg"]);
+    }
+
+    [Fact]
     public void PrimaryLayerFilter_KeepsConfiguredAndLinkedGroupsOnly()
     {
         var filtered = MapImageBuilder.KeepPrimaryLayer(SimpleSvg, "customs", "Ground_Level");

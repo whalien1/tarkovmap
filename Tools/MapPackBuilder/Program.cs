@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using MapPackBuilder.Calibration;
 using MapPackBuilder.Output;
 using MapPackBuilder.Sources;
+using MapPackBuilder.Validation;
 
 namespace MapPackBuilder;
 
@@ -38,6 +39,11 @@ internal static class Program
         if (args.Length > 0 && string.Equals(args[0], "pve-fetch", StringComparison.OrdinalIgnoreCase))
         {
             return RunPveFetchAsync(args[1..]).GetAwaiter().GetResult();
+        }
+
+        if (args.Length > 0 && string.Equals(args[0], "pve-validate", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveValidate(args[1..]);
         }
 
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
@@ -102,16 +108,17 @@ internal static class Program
 
     private static async Task<int> RunPveBuildAsync(string[] args)
     {
-        if (args.Length != 3)
+        if (args.Length is < 3 or > 4)
         {
             Console.WriteLine(
-                "用法: MapPackBuilder.exe pve-build <独立测试包目录> <YYYY.MM.DD.N-pve> <现有Data兼容目录>");
+                "用法: MapPackBuilder.exe pve-build <独立测试包目录> <YYYY.MM.DD.N-pve> <现有Data兼容目录> [审批文件]");
             return 1;
         }
 
         var outputDirectory = Path.GetFullPath(args[0]);
         var dataVersion = args[1];
         var fallbackDataDirectory = Path.GetFullPath(args[2]);
+        var approvalsFile = args.Length == 4 ? Path.GetFullPath(args[3]) : null;
         if (File.Exists(outputDirectory) || Directory.Exists(outputDirectory))
         {
             Console.WriteLine($"[错误] 测试包目录已经存在，请使用新的空路径：{outputDirectory}");
@@ -131,18 +138,18 @@ internal static class Program
             var calibration = MapCalibrationCatalog.Load(calibrationFile);
             using var httpClient = new HttpClient();
 
-            Console.WriteLine("[1/4] 正在读取 PvE 地图与中文点位……");
+            Console.WriteLine("[1/5] 正在读取 PvE 地图与中文点位……");
             var apiSnapshot = await new TarkovDevSource(httpClient).FetchAsync();
             var maps = TarkovDevMapParser.Parse(apiSnapshot);
 
-            Console.WriteLine("[2/4] 正在读取指定提交的 SVG 地图资源……");
+            Console.WriteLine("[2/5] 正在读取指定提交的 SVG 地图资源……");
             var svgAssets = calibration.Maps
                 .Select(map => map.SvgAsset)
                 .Where(name => name is not null)
                 .Select(name => name!);
             var svgSnapshot = await new GitHubSvgSource(httpClient).FetchAsync(svgAssets);
 
-            Console.WriteLine("[3/4] 正在保存来源快照并生成 11 张测试地图……");
+            Console.WriteLine("[3/5] 正在保存来源快照并生成 11 张测试地图……");
             var apiRecords = SourceSnapshotStore.Save(stagingDirectory, dataVersion, apiSnapshot);
             var svgRecords = SvgSnapshotStore.Save(stagingDirectory, dataVersion, svgSnapshot);
             var result = PveTestPackBuilder.Build(
@@ -156,8 +163,15 @@ internal static class Program
                 apiRecords.Concat(svgRecords).ToList(),
                 DateTimeOffset.UtcNow);
 
+            Console.WriteLine("[4/5] 正在执行 Validation + Diff……");
+            var validation = MapDataValidator.Validate(
+                stagingDirectory,
+                Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json"),
+                approvalsFile);
+            ValidationReportWriter.Write(stagingDirectory, validation);
+
             Directory.Move(stagingDirectory, outputDirectory);
-            Console.WriteLine("[4/4] 整批测试 MapData 已完成。");
+            Console.WriteLine("[5/5] 整批测试 MapData 已完成。");
             foreach (var map in result.Maps)
             {
                 var coreCounts = string.Join(" ", map.MarkerTypes.Select(pair => $"{pair.Key}×{pair.Value}"));
@@ -167,6 +181,11 @@ internal static class Program
 
             Console.WriteLine($"SVG 版本: {svgSnapshot.CommitSha}");
             Console.WriteLine($"内容哈希: {result.ContentHash}");
+            Console.WriteLine(
+                $"Validation: Error {validation.ErrorCount} / Warning {validation.WarningCount} / Info {validation.InfoCount}");
+            Console.WriteLine(validation.CanPackage
+                ? "Validation 已通过：允许进入正式打包。"
+                : "Validation 未通过：已阻止正式打包；测试包仍保留供检查。");
             Console.WriteLine($"测试包目录: {outputDirectory}");
             Console.WriteLine("正式 TarkovMap/Data 未修改。");
             return 0;
@@ -178,6 +197,39 @@ internal static class Program
             {
                 Console.WriteLine($"失败现场保留在: {stagingDirectory}");
             }
+            return 1;
+        }
+    }
+
+    private static int RunPveValidate(string[] args)
+    {
+        if (args.Length is < 1 or > 3)
+        {
+            Console.WriteLine(
+                "用法: MapPackBuilder.exe pve-validate <测试包目录> [基线文件] [审批文件]");
+            return 1;
+        }
+
+        try
+        {
+            var packRoot = Path.GetFullPath(args[0]);
+            var baselineFile = args.Length >= 2
+                ? Path.GetFullPath(args[1])
+                : Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json");
+            var approvalsFile = args.Length == 3 ? Path.GetFullPath(args[2]) : null;
+            var report = MapDataValidator.Validate(packRoot, baselineFile, approvalsFile);
+            ValidationReportWriter.Write(packRoot, report);
+            Console.WriteLine(
+                $"Validation: Error {report.ErrorCount} / Warning {report.WarningCount} / Info {report.InfoCount}");
+            Console.WriteLine(report.CanPackage
+                ? "校验通过：允许进入正式打包。"
+                : "校验未通过：已阻止正式打包。");
+            Console.WriteLine($"报告: {Path.Combine(packRoot, "validation-report.md")}");
+            return report.CanPackage ? 0 : 2;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] Validation 执行失败: {exception.Message}");
             return 1;
         }
     }
