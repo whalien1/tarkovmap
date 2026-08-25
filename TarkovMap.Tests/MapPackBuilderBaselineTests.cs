@@ -7,17 +7,20 @@ namespace TarkovMap.Tests;
 public sealed class MapPackBuilderBaselineTests
 {
     [Fact]
-    public void CheckedInMapDataMatchesV111Baseline()
+    public void CheckedInMapDataMatchesCurrentPveBaseline()
     {
         var repoRoot = FindRepositoryRoot();
         var dataDirectory = Path.Combine(repoRoot, "TarkovMap", "Data");
-        var baselineFile = Path.Combine(AppContext.BaseDirectory, "TestData", "baseline-v1.1.1.json");
+        var baselineFile = Path.Combine(AppContext.BaseDirectory, "TestData",
+            "baseline-2026.08.25.4-pve.json");
 
         using var baselineDoc = JsonDocument.Parse(File.ReadAllText(baselineFile));
         using var mapListDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataDirectory, "maps.json")));
 
         var repository = new MapRepository(dataDirectory);
-        Assert.Null(repository.LoadManifest());
+        var manifest = Assert.IsType<TarkovMap.Models.MapDataManifest>(repository.LoadManifest());
+        Assert.Equal(baselineDoc.RootElement.GetProperty("baselineVersion").GetString(),
+            manifest.DataVersion);
         Assert.Equal(11, repository.LoadMapList().Count);
 
         var expectedMaps = baselineDoc.RootElement.GetProperty("maps")

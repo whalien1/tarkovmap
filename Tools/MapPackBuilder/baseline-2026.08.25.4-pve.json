@@ -1,0 +1,236 @@
+{
+  "baselineVersion": "2026.08.25.4-pve",
+  "mapCount": 11,
+  "maps": [
+    {
+      "id": "customs",
+      "imageWidth": 3000,
+      "imageHeight": 1525,
+      "x0": 698,
+      "z0": -307,
+      "x1": -372,
+      "z1": 237,
+      "reverseCoordinate": false,
+      "coordinateRotation": 90,
+      "markerCount": 170,
+      "markerTypes": {
+        "boss": 3,
+        "extract_pmc": 9,
+        "extract_scav": 16,
+        "extract_shared": 2,
+        "extract_transit": 4,
+        "hazard": 5,
+        "spawn_pmc": 120,
+        "spawn_scav": 11
+      }
+    },
+    {
+      "id": "factory",
+      "imageWidth": 3000,
+      "imageHeight": 2777,
+      "x0": 77,
+      "z0": -64.5,
+      "x1": -65.5,
+      "z1": 67.4,
+      "reverseCoordinate": false,
+      "coordinateRotation": 90,
+      "markerCount": 64,
+      "markerTypes": {
+        "boss": 1,
+        "extract_pmc": 6,
+        "extract_scav": 3,
+        "extract_transit": 3,
+        "spawn_pmc": 50,
+        "spawn_scav": 1
+      }
+    },
+    {
+      "id": "ground-zero",
+      "imageWidth": 2139,
+      "imageHeight": 3000,
+      "x0": 249,
+      "z0": -124,
+      "x1": -99,
+      "z1": 364,
+      "reverseCoordinate": false,
+      "coordinateRotation": 90,
+      "markerCount": 170,
+      "markerTypes": {
+        "extract_pmc": 3,
+        "extract_shared": 3,
+        "extract_transit": 1,
+        "hazard": 9,
+        "spawn_pmc": 90,
+        "spawn_scav": 64
+      }
+    },
+    {
+      "id": "interchange",
+      "imageWidth": 3000,
+      "imageHeight": 2506,
+      "x0": 600.7,
+      "z0": -441,
+      "x1": -435.7,
+      "z1": 424.7,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "markerCount": 146,
+      "markerTypes": {
+        "boss": 5,
+        "extract_pmc": 3,
+        "extract_shared": 3,
+        "extract_transit": 2,
+        "spawn_pmc": 127,
+        "spawn_scav": 6
+      }
+    },
+    {
+      "id": "lighthouse",
+      "imageWidth": 1846,
+      "imageHeight": 3000,
+      "x0": 515,
+      "z0": -998,
+      "x1": -545,
+      "z1": 725,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "markerCount": 455,
+      "markerTypes": {
+        "boss": 10,
+        "extract_pmc": 6,
+        "extract_scav": 5,
+        "extract_shared": 2,
+        "extract_transit": 3,
+        "hazard": 344,
+        "spawn_pmc": 71,
+        "spawn_scav": 14
+      }
+    },
+    {
+      "id": "reserve",
+      "imageWidth": 3000,
+      "imageHeight": 2759,
+      "x0": 289,
+      "z0": -273,
+      "x1": -303,
+      "z1": 271.5,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "markerCount": 93,
+      "markerTypes": {
+        "boss": 5,
+        "extract_pmc": 3,
+        "extract_scav": 4,
+        "extract_shared": 4,
+        "extract_transit": 3,
+        "hazard": 4,
+        "spawn_pmc": 67,
+        "spawn_scav": 3
+      }
+    },
+    {
+      "id": "shoreline",
+      "imageWidth": 3000,
+      "imageHeight": 1987,
+      "x0": 504,
+      "z0": -415,
+      "x1": -1056,
+      "z1": 618,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "markerCount": 182,
+      "markerTypes": {
+        "boss": 9,
+        "extract_pmc": 8,
+        "extract_scav": 5,
+        "extract_shared": 1,
+        "extract_transit": 3,
+        "hazard": 23,
+        "spawn_pmc": 125,
+        "spawn_scav": 8
+      }
+    },
+    {
+      "id": "streets-of-tarkov",
+      "imageWidth": 2185,
+      "imageHeight": 3000,
+      "x0": 323,
+      "z0": -298,
+      "x1": -280,
+      "z1": 530,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "markerCount": 578,
+      "markerTypes": {
+        "boss": 3,
+        "extract_pmc": 10,
+        "extract_scav": 6,
+        "extract_shared": 1,
+        "extract_transit": 3,
+        "hazard": 197,
+        "spawn_pmc": 196,
+        "spawn_scav": 162
+      }
+    },
+    {
+      "id": "the-lab",
+      "imageWidth": 3000,
+      "imageHeight": 2153,
+      "x0": -283,
+      "z0": -478.5,
+      "x1": -81,
+      "z1": -197,
+      "reverseCoordinate": true,
+      "coordinateRotation": 180,
+      "markerCount": 39,
+      "markerTypes": {
+        "boss": 5,
+        "extract_pmc": 4,
+        "extract_shared": 3,
+        "extract_transit": 1,
+        "spawn_pmc": 16,
+        "spawn_scav": 10
+      }
+    },
+    {
+      "id": "the-labyrinth",
+      "imageWidth": 1794,
+      "imageHeight": 1662,
+      "x0": -51.5,
+      "z0": -36.5,
+      "x1": 52,
+      "z1": 75,
+      "reverseCoordinate": true,
+      "coordinateRotation": 180,
+      "markerCount": 35,
+      "markerTypes": {
+        "extract_pmc": 2,
+        "hazard": 19,
+        "spawn_pmc": 5,
+        "spawn_scav": 9
+      }
+    },
+    {
+      "id": "woods",
+      "imageWidth": 3000,
+      "imageHeight": 2895,
+      "x0": 650,
+      "z0": -919,
+      "x1": -762,
+      "z1": 443.5,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "markerCount": 278,
+      "markerTypes": {
+        "boss": 4,
+        "extract_pmc": 9,
+        "extract_scav": 10,
+        "extract_shared": 1,
+        "extract_transit": 4,
+        "hazard": 64,
+        "spawn_pmc": 140,
+        "spawn_scav": 46
+      }
+    }
+  ]
+}

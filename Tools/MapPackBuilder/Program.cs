@@ -15,6 +15,7 @@ namespace MapPackBuilder;
 /// </summary>
 internal static class Program
 {
+    private const string CurrentBaselineFileName = "baseline-2026.08.25.4-pve.json";
     private const string SourceTag = "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)";
 
     // 跳过变体条目（夜间工厂 / 中心区21+ 与主条目同 key）
@@ -65,6 +66,11 @@ internal static class Program
         if (args.Length > 0 && string.Equals(args[0], "pve-restore", StringComparison.OrdinalIgnoreCase))
         {
             return RunPveRestore(args[1..]);
+        }
+
+        if (args.Length > 0 && string.Equals(args[0], "pve-baseline", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveBaseline(args[1..]);
         }
 
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
@@ -187,7 +193,7 @@ internal static class Program
             Console.WriteLine("[4/5] 正在执行 Validation + Diff……");
             var validation = MapDataValidator.Validate(
                 stagingDirectory,
-                Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json"),
+                DefaultBaselineFile(),
                 approvalsFile);
             ValidationReportWriter.Write(stagingDirectory, validation);
 
@@ -261,7 +267,7 @@ internal static class Program
 
             Console.WriteLine("[3/4] 正在执行 Validation + Diff……");
             var validation = MapDataValidator.Validate(stagingDirectory,
-                Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json"), approvalsFile);
+                DefaultBaselineFile(), approvalsFile);
             ValidationReportWriter.Write(stagingDirectory, validation);
             Directory.Move(stagingDirectory, outputDirectory);
 
@@ -319,7 +325,7 @@ internal static class Program
             var packRoot = Path.GetFullPath(args[0]);
             var baselineFile = args.Length >= 2
                 ? Path.GetFullPath(args[1])
-                : Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json");
+                : DefaultBaselineFile();
             var approvalsFile = args.Length == 3 ? Path.GetFullPath(args[2]) : null;
             var report = MapDataValidator.Validate(packRoot, baselineFile, approvalsFile);
             ValidationReportWriter.Write(packRoot, report);
@@ -354,7 +360,7 @@ internal static class Program
             var outputDirectory = Path.GetFullPath(args[2]);
             var baselineFile = args.Length == 4
                 ? Path.GetFullPath(args[3])
-                : Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json");
+                : DefaultBaselineFile();
             var manifest = new TarkovMap.Services.MapRepository(Path.Combine(testPackRoot, "Data"))
                                .LoadManifest()
                            ?? throw new InvalidDataException("测试包缺少 manifest.json。");
@@ -392,7 +398,7 @@ internal static class Program
                 : Path.Combine(Path.GetDirectoryName(dataDirectory)!, "Data.backup");
             var baselineFile = args.Length == 4
                 ? Path.GetFullPath(args[3])
-                : Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json");
+                : DefaultBaselineFile();
             Console.WriteLine("正在校验正式包并备份当前 Data……");
             var result = MapDataInstaller.Apply(packageFile, dataDirectory,
                 backupDirectory, baselineFile);
@@ -433,6 +439,33 @@ internal static class Program
             return 1;
         }
     }
+
+    private static int RunPveBaseline(string[] args)
+    {
+        if (args.Length != 2)
+        {
+            Console.WriteLine("用法: MapPackBuilder.exe pve-baseline <Data目录> <基线输出文件>");
+            return 1;
+        }
+
+        try
+        {
+            var dataDirectory = Path.GetFullPath(args[0]);
+            var outputFile = Path.GetFullPath(args[1]);
+            MapDataBaselineWriter.Write(dataDirectory, outputFile);
+            _ = MapDataBaseline.Load(outputFile);
+            Console.WriteLine($"当前 MapData 基线已生成：{outputFile}");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] MapData 基线生成失败: {exception.Message}");
+            return 1;
+        }
+    }
+
+    private static string DefaultBaselineFile() =>
+        Path.Combine(AppContext.BaseDirectory, CurrentBaselineFileName);
 
     private static async Task<int> RunPveFetchAsync(string[] args)
     {

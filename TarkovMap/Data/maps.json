@@ -2,18 +2,6 @@
   "schemaVersion": 1,
   "maps": [
     {
-      "id": "streets-of-tarkov",
-      "name": "塔科夫街区",
-      "directory": "maps/streets-of-tarkov",
-      "enabled": true
-    },
-    {
-      "id": "ground-zero",
-      "name": "中心区",
-      "directory": "maps/ground-zero",
-      "enabled": true
-    },
-    {
       "id": "customs",
       "name": "海关",
       "directory": "maps/customs",
@@ -26,15 +14,15 @@
       "enabled": true
     },
     {
-      "id": "interchange",
-      "name": "立交桥",
-      "directory": "maps/interchange",
+      "id": "ground-zero",
+      "name": "中心区",
+      "directory": "maps/ground-zero",
       "enabled": true
     },
     {
-      "id": "the-lab",
-      "name": "实验室",
-      "directory": "maps/the-lab",
+      "id": "interchange",
+      "name": "立交桥",
+      "directory": "maps/interchange",
       "enabled": true
     },
     {
@@ -56,15 +44,27 @@
       "enabled": true
     },
     {
-      "id": "woods",
-      "name": "森林",
-      "directory": "maps/woods",
+      "id": "streets-of-tarkov",
+      "name": "塔科夫街区",
+      "directory": "maps/streets-of-tarkov",
+      "enabled": true
+    },
+    {
+      "id": "the-lab",
+      "name": "实验室",
+      "directory": "maps/the-lab",
       "enabled": true
     },
     {
       "id": "the-labyrinth",
       "name": "迷宫",
       "directory": "maps/the-labyrinth",
+      "enabled": true
+    },
+    {
+      "id": "woods",
+      "name": "森林",
+      "directory": "maps/woods",
       "enabled": true
     }
   ]

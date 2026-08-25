@@ -32,4 +32,11 @@
 4. 执行恢复。
 5. 将恢复结果与原正式 Data 的 27 个文件逐个比较 SHA-256，差异为 0。
 
-正式 `TarkovMap/Data` 在本报告记录演练时尚未修改。
+## 正式应用结果
+
+- `TarkovMap/Data` 已应用 `2026.08.25.4-pve`，与候选包内 29 个文件逐个比较 SHA-256，差异为 0。
+- 旧版 27 个文件保留在本地 `TarkovMap/Data.backup`，未提交到 Git。
+- 已生成 `baseline-2026.08.25.4-pve.json` 并设为后续默认比较基线。
+- 相对新基线重新验证：Error 0 / Warning 7 / Info 0；7 个 Warning 均为少量 Bounds 外 Marker。
+- Release 客户端使用正式 Data 启动并稳定运行 4 秒，无错误日志，识别版本正确。
+- 当前自动测试 56/56 通过。
