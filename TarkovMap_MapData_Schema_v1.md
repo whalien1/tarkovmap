@@ -3,6 +3,7 @@
 **状态：** 已冻结用于 PvE MapData 第一轮开发  
 **日期：** 2026-08-25  
 **兼容基线：** TarkovMap v1.1.1
+**当前正式实例：** `2026.08.25.5-pve`
 
 ## 1. 兼容原则
 
@@ -21,14 +22,14 @@ Schema v1 在现有 `Data/` 结构上增量扩展：
 MapData/
 ├─ manifest.json
 ├─ maps.json
-├─ icons/
+├─ icons/                  # 8 个核心类别自有 PNG
 └─ maps/
    └─ customs/
       ├─ map.json
       └─ map.png
 ```
 
-来源原始快照属于 Builder 工作目录和复现材料，不要求复制进运行时 MapData ZIP；`manifest.json` 通过相对位置、版本和 SHA-256 引用它们。
+来源原始快照不放进安装后的运行时 `Data/`，但必须进入 Builder 测试包和正式分发 ZIP 的 `snapshots/`。`sourceSnapshots.location` 相对正式包根目录记录路径；安装后的客户端验证记录格式，Builder/打包器负责验证快照文件存在且 SHA-256 一致。
 
 ## 3. manifest.json
 
@@ -183,9 +184,11 @@ manifest.json 存在
   → 验证 schemaVersion = 1
   → 验证 dataVersion 格式
   → 验证 gameMode = pve
-  → 验证来源快照与 SHA-256 字段
+  → 验证来源快照记录与 SHA-256 字段格式
   → 加载 maps.json
 ```
+
+来源快照文件本身由 Builder、正式打包和应用流程校验；安装后的精简 `Data/` 不要求携带 `snapshots/`。
 
 任一 manifest 硬校验失败时，客户端不得继续加载看似完整但协议不兼容的数据包。
 

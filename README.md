@@ -4,6 +4,8 @@
 
 当前内置地图数据：`2026.08.25.5-pve`（PvE，11 张地图）。
 
+MapData Schema v1 第一轮供应链已经完成并冻结；维护入口和故障处理见 [MapPackBuilder 说明](Tools/MapPackBuilder/README.md) 与 [AI 交接维护手册](AI交接维护手册.md)。
+
 **打开即地图。不联网、不碰游戏进程、不驻留后台，只做地图。**
 
 ## 系统要求
@@ -46,19 +48,20 @@
 - 地图底图：10 张来自固定提交的 `the-hideout/tarkov-dev-svg-maps` SVG，迷宫暂时沿用已有 PNG
 - 游戏大版本更新后使用 `Tools/MapPackBuilder` 的抓取、快照重放、Validation、打包、应用和恢复流程
 - 日常更新可直接运行 `Tools/MapPackBuilder.Gui` 图形界面，无需记忆命令；人工验收后才能导出和应用正式包
-- 手工补录：编辑 `Tools/manual_overrides.json`（重新生成不丢失），或直接改 `Data/maps/<地图>/map.json` 的 markers 数组
+- 校准参数：编辑 `Tools/MapPackBuilder/calibration-v1.1.1.json` 后重新构建并完整验收；`Tools/manual_overrides.json` 只供旧 `ref/` 构建入口回归，不会自动进入当前 PvE 流程
+- 不建议直接修改正式 `Data/maps/<地图>/map.json`：下一次整包应用会覆盖手改内容；确需补点时应先为 PvE Builder 增加可追踪的覆盖层并配套测试
 - 实测坐标方法：站在点位处游戏内截图，文件名自带精确 X/Z
 
 ## 版本更新维护流程
 
 游戏大版本更新后（新地图 / 点位变动），按此流程出新版本：
 
-1. **更新数据源**：更新 `ref/` 下的参考数据仓库（重新 clone 或 pull 最新社区数据）
-2. **重新生成地图数据**：运行 `Tools/MapPackBuilder`（双击其 exe 或 `dotnet run`），一键重建全部 `Data/`，查看每张图的核查报告（点位数、非法点位数）
-3. **抽查校准**：开本地模式在 2–3 个已知点位截图，对照地图上 Marker 位置确认坐标无偏移
-4. **手工补录检查**：`Tools/manual_overrides.json` 里的补录点位不受影响；新地图（如破冰船）用社区高清 PNG + 两个已知点截图校准边界后新增
-5. **Boss 名单检查**：新增/移除 Boss 改 `Program.cs` 里的 `ExcludedBosses`
-6. **打包发布**：更新版本号 → 重新打 ZIP → `git commit` + 打新标签（如 v1.1.1）
+1. **打开维护界面**：运行 `dotnet run --project Tools/MapPackBuilder.Gui`，确认正式 Data 路径和自动建议的新版本号。
+2. **获取并构建**：点击“获取数据”和“构建 MapData”；来源响应、SVG、许可证与校准配置会保存为带 SHA-256 的快照，测试包不会覆盖正式 Data。
+3. **查看变化**：打开 Validation + Diff 报告。任何 Error 必须先修复；新地图只提示，不自动启用。
+4. **人工验收**：用独立客户端检查海关、中心区、街区、实验室及所有超过 30% 的类别变化，再由项目所有者点击“确认验收”。
+5. **导出并应用**：点击“导出 ZIP”，通过再次校验和解包复验后再点击“应用到正式程序”；当前版本会保留为唯一可恢复备份。
+6. **回归与提交**：运行全部自动测试和客户端冒烟，核对正式版本/内容哈希，再显式暂存本次文件并提交；只有发布客户端版本时才创建 Git 标签。
 
 ## 数据来源与致谢
 

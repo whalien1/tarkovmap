@@ -40,7 +40,8 @@
 - **Phase 6 已完成：** 项目所有者已通过独立客户端完成人工目测验收；精确审批后正式包 Validation 为 0 Error，确定性 ZIP 两次构建 SHA 一致，隔离环境应用/恢复后 27 个旧文件 SHA 差异为 0。`2026.08.25.4-pve` 已原子应用到正式 `TarkovMap/Data`，旧数据保留在本地唯一备份槽，新基线已建立；当前 56 个自动测试全部通过。详见 `Tools/MapPackBuilder/PHASE6_PACKAGE_REPORT.md`。
 - **Phase 7 已完成：** 8 个核心类别的自有 Marker 图标已完成设计和目测验收；`2026.08.25.5-pve` 已通过确定性打包、隔离应用/恢复演练并写入正式 MapData，`.4` 保留在唯一备份槽；详见 `Tools/MapPackBuilder/PHASE7_ICON_REPORT.md`。
 - **Phase 8 已完成：** WinForms GUI 已覆盖获取、构建、Diff、校验、人工验收、导出、一键应用、恢复和报告入口；所有实际操作由独立 CLI 子进程执行，避免 GUI DPI 环境影响 SVG 确定性输出；详见 `Tools/MapPackBuilder/PHASE8_GUI_REPORT.md`。
-- **下一阶段：** Phase 9，完成长期维护文档与大版本模拟更新收口。
+- **Phase 9 已完成：** README、Schema、Builder、许可和 AI 交接文档已按当前实现统一；固定快照完成 `.4 → .5 → .4` 隔离应用/恢复模拟，29 个恢复文件 SHA 差异为 0；详见 `Tools/MapPackBuilder/PHASE9_CLOSEOUT_REPORT.md`。
+- **当前状态：** MapData Schema v1 第一轮开发冻结；后续仅在真实数据变化、缺陷或明确新需求出现时重新开启。
 
 ---
 
@@ -1265,6 +1266,8 @@ P1，在 CLI/Core 稳定后开发，但必须在本轮收口前交付。只提�
 P1。完成 README、AI 维护手册、MapData Schema、Builder 操作说明、数据源/许可说明，并使用已保存的原始快照进行一次完整的“大版本模拟更新 + 应用 + 恢复”。
 
 完成后，MapData 第一轮开发冻结。
+
+**状态：已完成。** 固定快照离线重放、确定性打包、隔离应用与恢复全部通过，长期维护文档已统一，第一轮开发冻结。
 
 ---
 
