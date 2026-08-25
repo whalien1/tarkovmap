@@ -129,18 +129,22 @@ internal static class Program
 
         var markers = new List<MarkerOut>();
 
+        MarkerOut Marker(string type, string markerName, double markerX, double markerZ,
+            string idRaw, List<double[]>? outline = null) =>
+            new(key, type, markerName, markerX, markerZ, idRaw, outline);
+
         foreach (var e in ArrayOf(data, "extracts"))
         {
             if (!TryPos(e, out var x, out var z)) continue;
             var faction = (ReadStr(e, "faction") ?? "shared").ToLowerInvariant();
             var type = faction switch { "pmc" => "extract_pmc", "scav" => "extract_scav", _ => "extract_shared" };
-            markers.Add(new(type, ReadStr(e, "name") ?? "撤离点", x, z, ReadStr(e, "id") ?? ""));
+            markers.Add(Marker(type, ReadStr(e, "name") ?? "撤离点", x, z, ReadStr(e, "id") ?? ""));
         }
 
         foreach (var t in ArrayOf(data, "transits"))
         {
             if (!TryPos(t, out var x, out var z)) continue;
-            markers.Add(new("extract_transit",
+            markers.Add(Marker("extract_transit",
                 ReadStr(t, "description") ?? ReadStr(t, "name") ?? "转移点", x, z, ReadStr(t, "id") ?? ""));
         }
 
@@ -152,7 +156,7 @@ internal static class Program
             if (cats.Contains("boss") || cats.Contains("sniper")) continue;
             var sides = StrArray(s, "sides");
             var type = sides.Contains("pmc") ? "spawn_pmc" : "spawn_scav";
-            markers.Add(new(type, ReadStr(s, "zoneName") ?? "出生点", x, z, ""));
+            markers.Add(Marker(type, ReadStr(s, "zoneName") ?? "出生点", x, z, ""));
         }
 
         // Boss：跳过已移除名单；同一刷新点（同坐标）的多个 Boss 合并为一个 Marker，名字用 / 连接
@@ -183,14 +187,14 @@ internal static class Program
         {
             var names = string.Join(" / ", entry.Names);
             var display = string.IsNullOrEmpty(entry.LocName) ? names : $"{names}（{entry.LocName}）";
-            markers.Add(new("boss", display, entry.X, entry.Z, ""));
+            markers.Add(Marker("boss", display, entry.X, entry.Z, ""));
         }
 
         foreach (var l in ArrayOf(data, "locks"))
         {
             if (!TryPos(l, out var x, out var z)) continue;
             var keyName = l.TryGetProperty("key", out var kk) ? ReadStr(kk, "name") : null;
-            markers.Add(new("lock", keyName ?? ReadStr(l, "lockType") ?? "门锁", x, z, ""));
+            markers.Add(Marker("lock", keyName ?? ReadStr(l, "lockType") ?? "门锁", x, z, ""));
         }
 
         foreach (var h in ArrayOf(data, "hazards"))
@@ -201,7 +205,7 @@ internal static class Program
                 .Where(p => p is not null)
                 .Select(p => p!)
                 .ToList();
-            markers.Add(new("hazard", ReadStr(h, "name") ?? ReadStr(h, "hazardType") ?? "危险区",
+            markers.Add(Marker("hazard", ReadStr(h, "name") ?? ReadStr(h, "hazardType") ?? "危险区",
                 x, z, "", outline.Count >= 3 ? outline : null));
         }
 
@@ -209,14 +213,14 @@ internal static class Program
         {
             if (!TryPos(w, out var x, out var z)) continue;
             var wname = w.TryGetProperty("stationaryWeapon", out var sw) ? ReadStr(sw, "name") : null;
-            markers.Add(new("stationary_weapon", wname ?? "固定武器", x, z, ""));
+            markers.Add(Marker("stationary_weapon", wname ?? "固定武器", x, z, ""));
         }
 
         foreach (var lb in ArrayOf(data, "labels"))
         {
             if (!lb.TryGetProperty("position", out var p) || p.ValueKind != JsonValueKind.Array ||
                 p.GetArrayLength() < 2) continue;
-            markers.Add(new("label", ReadStr(lb, "text") ?? ReadStr(lb, "name") ?? "",
+            markers.Add(Marker("label", ReadStr(lb, "text") ?? ReadStr(lb, "name") ?? "",
                 p[0].GetDouble(), p[1].GetDouble(), ""));
         }
 
@@ -224,7 +228,7 @@ internal static class Program
         {
             if (!InRange(c) || !TryPos(c, out var x, out var z)) continue;
             var cname = c.TryGetProperty("lootContainer", out var lc) ? ReadStr(lc, "name") : null;
-            markers.Add(new("loot_container", cname ?? "物资容器", x, z, ""));
+            markers.Add(Marker("loot_container", cname ?? "物资容器", x, z, ""));
         }
 
         // 地图图片：优先 native-cache/<key>.png；jpg 转 png；超过最大边长则等比缩小
@@ -367,7 +371,7 @@ internal static class Program
                 var name = ReadStr(m, "name") ?? "";
                 var x = m.GetProperty("x").GetDouble();
                 var z = m.GetProperty("z").GetDouble();
-                result.Add(new MarkerOut(type, name, x, z, ReadStr(m, "id") ?? ""));
+                result.Add(new MarkerOut(mapKey, type, name, x, z, ReadStr(m, "id") ?? ""));
             }
         }
         catch (Exception ex)
@@ -379,7 +383,8 @@ internal static class Program
 
     private sealed class MarkerOut
     {
-        public MarkerOut(string type, string name, double x, double z, string idRaw, List<double[]>? outline = null)
+        public MarkerOut(string mapId, string type, string name, double x, double z,
+            string idRaw, List<double[]>? outline = null)
         {
             this.type = type;
             this.name = name;
@@ -388,7 +393,7 @@ internal static class Program
             this.outline = outline;
             id = idRaw.Length > 0
                 ? idRaw
-                : $"{type}_{Math.Abs(HashCode.Combine(type, Math.Round(x, 1), Math.Round(z, 1))) % 99999}";
+                : StableMarkerId.Create(SourceTag, mapId, type, name, x, z);
         }
 
         public string id { get; }

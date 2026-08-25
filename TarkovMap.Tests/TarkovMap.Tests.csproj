@@ -17,6 +17,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TarkovMap\TarkovMap.csproj" />
+    <ProjectReference Include="..\Tools\MapPackBuilder\MapPackBuilder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Tools\MapPackBuilder\baseline-v1.1.1.json"
+          Link="TestData\baseline-v1.1.1.json"
+          CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
