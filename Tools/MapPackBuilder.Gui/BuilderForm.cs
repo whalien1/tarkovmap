@@ -280,7 +280,7 @@ internal sealed class BuilderForm : Form
         if (!ValidateInputs(requireData: true)) return;
         if (!File.Exists(PackageFile)) { ShowError("找不到正式 ZIP，请先导出 ZIP。"); return; }
         if (MessageBox.Show(this,
-                $"将校验并应用 {Version}。\n当前 Data 会进入唯一备份槽，更早的备份会被替换。\n\n是否继续？",
+                $"请先关闭正在运行的 TarkovMap 客户端。\n\n将校验并应用 {Version}。\n当前 Data 会进入唯一备份槽，更早的备份会被替换。\n\n是否继续？",
                 "应用正式 MapData", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
         await RunCommandAsync("应用正式 MapData", ["pve-apply", PackageFile, FullDataDirectory], RefreshSummary);
@@ -292,7 +292,7 @@ internal sealed class BuilderForm : Form
         var backup = Path.Combine(Path.GetDirectoryName(FullDataDirectory)!, "Data.backup");
         if (!Directory.Exists(backup)) { ShowError("没有可恢复的 Data.backup。"); return; }
         if (MessageBox.Show(this,
-                "将恢复上一个已验证版本，当前版本会被替换，恢复完成后备份槽会清空。\n\n是否继续？",
+                "请先关闭正在运行的 TarkovMap 客户端。\n\n将恢复上一个已验证版本，当前版本会被替换，恢复完成后备份槽会清空。\n\n是否继续？",
                 "恢复上一版本", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
         await RunCommandAsync("恢复上一版本", ["pve-restore", FullDataDirectory], RefreshSummary);

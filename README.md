@@ -6,6 +6,8 @@
 
 MapData Schema v1 第一轮供应链已经完成并冻结；维护入口和故障处理见 [MapPackBuilder 说明](Tools/MapPackBuilder/README.md) 与 [AI 交接维护手册](AI交接维护手册.md)。
 
+需要双击版维护工具时，在仓库根目录运行 `Tools\build-builder.cmd`，输出位于 `dist\TarkovMap-MapDataBuilder-v1.0.0.zip`。
+
 **打开即地图。不联网、不碰游戏进程、不驻留后台，只做地图。**
 
 ## 系统要求
