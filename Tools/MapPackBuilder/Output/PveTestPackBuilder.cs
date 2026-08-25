@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using MapPackBuilder.Calibration;
+using MapPackBuilder.Assets;
 using MapPackBuilder.Sources;
 using TarkovMap.Models;
 using TarkovMap.Services;
@@ -56,7 +57,7 @@ internal static class PveTestPackBuilder
 
         var dataDirectory = Path.Combine(rootDirectory, "Data");
         Directory.CreateDirectory(dataDirectory);
-        CopyRuntimeIcons(fallbackDataDirectory, dataDirectory);
+        MarkerIconAssetGenerator.Generate(Path.Combine(dataDirectory, "icons"));
         WriteAttribution(dataDirectory, svgSnapshot.CommitSha);
 
         var summaries = new List<MapBuildSummary>();
@@ -172,26 +173,6 @@ internal static class PveTestPackBuilder
         }
     }
 
-    private static void CopyRuntimeIcons(string fallbackDataDirectory, string dataDirectory)
-    {
-        var sourceDirectory = Path.Combine(fallbackDataDirectory, "icons");
-        var outputDirectory = Path.Combine(dataDirectory, "icons");
-        Directory.CreateDirectory(outputDirectory);
-        foreach (var name in new[]
-                 {
-                     "extract_pmc.png", "extract_scav.png", "extract_shared.png", "extract_transit.png"
-                 })
-        {
-            var source = Path.Combine(sourceDirectory, name);
-            if (!File.Exists(source))
-            {
-                throw new FileNotFoundException($"兼容测试包缺少运行时图标：{name}", source);
-            }
-
-            File.Copy(source, Path.Combine(outputDirectory, name), overwrite: true);
-        }
-    }
-
     private static void WriteAttribution(string dataDirectory, string commitSha)
     {
         var text = $"""
@@ -206,6 +187,10 @@ internal static class PveTestPackBuilder
 
             Modifications: selected the configured primary floor, rasterized the SVG, resized it,
             and rotated it where required for TarkovMap coordinate compatibility.
+
+            The PNG files under Data/icons are original TarkovMap assets generated from geometric
+            drawing commands in Tools/MapPackBuilder/Assets/MarkerIconAssetGenerator.cs. They do
+            not contain third-party image material or font glyphs.
 
             This test MapData is intended for personal, non-commercial use and must not be used
             to facilitate cheating or gain an unfair advantage in Escape from Tarkov.

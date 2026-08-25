@@ -4,8 +4,8 @@ namespace TarkovMap.Services;
 
 /// <summary>
 /// Marker 图标缓存：每种类型只加载/生成一次，退出时统一 Dispose。
-/// 撤离点/转移点使用 Data/icons/ 下的现成 PNG；
-/// 其余类型程序生成 22×22 彩色圆形字母图标。
+/// 核心类别使用 TarkovMap 自有 Data/icons PNG；
+/// 非核心兼容类别缺少资产时程序生成 22×22 字母图标。
 /// </summary>
 public sealed class IconCache : IDisposable
 {
@@ -43,6 +43,10 @@ public sealed class IconCache : IDisposable
             MarkerType.ExtractScav => LoadFile("extract_scav.png"),
             MarkerType.ExtractShared => LoadFile("extract_shared.png"),
             MarkerType.ExtractTransit => LoadFile("extract_transit.png"),
+            MarkerType.SpawnPmc => LoadFile("spawn_pmc.png"),
+            MarkerType.SpawnScav => LoadFile("spawn_scav.png"),
+            MarkerType.Boss => LoadFile("boss.png"),
+            MarkerType.Hazard => LoadFile("hazard.png"),
             _ => null
         } ?? GenerateLetterIcon(type);
 

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.08.25.5-pve",
+  "manualAcceptance": {
+    "result": "passed",
+    "maps": [
+      "customs",
+      "ground-zero",
+      "streets-of-tarkov",
+      "the-lab"
+    ],
+    "confirmedAt": "2026-08-25T23:23:56.0411213+08:00",
+    "note": "点位与已验收的 2026.08.25.4-pve 完全一致；项目所有者目测确认新自有 Marker 图标没有大问题。"
+  },
+  "approvals": []
+}

@@ -17,7 +17,7 @@ dotnet run --project Tools/MapPackBuilder -- pve-build .phase4-test-pack 2026.08
 安全规则：
 
 - 测试包目录必须不存在；Builder 不会清空或覆盖已有目录。
-- 现有 Data 只作为迷宫 PNG 和临时运行时图标的兼容来源。
+- 现有 Data 只作为迷宫 PNG 的兼容来源；8 个核心 Marker 图标由 Builder 内置几何绘图代码生成。
 - 10 张有 SVG 的地图使用上游当前提交；迷宫继续使用现有 PNG。
 - SVG 只渲染校准配置指定的主楼层，并按 Bounds 生成兼容宽高比。
 - 生成完成后使用 TarkovMap 自身的运行时读取器加载 manifest、地图 JSON 和全部图片。
@@ -101,3 +101,5 @@ dotnet run --project Tools/MapPackBuilder -- pve-fetch <快照目录> <YYYY.MM.D
 ```
 
 SVG 地图来自 `the-hideout/tarkov-dev-svg-maps`，采用 CC BY-NC-SA 4.0，并额外禁止用于作弊或获取不公平优势。生成的 Data 内含 `THIRD_PARTY_NOTICES.md`，原始许可证保存在来源快照中。
+
+`Data/icons` 下的撤离点、Transit、出生点、Boss 和危险区图标均由 `Assets/MarkerIconAssetGenerator.cs` 使用几何图形生成，不使用字体或外部图片素材。可用 `pve-icons <输出目录>` 单独生成并预览这 8 个 PNG。

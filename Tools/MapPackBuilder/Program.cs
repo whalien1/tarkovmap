@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using MapPackBuilder.Assets;
 using MapPackBuilder.Calibration;
 using MapPackBuilder.Output;
 using MapPackBuilder.Packaging;
@@ -15,7 +16,7 @@ namespace MapPackBuilder;
 /// </summary>
 internal static class Program
 {
-    private const string CurrentBaselineFileName = "baseline-2026.08.25.4-pve.json";
+    private const string CurrentBaselineFileName = "baseline-2026.08.25.5-pve.json";
     private const string SourceTag = "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)";
 
     // 跳过变体条目（夜间工厂 / 中心区21+ 与主条目同 key）
@@ -71,6 +72,11 @@ internal static class Program
         if (args.Length > 0 && string.Equals(args[0], "pve-baseline", StringComparison.OrdinalIgnoreCase))
         {
             return RunPveBaseline(args[1..]);
+        }
+
+        if (args.Length > 0 && string.Equals(args[0], "pve-icons", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveIcons(args[1..]);
         }
 
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
@@ -466,6 +472,28 @@ internal static class Program
 
     private static string DefaultBaselineFile() =>
         Path.Combine(AppContext.BaseDirectory, CurrentBaselineFileName);
+
+    private static int RunPveIcons(string[] args)
+    {
+        if (args.Length != 1)
+        {
+            Console.WriteLine("用法: MapPackBuilder.exe pve-icons <图标输出目录>");
+            return 1;
+        }
+
+        try
+        {
+            var outputDirectory = Path.GetFullPath(args[0]);
+            var files = MarkerIconAssetGenerator.Generate(outputDirectory);
+            Console.WriteLine($"已生成 {files.Count} 个 TarkovMap 自有 Marker 图标：{outputDirectory}");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] Marker 图标生成失败: {exception.Message}");
+            return 1;
+        }
+    }
 
     private static async Task<int> RunPveFetchAsync(string[] args)
     {

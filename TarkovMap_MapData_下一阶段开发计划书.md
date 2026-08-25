@@ -38,7 +38,8 @@
 - **Phase 5 已完成：** Validation + Diff 已覆盖 manifest/快照哈希、文件与图片、Bounds、Marker 字段与重复 ID、越界点位和核心类别数量差异；支持与数据版本和新旧数量精确绑定的人工审批；详见 `Tools/MapPackBuilder/PHASE5_VALIDATION_REPORT.md`。
 - **Spawn 语义审计已完成：** 旧适配器错误地把 `categories` 当作互斥标签，导致 `player+sniper` 被整体丢弃、部分 `player/botpmc` 被误标为 Scav。现已按 tarkov.dev 同源地图实现对全部地图统一修正，并增加经 SHA-256 校验的 `pve-replay` 快照重放入口；详见 `Tools/MapPackBuilder/SPAWN_CLASSIFICATION_AUDIT.md`。
 - **Phase 6 已完成：** 项目所有者已通过独立客户端完成人工目测验收；精确审批后正式包 Validation 为 0 Error，确定性 ZIP 两次构建 SHA 一致，隔离环境应用/恢复后 27 个旧文件 SHA 差异为 0。`2026.08.25.4-pve` 已原子应用到正式 `TarkovMap/Data`，旧数据保留在本地唯一备份槽，新基线已建立；当前 56 个自动测试全部通过。详见 `Tools/MapPackBuilder/PHASE6_PACKAGE_REPORT.md`。
-- **下一阶段：** Phase 7，制作并替换当前许可不明确的 Marker 图标；在完成自有图标前不做本轮正式发布。
+- **Phase 7 已完成：** 8 个核心类别的自有 Marker 图标已完成设计和目测验收；`2026.08.25.5-pve` 已通过确定性打包、隔离应用/恢复演练并写入正式 MapData，`.4` 保留在唯一备份槽；详见 `Tools/MapPackBuilder/PHASE7_ICON_REPORT.md`。
+- **下一阶段：** Phase 8，为现有 CLI/Core 增加简单 GUI。
 
 ---
 
@@ -1244,6 +1245,10 @@ P0。自动生成 `MapData-YYYY.MM.DD.N-pve.zip`，内含 manifest、maps、map.
 
 P1，但属于本轮正式交付前必做项。制作并替换撤离点、Transit、出生点、Boss、危险区等现用图标，保持一致的视觉语言，同步更新 NOTICE 与资源来源说明。
 
+采用 96×96 透明 PNG：撤离/转移使用方向符号，PMC/Scav 出生点使用定位菱形，Boss 使用皇冠，危险区使用警示三角。全部资产由仓库内几何绘图代码确定性生成，不使用字体或外部图片素材。
+
+**状态：已完成。** 8 个图标已接入 Builder 和客户端缓存，项目所有者目测确认无明显问题；`2026.08.25.5-pve` 已正式应用并建立新基线。
+
 ---
 
 ## Phase 8：简单 GUI
@@ -1444,9 +1449,9 @@ attribution
 - 非商业限制
 - ShareAlike 要求
 - 地图仓库对作弊工具的额外禁止条款
-- 当前部分图标来源许可不明确，本轮必须制作并替换为自有图标
+- 核心 Marker 图标已经替换为项目自有几何图形；发布包不得重新引入来源不明的旧图标
 
-自有图标不阻塞前期数据链路验证，但必须在正式应用新 MapData 和本轮长期可用收口前完成。
+自有图标已经通过目测验收、正式应用和自动回归，该风险项已关闭。
 
 ---
 

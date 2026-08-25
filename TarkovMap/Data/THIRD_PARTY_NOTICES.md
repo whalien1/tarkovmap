@@ -10,5 +10,9 @@ License URL: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Modifications: selected the configured primary floor, rasterized the SVG, resized it,
 and rotated it where required for TarkovMap coordinate compatibility.
 
+The PNG files under Data/icons are original TarkovMap assets generated from geometric
+drawing commands in Tools/MapPackBuilder/Assets/MarkerIconAssetGenerator.cs. They do
+not contain third-party image material or font glyphs.
+
 This test MapData is intended for personal, non-commercial use and must not be used
 to facilitate cheating or gain an unfair advantage in Escape from Tarkov.

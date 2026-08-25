@@ -2,7 +2,7 @@
 
 《逃离塔科夫》本地互动地图工具（Windows 原生桌面程序）。
 
-当前内置地图数据：`2026.08.25.4-pve`（PvE，11 张地图）。
+当前内置地图数据：`2026.08.25.5-pve`（PvE，11 张地图）。
 
 **打开即地图。不联网、不碰游戏进程、不驻留后台，只做地图。**
 
@@ -63,12 +63,12 @@
 
 - **地图图片**：10 张地图基于 [the-hideout/tarkov-dev-svg-maps](https://github.com/the-hideout/tarkov-dev-svg-maps) 的固定提交生成，迷宫沿用已有 PNG；具体提交和修改方式见 `Data/THIRD_PARTY_NOTICES.md`。
 - **点位数据**：来自 [json.tarkov.dev](https://json.tarkov.dev) PvE 地图接口及中文翻译接口，经 MapPackBuilder 转换和验证。
-- **撤离点图标**：取自 Re5pawnn/Tarkov_webmap。
+- **核心 Marker 图标**：由本项目 MapPackBuilder 的几何绘图代码生成，包括撤离点、Transit、出生点、Boss 和危险区，不使用外部图片素材或字体字形。
 - **截图文件名解析**：参考 Re5pawnn/Tarkov_webmap（ScreenshotCoordinateParser）。
 
 ### 许可证与署名说明
 
 - 本仓库**代码未附带开源许可证，默认保留所有权利**；仅作为个人项目发布/参考，作者未进行开源授权。
 - **地图图片**（`Data/maps/*/map.png`）中由 [the-hideout/tarkov-dev-svg-maps](https://github.com/the-hideout/tarkov-dev-svg-maps) 生成的部分依其 **CC BY-NC-SA 4.0（署名-非商业性使用-相同方式共享）** 授权：允许非商业性使用与修改，但需署名原作者、衍生内容须以相同许可证共享，**禁止商用**；点位 JSON 的来源和快照哈希记录在 `manifest.json`。
-- **撤离点图标**（`Data/icons/*.png`）取自 Re5pawnn/Tarkov_webmap，该仓库未附带许可证，来源授权情况不明；当前按“个人自用”保留，**作者不对再分发此图标承担授权承诺**，如需公开分发或商用请先替换/自绘。
+- **核心 Marker 图标**（`Data/icons/*.png`）是本项目通过 `MarkerIconAssetGenerator.cs` 自行绘制的原创几何图形，不包含第三方图片素材或字体字形。
 - 本项目仅解析游戏截图文件名以定位，不访问游戏进程、不读取游戏内存、不注入、不修改游戏文件、无联网、不使用游戏内 Overlay，为低侵入只读实现。

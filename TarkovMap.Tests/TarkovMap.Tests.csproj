@@ -24,8 +24,8 @@
     <None Include="..\Tools\MapPackBuilder\baseline-v1.1.1.json"
           Link="TestData\baseline-v1.1.1.json"
           CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Tools\MapPackBuilder\baseline-2026.08.25.4-pve.json"
-          Link="TestData\baseline-2026.08.25.4-pve.json"
+    <None Include="..\Tools\MapPackBuilder\baseline-2026.08.25.5-pve.json"
+          Link="TestData\baseline-2026.08.25.5-pve.json"
           CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\Tools\MapPackBuilder\calibration-v1.1.1.json"
           Link="TestData\calibration-v1.1.1.json"
