@@ -60,6 +60,29 @@ dotnet run --project Tools/MapPackBuilder -- pve-replay <来源测试包> <来�
 
 该命令先校验已保存 API、SVG、许可证和校准文件的 SHA-256，再使用这些固定输入重新生成 MapData，适合网络不可用时复现构建或验证适配器代码变化。它不会回退到未校验缓存，也不会覆盖正式 `TarkovMap/Data`。
 
+## 正式打包、应用和恢复
+
+```powershell
+dotnet run --project Tools/MapPackBuilder -- pve-package <测试包目录> <审批文件> <ZIP输出目录> [基线文件]
+dotnet run --project Tools/MapPackBuilder -- pve-apply <ZIP正式包> <正式Data目录> [备份目录] [基线文件]
+dotnet run --project Tools/MapPackBuilder -- pve-restore <正式Data目录> [备份目录]
+```
+
+`pve-package` 只有在自动 Validation 为 0 Error、精确数量审批有效，并且审批文件包含海关、中心区、街区、实验室人工验收记录时才会生成 ZIP。ZIP 内含运行时 Data、原始来源快照、验证报告和审批记录；生成后会自动解包并再次校验。
+
+`pve-apply` 先在正式目录同一磁盘解包和校验，再把当前 `Data` 原子移动到同级 `Data.backup`，最后切换新 Data；只保留最近一个备份。`pve-restore` 会验证备份、原子恢复并清空备份槽。两个命令都要求正式目标明确命名为 `Data`，避免误操作宽泛目录。
+
+审批文件的 `manualAcceptance` 示例：
+
+```json
+{
+  "result": "passed",
+  "maps": ["customs", "ground-zero", "streets-of-tarkov", "the-lab"],
+  "confirmedAt": "2026-08-25T23:06:56+08:00",
+  "note": "项目所有者在独立验收客户端中确认点位没有明显问题。"
+}
+```
+
 ## 只保存 PvE API 快照
 
 ```powershell

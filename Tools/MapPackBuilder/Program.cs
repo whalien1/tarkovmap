@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using MapPackBuilder.Calibration;
 using MapPackBuilder.Output;
+using MapPackBuilder.Packaging;
 using MapPackBuilder.Sources;
 using MapPackBuilder.Validation;
 
@@ -49,6 +50,21 @@ internal static class Program
         if (args.Length > 0 && string.Equals(args[0], "pve-replay", StringComparison.OrdinalIgnoreCase))
         {
             return RunPveReplay(args[1..]);
+        }
+
+        if (args.Length > 0 && string.Equals(args[0], "pve-package", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPvePackage(args[1..]);
+        }
+
+        if (args.Length > 0 && string.Equals(args[0], "pve-apply", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveApply(args[1..]);
+        }
+
+        if (args.Length > 0 && string.Equals(args[0], "pve-restore", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveRestore(args[1..]);
         }
 
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
@@ -318,6 +334,102 @@ internal static class Program
         catch (Exception exception)
         {
             Console.WriteLine($"[错误] Validation 执行失败: {exception.Message}");
+            return 1;
+        }
+    }
+
+    private static int RunPvePackage(string[] args)
+    {
+        if (args.Length is < 3 or > 4)
+        {
+            Console.WriteLine(
+                "用法: MapPackBuilder.exe pve-package <测试包目录> <审批文件> <ZIP输出目录> [基线文件]");
+            return 1;
+        }
+
+        try
+        {
+            var testPackRoot = Path.GetFullPath(args[0]);
+            var approvalsFile = Path.GetFullPath(args[1]);
+            var outputDirectory = Path.GetFullPath(args[2]);
+            var baselineFile = args.Length == 4
+                ? Path.GetFullPath(args[3])
+                : Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json");
+            var manifest = new TarkovMap.Services.MapRepository(Path.Combine(testPackRoot, "Data"))
+                               .LoadManifest()
+                           ?? throw new InvalidDataException("测试包缺少 manifest.json。");
+            var outputFile = Path.Combine(outputDirectory, $"MapData-{manifest.DataVersion}.zip");
+            Console.WriteLine("正在重新校验、打包并执行解包复验……");
+            var result = MapDataPackageService.Create(testPackRoot, baselineFile,
+                approvalsFile, outputFile);
+            Console.WriteLine($"正式包已生成：{result.PackageFile}");
+            Console.WriteLine($"版本：{result.DataVersion}，地图：{result.MapCount}，大小：{result.Size} 字节");
+            Console.WriteLine($"ZIP SHA-256：{result.Sha256}");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] 正式打包失败: {exception.Message}");
+            return 1;
+        }
+    }
+
+    private static int RunPveApply(string[] args)
+    {
+        if (args.Length is < 2 or > 4)
+        {
+            Console.WriteLine(
+                "用法: MapPackBuilder.exe pve-apply <ZIP正式包> <正式Data目录> [备份目录] [基线文件]");
+            return 1;
+        }
+
+        try
+        {
+            var packageFile = Path.GetFullPath(args[0]);
+            var dataDirectory = Path.GetFullPath(args[1]);
+            var backupDirectory = args.Length >= 3
+                ? Path.GetFullPath(args[2])
+                : Path.Combine(Path.GetDirectoryName(dataDirectory)!, "Data.backup");
+            var baselineFile = args.Length == 4
+                ? Path.GetFullPath(args[3])
+                : Path.Combine(AppContext.BaseDirectory, "baseline-v1.1.1.json");
+            Console.WriteLine("正在校验正式包并备份当前 Data……");
+            var result = MapDataInstaller.Apply(packageFile, dataDirectory,
+                backupDirectory, baselineFile);
+            Console.WriteLine($"已应用 MapData {result.DataVersion}，共 {result.MapCount} 张地图。");
+            Console.WriteLine($"正式目录：{result.DataDirectory}");
+            Console.WriteLine($"可恢复备份：{result.BackupDirectory}");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] MapData 应用失败: {exception.Message}");
+            return 1;
+        }
+    }
+
+    private static int RunPveRestore(string[] args)
+    {
+        if (args.Length is < 1 or > 2)
+        {
+            Console.WriteLine("用法: MapPackBuilder.exe pve-restore <正式Data目录> [备份目录]");
+            return 1;
+        }
+
+        try
+        {
+            var dataDirectory = Path.GetFullPath(args[0]);
+            var backupDirectory = args.Length == 2
+                ? Path.GetFullPath(args[1])
+                : Path.Combine(Path.GetDirectoryName(dataDirectory)!, "Data.backup");
+            var mapCount = MapDataInstaller.Restore(dataDirectory, backupDirectory);
+            Console.WriteLine($"已恢复上一个 MapData，共 {mapCount} 张地图。");
+            Console.WriteLine("本次被替换的数据已删除；备份槽已清空。");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] MapData 恢复失败: {exception.Message}");
             return 1;
         }
     }

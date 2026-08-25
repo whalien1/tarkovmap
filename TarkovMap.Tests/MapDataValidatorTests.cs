@@ -54,6 +54,20 @@ public sealed class MapDataValidatorTests
     }
 
     [Fact]
+    public void ManualAcceptanceMustContainEveryRequiredRepresentativeMap()
+    {
+        using var fixture = ValidationFixture.Create(currentSpawnCount: 6);
+        var approvalFile = fixture.WriteApprovals(baselineCount: 10, currentCount: 6);
+        var catalog = ValidationApprovalCatalog.Load(approvalFile);
+
+        catalog.RequireManualAcceptance("2026.08.25.1-pve", ["test-map"]);
+        Assert.Throws<InvalidDataException>(() =>
+            catalog.RequireManualAcceptance("2026.08.25.1-pve", ["test-map", "customs"]));
+        Assert.Throws<InvalidDataException>(() =>
+            catalog.RequireManualAcceptance("2026.08.25.2-pve", ["test-map"]));
+    }
+
+    [Fact]
     public void DuplicateMarkerIdBlocksPackaging()
     {
         using var fixture = ValidationFixture.Create(currentSpawnCount: 10, duplicateId: true);
@@ -241,6 +255,13 @@ public sealed class MapDataValidatorTests
             {
                 schemaVersion = 1,
                 dataVersion = DataVersion,
+                manualAcceptance = new
+                {
+                    result = "passed",
+                    maps = new[] { "test-map" },
+                    confirmedAt = "2026-08-25T01:00:00Z",
+                    note = "代表地图人工验收通过"
+                },
                 approvals = new[]
                 {
                     new

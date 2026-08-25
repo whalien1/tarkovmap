@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.08.25.4-pve",
+  "manualAcceptance": {
+    "result": "passed",
+    "maps": [
+      "customs",
+      "ground-zero",
+      "streets-of-tarkov",
+      "the-lab"
+    ],
+    "confirmedAt": "2026-08-25T23:06:56.1481652+08:00",
+    "note": "项目所有者在独立 Release 验收客户端中目测 PMC/Scav 出生点图层，结论：没有大问题。"
+  },
+  "approvals": [
+    {
+      "mapId": "customs",
+      "markerType": "spawn_scav",
+      "baselineCount": 117,
+      "currentCount": 11,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "factory",
+      "markerType": "spawn_scav",
+      "baselineCount": 67,
+      "currentCount": 1,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "ground-zero",
+      "markerType": "spawn_scav",
+      "baselineCount": 114,
+      "currentCount": 64,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "interchange",
+      "markerType": "spawn_scav",
+      "baselineCount": 30,
+      "currentCount": 6,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "lighthouse",
+      "markerType": "spawn_scav",
+      "baselineCount": 132,
+      "currentCount": 14,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "reserve",
+      "markerType": "spawn_scav",
+      "baselineCount": 118,
+      "currentCount": 3,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "shoreline",
+      "markerType": "spawn_scav",
+      "baselineCount": 85,
+      "currentCount": 8,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "the-lab",
+      "markerType": "spawn_scav",
+      "baselineCount": 20,
+      "currentCount": 10,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "the-labyrinth",
+      "markerType": "spawn_scav",
+      "baselineCount": 5,
+      "currentCount": 9,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    },
+    {
+      "mapId": "woods",
+      "markerType": "spawn_scav",
+      "baselineCount": 119,
+      "currentCount": 46,
+      "reason": "按 tarkov.dev 同源分类语义全地图修正，并通过代表地图人工目测验收。",
+      "confirmedAt": "2026-08-25T23:06:56.1481652+08:00"
+    }
+  ]
+}

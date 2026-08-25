@@ -11,13 +11,26 @@ internal sealed record ValidationApproval(
     string Reason,
     DateTimeOffset ConfirmedAt);
 
+internal sealed record ManualAcceptance(
+    string Result,
+    IReadOnlyList<string> Maps,
+    DateTimeOffset ConfirmedAt,
+    string Note);
+
 internal sealed class ValidationApprovalCatalog
 {
     private readonly IReadOnlyList<ValidationApproval> approvals;
+    private readonly ManualAcceptance? manualAcceptance;
+    private readonly string? catalogDataVersion;
 
-    private ValidationApprovalCatalog(IReadOnlyList<ValidationApproval> approvals)
+    private ValidationApprovalCatalog(
+        IReadOnlyList<ValidationApproval> approvals,
+        ManualAcceptance? manualAcceptance = null,
+        string? catalogDataVersion = null)
     {
         this.approvals = approvals;
+        this.manualAcceptance = manualAcceptance;
+        this.catalogDataVersion = catalogDataVersion;
     }
 
     public static ValidationApprovalCatalog Empty { get; } = new([]);
@@ -76,7 +89,37 @@ internal sealed class ValidationApprovalCatalog
                 baselineCount, currentCount, reason, confirmedAt));
         }
 
-        return new ValidationApprovalCatalog(approvals);
+        ManualAcceptance? manualAcceptance = null;
+        if (root.TryGetProperty("manualAcceptance", out var acceptanceNode) &&
+            acceptanceNode.ValueKind != JsonValueKind.Null)
+        {
+            var result = RequiredString(acceptanceNode, "result");
+            var note = RequiredString(acceptanceNode, "note");
+            if (!string.Equals(result, "passed", StringComparison.Ordinal) ||
+                !acceptanceNode.TryGetProperty("confirmedAt", out var confirmedNode) ||
+                confirmedNode.ValueKind != JsonValueKind.String ||
+                !confirmedNode.TryGetDateTimeOffset(out var confirmedAt) || confirmedAt == default ||
+                !acceptanceNode.TryGetProperty("maps", out var mapsNode) ||
+                mapsNode.ValueKind != JsonValueKind.Array)
+            {
+                throw new InvalidDataException("Validation 人工验收记录无效。");
+            }
+
+            var maps = mapsNode.EnumerateArray()
+                .Select(map => map.ValueKind == JsonValueKind.String ? map.GetString()?.Trim() : null)
+                .Where(map => !string.IsNullOrWhiteSpace(map))
+                .Select(map => map!)
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+            if (maps.Count == 0)
+            {
+                throw new InvalidDataException("Validation 人工验收记录没有地图。");
+            }
+
+            manualAcceptance = new ManualAcceptance(result, maps, confirmedAt, note);
+        }
+
+        return new ValidationApprovalCatalog(approvals, manualAcceptance, dataVersion);
     }
 
     public bool IsApproved(string dataVersion, string mapId, string markerType,
@@ -85,6 +128,22 @@ internal sealed class ValidationApprovalCatalog
         string.Equals(approval.MapId, mapId, StringComparison.Ordinal) &&
         string.Equals(approval.MarkerType, markerType, StringComparison.Ordinal) &&
         approval.BaselineCount == baselineCount && approval.CurrentCount == currentCount);
+
+    public void RequireManualAcceptance(string dataVersion, IEnumerable<string> requiredMaps)
+    {
+        if (manualAcceptance is null ||
+            !string.Equals(catalogDataVersion, dataVersion, StringComparison.Ordinal))
+        {
+            throw new InvalidDataException("正式打包缺少人工验收记录。");
+        }
+
+        var missing = requiredMaps.Where(map => !manualAcceptance.Maps.Contains(map, StringComparer.Ordinal))
+            .ToList();
+        if (missing.Count > 0)
+        {
+            throw new InvalidDataException($"人工验收缺少代表地图：{string.Join("、", missing)}。");
+        }
+    }
 
     private static string RequiredString(JsonElement node, string propertyName)
     {
