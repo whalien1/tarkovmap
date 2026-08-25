@@ -24,6 +24,9 @@
     <None Include="..\Tools\MapPackBuilder\baseline-v1.1.1.json"
           Link="TestData\baseline-v1.1.1.json"
           CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Tools\MapPackBuilder\calibration-v1.1.1.json"
+          Link="TestData\calibration-v1.1.1.json"
+          CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

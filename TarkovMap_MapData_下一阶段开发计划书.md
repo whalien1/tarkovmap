@@ -33,7 +33,8 @@
 - **Phase 0 已完成：** 建立 TarkovMap v1.1.1 的 11 图数据基线；无上游 ID 的 Marker 已改用确定性 SHA-256 ID；连续两次完整构建的 23 个输出文件完全一致。
 - **Phase 1 已完成：** PvE maps 与中文翻译接口可用；三张代表地图的数据比较与字段边界见 `Tools/MapPackBuilder/PVE_DATA_FEASIBILITY.md`。
 - **Phase 2 已完成：** MapData Schema v1、`manifest.json` 模型、版本格式、客户端兼容读取与硬校验已经落地；正式规范见 `TarkovMap_MapData_Schema_v1.md`。
-- **下一阶段：** Phase 3，开发 `TarkovDevSource`、原始快照保存和独立校准元数据模型。
+- **Phase 3 已完成：** `TarkovDevSource` 可同时获取 PvE 地图与中文数据，原始响应按版本保存并记录 SHA-256；17 个上游地图/变体已转换为内部模型并分为 11 个现有地图、4 个默认跳过变体和 2 个待校准新地图；11 个现有地图的 Bounds、方向和高度范围已迁入独立校准配置。
+- **下一阶段：** Phase 4，接入 SVG 地图资源并生成不覆盖正式 `Data/` 的整批测试包。
 
 ---
 

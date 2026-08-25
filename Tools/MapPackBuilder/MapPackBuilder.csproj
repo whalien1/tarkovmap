@@ -12,4 +12,8 @@
     <ProjectReference Include="..\..\TarkovMap\TarkovMap.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="calibration-v1.1.1.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

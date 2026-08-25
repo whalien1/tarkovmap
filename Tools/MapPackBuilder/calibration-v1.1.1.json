@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "sourceBaseline": "TarkovMap-v1.1.1",
+  "maps": [
+    {
+      "mapId": "streets-of-tarkov",
+      "svgAsset": "StreetsOfTarkov.svg",
+      "x0": 323,
+      "z0": -298,
+      "x1": -280,
+      "z1": 530,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "minY": -6,
+      "maxY": 10
+    },
+    {
+      "mapId": "ground-zero",
+      "svgAsset": "GroundZero.svg",
+      "x0": 249,
+      "z0": -124,
+      "x1": -99,
+      "z1": 364,
+      "reverseCoordinate": false,
+      "coordinateRotation": 90,
+      "minY": -1000,
+      "maxY": 28
+    },
+    {
+      "mapId": "customs",
+      "svgAsset": "Customs.svg",
+      "x0": 698,
+      "z0": -307,
+      "x1": -372,
+      "z1": 237,
+      "reverseCoordinate": false,
+      "coordinateRotation": 90,
+      "minY": -1000,
+      "maxY": 1000
+    },
+    {
+      "mapId": "factory",
+      "svgAsset": "Factory.svg",
+      "x0": 77,
+      "z0": -64.5,
+      "x1": -65.5,
+      "z1": 67.4,
+      "reverseCoordinate": false,
+      "coordinateRotation": 90,
+      "minY": -1,
+      "maxY": 3
+    },
+    {
+      "mapId": "interchange",
+      "svgAsset": "Interchange.svg",
+      "x0": 600.7,
+      "z0": -441,
+      "x1": -435.7,
+      "z1": 424.7,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "minY": -1000,
+      "maxY": 25
+    },
+    {
+      "mapId": "the-lab",
+      "svgAsset": "Labs.svg",
+      "x0": -283,
+      "z0": -478.5,
+      "x1": -81,
+      "z1": -197,
+      "reverseCoordinate": true,
+      "coordinateRotation": 180,
+      "minY": -0.9,
+      "maxY": 3
+    },
+    {
+      "mapId": "lighthouse",
+      "svgAsset": "Lighthouse.svg",
+      "x0": 515,
+      "z0": -998,
+      "x1": -545,
+      "z1": 725,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "minY": null,
+      "maxY": null
+    },
+    {
+      "mapId": "reserve",
+      "svgAsset": "Reserve.svg",
+      "x0": 289,
+      "z0": -273,
+      "x1": -303,
+      "z1": 271.5,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "minY": -7,
+      "maxY": 10000
+    },
+    {
+      "mapId": "shoreline",
+      "svgAsset": "Shoreline.svg",
+      "x0": 504,
+      "z0": -415,
+      "x1": -1056,
+      "z1": 618,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "minY": -1000,
+      "maxY": -1
+    },
+    {
+      "mapId": "woods",
+      "svgAsset": "Woods.svg",
+      "x0": 650,
+      "z0": -919,
+      "x1": -762,
+      "z1": 443.5,
+      "reverseCoordinate": false,
+      "coordinateRotation": 180,
+      "minY": null,
+      "maxY": null
+    },
+    {
+      "mapId": "the-labyrinth",
+      "svgAsset": null,
+      "x0": -51.5,
+      "z0": -36.5,
+      "x1": 52,
+      "z1": 75,
+      "reverseCoordinate": true,
+      "coordinateRotation": 180,
+      "minY": null,
+      "maxY": null
+    }
+  ]
+}

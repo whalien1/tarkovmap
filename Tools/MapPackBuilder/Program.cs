@@ -1,5 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using MapPackBuilder.Calibration;
+using MapPackBuilder.Sources;
 
 namespace MapPackBuilder;
 
@@ -28,6 +30,11 @@ internal static class Program
 
     private static int Main(string[] args)
     {
+        if (args.Length > 0 && string.Equals(args[0], "pve-fetch", StringComparison.OrdinalIgnoreCase))
+        {
+            return RunPveFetchAsync(args[1..]).GetAwaiter().GetResult();
+        }
+
         var root = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
         var refDir = args.Length > 0 ? args[0] : Path.Combine(root, "ref", "Tarkov_webmap");
         var outDir = args.Length > 1 ? args[1] : Path.Combine(root, "TarkovMap", "Data");
@@ -87,6 +94,68 @@ internal static class Program
         Console.WriteLine($"maps.json 已写入 {outDir}");
         return 0;
     }
+
+    private static async Task<int> RunPveFetchAsync(string[] args)
+    {
+        if (args.Length != 2)
+        {
+            Console.WriteLine("用法: MapPackBuilder.exe pve-fetch <快照输出目录> <YYYY.MM.DD.N-pve>");
+            return 1;
+        }
+
+        var outputDirectory = Path.GetFullPath(args[0]);
+        var dataVersion = args[1];
+        try
+        {
+            using var httpClient = new HttpClient();
+            var source = new TarkovDevSource(httpClient);
+            Console.WriteLine("正在读取 json.tarkov.dev PvE 地图和中文数据……");
+            var snapshot = await source.FetchAsync();
+            var maps = TarkovDevMapParser.Parse(snapshot);
+            var calibration = MapCalibrationCatalog.Load(
+                Path.Combine(AppContext.BaseDirectory, "calibration-v1.1.1.json"));
+            var missingCalibration = maps
+                .Where(map => map.Disposition == SourceMapDisposition.Existing &&
+                              !calibration.TryGet(map.MapId, out _))
+                .Select(map => map.MapId)
+                .ToList();
+            if (missingCalibration.Count > 0)
+            {
+                throw new InvalidDataException(
+                    $"现有地图缺少校准配置：{string.Join("、", missingCalibration)}。");
+            }
+
+            var files = SourceSnapshotStore.Save(outputDirectory, dataVersion, snapshot);
+
+            Console.WriteLine($"已保存原始快照: {outputDirectory}");
+            foreach (var file in files)
+            {
+                Console.WriteLine($"  {file.Location}  {file.Revision}");
+            }
+
+            foreach (var group in maps.GroupBy(map => map.Disposition).OrderBy(group => group.Key))
+            {
+                Console.WriteLine($"{DispositionName(group.Key)}: {group.Count()} 张 — {string.Join("、", group.Select(map => map.Name))}");
+            }
+
+            Console.WriteLine($"校准配置: {calibration.Maps.Count} 张现有地图，全部匹配。");
+            Console.WriteLine($"接口解析完成: {maps.Count} 张地图/变体。未生成或覆盖正式 Data。");
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine($"[错误] PvE 数据抓取失败: {exception.Message}");
+            return 1;
+        }
+    }
+
+    private static string DispositionName(SourceMapDisposition disposition) => disposition switch
+    {
+        SourceMapDisposition.Existing => "现有地图",
+        SourceMapDisposition.Variant => "默认跳过的变体",
+        SourceMapDisposition.New => "待校准的新地图",
+        _ => disposition.ToString()
+    };
 
     private static int BuildMap(string key, string name, JsonElement data, string cacheDir, string outDir)
     {
