@@ -1,9 +1,13 @@
 # Phase 4 整批测试 MapData 报告
 
-**生成日期：** 2026-08-25  
-**MapData 版本：** `2026.08.25.1-pve`  
-**SVG 提交：** `5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178`  
-**内容哈希：** `17bbaf95f59b38cceade3a51e4ec2cf7749ad6f251d1b13f584991c04d9cb821`  
+**生成日期：** 2026-08-25
+
+**MapData 版本：** `2026.08.25.1-pve`
+
+**SVG 提交：** `5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178`
+
+**内容哈希：** `17bbaf95f59b38cceade3a51e4ec2cf7749ad6f251d1b13f584991c04d9cb821`
+
 **结论：** Phase 4 技术目标通过；测试包可进入 Phase 5 Validation + Diff，但不得应用到正式 Data。
 
 ## 1. 测试包
