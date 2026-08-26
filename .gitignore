@@ -11,3 +11,6 @@ Config/
 Logs/
 *.csproj.user
 *.user
+
+# 个人 AI 开发政策仅保留在本机，不随项目仓库分发。
+个人_AI_编程_Skill_v1.md
