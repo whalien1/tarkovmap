@@ -24,6 +24,12 @@
 
 正式 `TarkovMap/Data` 和正式 `.4` 备份槽未被本次模拟修改。
 
+## 本地可交付包
+
+- `Tools/build-builder.cmd` 生成 `dist/TarkovMap-MapDataBuilder-v1.0.0.zip`，包含 GUI、独立 CLI、基线、校准、README 与 NOTICE，不包含 Data、快照或调试符号。
+- `package-client.cmd` 生成 `dist/TarkovMap-v1.1.1.zip`，包含正式 `.5` Data、客户端、README 与 NOTICE，不包含个人 Config、Logs、PDB 或 `Data.backup`。
+- 两个 ZIP 均已从全新目录解压启动验证；客户端包中的 33 个 Data 文件与正式 Data 逐文件 SHA-256 差异为 0。
+
 ## 冻结结论
 
 MapData Schema v1 第一轮开发已达到停止条件：数据源、快照、转换、底图、Validation/Diff、人工审批、确定性打包、原子应用/恢复、自有图标、GUI 和维护文档均已形成闭环。后续只在游戏数据真实变化、发现缺陷或用户明确提出新需求时重新开启功能开发。

@@ -97,10 +97,10 @@ CLI、审批格式、快照重放与故障返回码详见 `Tools/MapPackBuilder/
 
 ## 6. 客户端发布打包流程（v1.1.1 实测）
 
-1. `build.cmd` 编译 Release。
-2. 打包内容 = bin 输出的 `TarkovMap.exe/dll/deps.json/runtimeconfig.json` + `Data/` + `README.md`；**不带 `Config/`、不带 `.pdb`**（Config 首次运行自动生成，带旧配置会污染用户设置）。
+1. 运行根目录 `package-client.cmd`；脚本使用相对路径发布 Release，并生成 `dist/TarkovMap-v1.1.1.zip`。
+2. 打包内容 = `TarkovMap.exe/dll/deps.json/runtimeconfig.json` + 正式 `Data/` + `README.md` + `NOTICE.md`；**不带 `Config/`、`Logs/`、`.pdb` 或 `Data.backup/`**（Config 首次运行自动生成，带旧配置会污染用户设置）。
 3. 先用 `git status --short` 审计工作区，只显式暂存本次文件；禁止在存在用户目录或无关改动时直接 `git add -A`。只有明确发布客户端时才创建 `vX.Y` 标签。
-4. ZIP 命名 `TarkovMap-vX.Y.zip`，放工作区根目录。
+4. ZIP 命名 `TarkovMap-vX.Y.zip`，统一放在被 Git 忽略的 `dist/`；正式对外上传前再次从 ZIP 解压启动，而不是直接测试 bin 目录。
 
 ## 7. 悬挂待办
 

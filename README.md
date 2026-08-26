@@ -20,6 +20,8 @@ MapData Schema v1 第一轮供应链已经完成并冻结；维护入口和故�
 1. 解压 `TarkovMap-v1.1.1.zip` 到普通可写目录（如 `D:\Tools\TarkovMap\`，**不要**放 Program Files）
 2. 双击 `TarkovMap.exe`
 
+仓库维护者可运行根目录的 `package-client.cmd` 生成经过清理的 `dist\TarkovMap-v1.1.1.zip`；发布包不包含个人 Config、日志、PDB 或 MapData 备份。
+
 ## 功能
 
 - **11 张地图**：街区 / 中心区 / 海关 / 工厂 / 立交桥 / 实验室 / 灯塔 / 储备站 / 海岸线 / 森林 / 迷宫
