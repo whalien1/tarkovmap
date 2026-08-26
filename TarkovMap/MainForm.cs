@@ -26,6 +26,7 @@ public sealed class MainForm : Form
     private readonly ToolStripStatusLabel _zoomLabel;
     private readonly ToolStripStatusLabel _coordLabel;
     private readonly ToolStripStatusLabel _infoLabel;
+    private readonly NotifyIcon _trayIcon;
     private FormWindowState _lastWindowState = FormWindowState.Normal;
 
     private MapRepository? _repo;
@@ -42,7 +43,10 @@ public sealed class MainForm : Form
     private CheckBox? _miniMapToggle;
     private Label? _dirLabel;
     private Label? _locateStatusLabel;
+    private Label? _mapDataVersionLabel;
     private Button? _browseDirectoryButton;
+    private bool _exitRequested;
+    private bool _trayTipShown;
 
     public MainForm()
     {
@@ -56,6 +60,14 @@ public sealed class MainForm : Form
         _config.Load();
         ErrorLogger.Init(AppContext.BaseDirectory);
         _watcher.LocationFound += OnLocationFound;
+
+        _trayIcon = new NotifyIcon
+        {
+            Icon = Icon ?? SystemIcons.Application,
+            Text = "TarkovMap",
+            ContextMenuStrip = BuildTrayMenu()
+        };
+        _trayIcon.DoubleClick += (_, _) => RestoreFromTray();
 
         ClientSize = PreferredNormalClientSize;
         TopMost = _config.Config.TopMost;
@@ -109,6 +121,8 @@ public sealed class MainForm : Form
             _watcher.Dispose();
             _state.Dispose();
             _icons.Dispose();
+            _trayIcon.Visible = false;
+            _trayIcon.Dispose();
         };
     }
 
@@ -121,7 +135,7 @@ public sealed class MainForm : Form
         var fileMenu = new ToolStripMenuItem("文件(&F)");
         fileMenu.DropDownItems.Add("重新加载地图数据(&R)", null, (_, _) => ReloadCurrentMap());
         fileMenu.DropDownItems.Add(new ToolStripSeparator());
-        fileMenu.DropDownItems.Add("退出(&X)", null, (_, _) => Close());
+        fileMenu.DropDownItems.Add("退出(&X)", null, (_, _) => ExitApplication());
 
         _mapMenu = new ToolStripMenuItem("地图(&M)");
 
@@ -144,17 +158,7 @@ public sealed class MainForm : Form
         viewMenu.DropDownItems.Add("重置地图视图(&Z)", null, (_, _) => _canvas.FitToWindow());
 
         var helpMenu = new ToolStripMenuItem("帮助(&H)");
-        helpMenu.DropDownItems.Add("关于(&A)", null, (_, _) =>
-        {
-            // 版本号单一来源：csproj 的 <Version>，此处从程序集读取，避免硬编码。
-            var version = typeof(MainForm).Assembly.GetName().Version?.ToString(3) ?? "unknown";
-            MessageBox.Show(this,
-                $"TarkovMap v{version}\n\n《逃离塔科夫》本地互动地图\n\n" +
-                "· 纯本地运行，不联网\n" +
-                "· 只读截图文件名，不碰游戏进程\n" +
-                "· 地图数据来源：tarkov-dev 社区数据",
-                "关于 TarkovMap", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        });
+        helpMenu.DropDownItems.Add("关于(&A)", null, (_, _) => ShowAboutDialog());
 
         menu.Items.Add(fileMenu);
         menu.Items.Add(_mapMenu);
@@ -163,10 +167,48 @@ public sealed class MainForm : Form
         return menu;
     }
 
+    private ContextMenuStrip BuildTrayMenu()
+    {
+        var menu = new ContextMenuStrip();
+        menu.Items.Add("显示主窗口", null, (_, _) => RestoreFromTray());
+        menu.Items.Add(new ToolStripSeparator());
+        menu.Items.Add("退出", null, (_, _) => ExitApplication());
+        return menu;
+    }
+
+    private void MinimizeToTray()
+    {
+        _trayIcon.Visible = true;
+        ShowInTaskbar = false;
+        Hide();
+
+        if (!_trayTipShown)
+        {
+            _trayIcon.ShowBalloonTip(3000, "TarkovMap", "程序仍在运行，可从系统托盘恢复。", ToolTipIcon.Info);
+            _trayTipShown = true;
+        }
+    }
+
+    private void RestoreFromTray()
+    {
+        ShowInTaskbar = true;
+        Show();
+        WindowState = FormWindowState.Normal;
+        Activate();
+        _trayIcon.Visible = false;
+    }
+
+    private void ExitApplication()
+    {
+        _exitRequested = true;
+        Close();
+    }
+
     // ── 左侧功能区 ─────────────────────────────────────────
 
     private Control BuildSidePanel()
     {
+        var container = new Panel { Dock = DockStyle.Fill };
         var panel = new Panel { Dock = DockStyle.Fill, AutoScroll = true };
 
         var mapGroup = new GroupBox
@@ -247,7 +289,87 @@ public sealed class MainForm : Form
         panel.Controls.Add(BuildMiniMapPanel());
         panel.Controls.Add(mapGroup);
         ApplySidebarTypography(panel);
-        return panel;
+        container.Controls.Add(panel);
+        container.Controls.Add(BuildProductInfoPanel());
+        return container;
+    }
+
+    /// <summary>侧栏底部固定显示版本和产品信息，与“帮助 → 关于”共用同一信息来源。</summary>
+    private Control BuildProductInfoPanel()
+    {
+        var group = new GroupBox
+        {
+            Text = "产品信息",
+            Dock = DockStyle.Bottom,
+            Height = 112,
+            Font = SidebarGroupFont
+        };
+
+        var name = new Label
+        {
+            Text = "TarkovMap",
+            Left = 10,
+            Top = 20,
+            Width = SidePanelContentWidth,
+            Font = SidebarGroupFont
+        };
+        var applicationVersion = new Label
+        {
+            Text = $"主程序版本：v{GetApplicationVersion()}",
+            Left = 10,
+            Top = 40,
+            Width = SidePanelContentWidth,
+            Font = SidebarFont
+        };
+        _mapDataVersionLabel = new Label
+        {
+            Text = "地图包：读取中…",
+            Left = 10,
+            Top = 58,
+            Width = SidePanelContentWidth,
+            Font = SidebarFont
+        };
+        var description = new Label
+        {
+            Text = "《逃离塔科夫》本地互动地图",
+            Left = 10,
+            Top = 76,
+            Width = SidePanelContentWidth,
+            Font = SidebarFont
+        };
+
+        group.Controls.Add(name);
+        group.Controls.Add(applicationVersion);
+        group.Controls.Add(_mapDataVersionLabel);
+        group.Controls.Add(description);
+        return group;
+    }
+
+    // 程序版本来自 csproj 的 <Version>；地图包版本来自运行时 Data/manifest.json，均不硬编码。
+    private static string GetApplicationVersion() =>
+        typeof(MainForm).Assembly.GetName().Version?.ToString(3) ?? "unknown";
+
+    private string GetMapDataVersion()
+    {
+        try
+        {
+            return _repo?.LoadManifest()?.DataVersion ?? "未识别";
+        }
+        catch
+        {
+            return "读取失败";
+        }
+    }
+
+    private void UpdateProductInfo() =>
+        _mapDataVersionLabel?.Text = $"地图包：{GetMapDataVersion()}";
+
+    private void ShowAboutDialog()
+    {
+        MessageBox.Show(this,
+            $"TarkovMap v{GetApplicationVersion()}\n地图包版本：{GetMapDataVersion()}\n\n" +
+            "《逃离塔科夫》本地互动地图",
+            "关于 TarkovMap", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     /// <summary>侧栏统一使用约 9pt 正文；分组标题加粗，目录设置为主要操作。</summary>
@@ -672,6 +794,7 @@ public sealed class MainForm : Form
 
     private void ReloadCurrentMap()
     {
+        UpdateProductInfo();
         if (_mapCombo is not null && _mapCombo.SelectedIndex >= 0 &&
             _mapCombo.SelectedIndex < _mapEntries.Count)
         {
@@ -695,6 +818,7 @@ public sealed class MainForm : Form
             var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
             _repo = new MapRepository(dataDir);
             _mapEntries = _repo.LoadMapList().Where(m => m.Enabled).ToList();
+            UpdateProductInfo();
             if (_mapEntries.Count == 0)
             {
                 throw new InvalidDataException("maps.json 中没有可用地图");
@@ -751,7 +875,7 @@ public sealed class MainForm : Form
                 "TarkovMap",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
-            Close();
+            ExitApplication();
         }
     }
 
@@ -788,7 +912,15 @@ public sealed class MainForm : Form
 
     private void OnFormClosing(object? sender, FormClosingEventArgs e)
     {
-        // 关闭：停止监听 → 关闭小地图 → 保存配置 → 完全退出（无托盘、无后台）
+        // 标题栏关闭为防误触仅隐藏到托盘；文件菜单和托盘菜单的“退出”才真正结束程序。
+        if (!_exitRequested && e.CloseReason == CloseReason.UserClosing)
+        {
+            e.Cancel = true;
+            MinimizeToTray();
+            return;
+        }
+
+        // 真正退出：停止监听 → 关闭小地图 → 保存配置。
         _watcher.Stop();
         if (_miniMap is not null)
         {

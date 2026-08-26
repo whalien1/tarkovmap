@@ -1,7 +1,7 @@
 # TarkovMap AI 交接维护手册
 
 > 面向后续接手的 AI 智能体：记录本项目的构建方法、已踩过的坑、常见 Bug 与修复定式。
-> 阅读顺序：先读本手册，再读《TarkovMap_MapData_下一阶段开发计划书.md》（当前数据供应链决策）、《Tools/MapPackBuilder/README.md》（操作方法），最后按需查阅客户端历史文档。
+> 阅读顺序：先读本手册，再读《个人_AI_编程_Skill_v1.md》（项目协作与发布规则）、《TarkovMap_MapData_下一阶段开发计划书.md》（当前数据供应链决策）、《Tools/MapPackBuilder/README.md》（操作方法），最后按需查阅客户端历史文档。
 > 当前基线：客户端 **v1.1.2**；正式 MapData **2026.08.26.1-pve**（PvE，11 张地图）。
 
 ## 1. 环境与构建（最容易踩的坑）
@@ -78,6 +78,7 @@ PS 路径：`C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`。
 - `MapViewState`（Services/）：主图与小地图的共享状态（当前地图、Bitmap、玩家位置/朝向）。**单一数据源**，两边画布都只读它。
 - `MapCanvas`（主画布）/ `MiniMapCanvas` + `Forms/MiniMapForm`（小地图）。
 - 小地图生命周期：用户关小地图 → `OnFormClosing` 拦截 → Cancel+Hide+触发 `UserClosed` → 主界面取消勾选；主程序退出时 `AllowClose=true` 放行。
+- 主窗口托盘生命周期：`MainForm.OnFormClosing` 仅在用户主动关闭（标题栏 × / Alt+F4）且未请求退出时取消关闭并隐藏到托盘；双击托盘图标恢复。文件菜单和托盘菜单的“退出”会先设置退出标志，再停止截图监听、关闭小地图并保存配置。不要把两类关闭逻辑混为一谈。
 - 小地图 Marker 规则（用户定的）：固定显示 撤离点+Boss+危险区+地区名，**与主图勾选解耦**。
 - Marker 数据流：`json.tarkov.dev/pve` + 固定 SVG 提交 + `calibration-v1.1.1.json` → `Tools/MapPackBuilder` → 独立测试包 → Validation/Diff → 人工验收 → ZIP → 原子应用到 `Data`。`ref/` 入口只为旧基线回归保留，不是当前更新主链。
 - 客户端红线：不碰游戏进程、不读内存、不注入、运行时不联网、无 Overlay，只读截图文件名。Builder 仅在人工维护数据时联网，不能把网络依赖带进客户端。
