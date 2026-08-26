@@ -13,6 +13,9 @@ namespace TarkovMap;
 public sealed class MainForm : Form
 {
     private static readonly Size PreferredNormalClientSize = new(1800, 1000);
+    private static readonly Font SidebarFont = new("Microsoft YaHei UI", 9f, FontStyle.Regular, GraphicsUnit.Point);
+    private static readonly Font SidebarGroupFont = new("Microsoft YaHei UI", 9f, FontStyle.Bold, GraphicsUnit.Point);
+    private static readonly Font SidebarPrimaryButtonFont = new("Microsoft YaHei UI", 10f, FontStyle.Bold, GraphicsUnit.Point);
     private const int SidePanelWidth = 235;
     private const int SidePanelContentWidth = 215;
 
@@ -39,6 +42,7 @@ public sealed class MainForm : Form
     private CheckBox? _miniMapToggle;
     private Label? _dirLabel;
     private Label? _locateStatusLabel;
+    private Button? _browseDirectoryButton;
 
     public MainForm()
     {
@@ -242,7 +246,29 @@ public sealed class MainForm : Form
         panel.Controls.Add(group);
         panel.Controls.Add(BuildMiniMapPanel());
         panel.Controls.Add(mapGroup);
+        ApplySidebarTypography(panel);
         return panel;
+    }
+
+    /// <summary>侧栏统一使用约 9pt 正文；分组标题加粗，目录设置为主要操作。</summary>
+    private void ApplySidebarTypography(Control panel)
+    {
+        foreach (Control group in panel.Controls)
+        {
+            if (group is not GroupBox)
+            {
+                group.Font = SidebarFont;
+                continue;
+            }
+
+            group.Font = SidebarGroupFont;
+            foreach (Control child in group.Controls)
+            {
+                child.Font = ReferenceEquals(child, _browseDirectoryButton)
+                    ? SidebarPrimaryButtonFont
+                    : SidebarFont;
+            }
+        }
     }
 
     /// <summary>悬浮小地图功能区：高频的开关/大小/透明度常驻，形状收进更多设置。</summary>
@@ -456,7 +482,7 @@ public sealed class MainForm : Form
         {
             Text = "玩家定位",
             Dock = DockStyle.Top,
-            Height = 130
+            Height = 136
         };
 
         _dirLabel = new Label
@@ -464,32 +490,31 @@ public sealed class MainForm : Form
             Left = 10,
             Top = 22,
             Width = SidePanelContentWidth,
-            Height = 32,
-            Text = "截图目录未配置",
-            ForeColor = Color.Gray
+            Height = 36
         };
 
         var browse = new Button
         {
-            Text = "选择目录...",
             Left = 10,
-            Top = 58,
-            Width = SidePanelContentWidth
+            Top = 60,
+            Width = SidePanelContentWidth,
+            Height = 32
         };
         browse.Click += (_, _) => OnBrowseScreenshotDirectory();
+        _browseDirectoryButton = browse;
 
         _locateStatusLabel = new Label
         {
             Left = 10,
-            Top = 92,
+            Top = 100,
             Width = SidePanelContentWidth,
-            Text = "状态：未配置",
-            ForeColor = Color.Gray
+            Height = 20
         };
 
         group.Controls.Add(_dirLabel);
         group.Controls.Add(browse);
         group.Controls.Add(_locateStatusLabel);
+        UpdateLocatePanelAppearance();
         return group;
     }
 
@@ -540,19 +565,43 @@ public sealed class MainForm : Form
 
     private void SetLocateStatus(string text, Color color)
     {
+        UpdateLocatePanelAppearance();
         if (_locateStatusLabel is not null)
         {
             _locateStatusLabel.Text = text;
             _locateStatusLabel.ForeColor = color;
         }
+    }
+
+    private void UpdateLocatePanelAppearance()
+    {
+        var directory = _config.Config.ScreenshotDirectory;
+        var configured = !string.IsNullOrWhiteSpace(directory);
         if (_dirLabel is not null)
         {
-            _dirLabel.Text = string.IsNullOrEmpty(_config.Config.ScreenshotDirectory)
-                ? "截图目录未配置"
-                : _config.Config.ScreenshotDirectory;
-            _dirLabel.ForeColor = string.IsNullOrEmpty(_config.Config.ScreenshotDirectory)
-                ? Color.Gray : Color.Black;
+            _dirLabel.Text = configured
+                ? $"目录：{AbbreviateDirectory(directory)}"
+                : "尚未设置截图目录\n设置后可自动定位玩家位置";
+            _dirLabel.ForeColor = configured ? Color.DarkGreen : Color.DarkOrange;
         }
+        if (_browseDirectoryButton is not null)
+        {
+            _browseDirectoryButton.Text = configured ? "更换目录…" : "设置截图目录…";
+            _browseDirectoryButton.Top = configured ? 62 : 60;
+            _browseDirectoryButton.Height = configured ? 28 : 32;
+        }
+        if (_locateStatusLabel is not null && !configured)
+        {
+            _locateStatusLabel.Text = "状态：未配置";
+            _locateStatusLabel.ForeColor = Color.DarkOrange;
+        }
+    }
+
+    private static string AbbreviateDirectory(string directory)
+    {
+        var trimmed = directory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        var name = Path.GetFileName(trimmed);
+        return string.IsNullOrWhiteSpace(name) ? trimmed : $"…\\{name}";
     }
 
     /// <summary>截图事件（线程池线程）→ 切到 UI 线程处理。</summary>
