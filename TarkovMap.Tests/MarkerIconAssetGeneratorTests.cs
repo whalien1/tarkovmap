@@ -43,4 +43,27 @@ public sealed class MarkerIconAssetGeneratorTests
             }
         }
     }
+
+    [Fact]
+    public void Generate_UsesGreenPmcAndOrangeScavExtractColors()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"tarkov-icons-colors-{Guid.NewGuid():N}");
+        try
+        {
+            MarkerIconAssetGenerator.Generate(directory);
+
+            using var pmc = new Bitmap(Path.Combine(directory, "extract_pmc.png"));
+            using var scav = new Bitmap(Path.Combine(directory, "extract_scav.png"));
+
+            Assert.Equal(Color.FromArgb(66, 160, 92).ToArgb(), pmc.GetPixel(20, 48).ToArgb());
+            Assert.Equal(Color.FromArgb(245, 124, 0).ToArgb(), scav.GetPixel(20, 48).ToArgb());
+        }
+        finally
+        {
+            if (Directory.Exists(directory))
+            {
+                Directory.Delete(directory, recursive: true);
+            }
+        }
+    }
 }

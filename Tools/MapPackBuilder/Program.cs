@@ -16,7 +16,7 @@ namespace MapPackBuilder;
 /// </summary>
 internal static class Program
 {
-    private const string CurrentBaselineFileName = "baseline-2026.08.25.5-pve.json";
+    private const string CurrentBaselineFileName = "baseline-2026.08.26.1-pve.json";
     private const string SourceTag = "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)";
 
     // 跳过变体条目（夜间工厂 / 中心区21+ 与主条目同 key）

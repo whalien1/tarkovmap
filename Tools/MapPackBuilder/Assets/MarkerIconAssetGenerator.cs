@@ -11,7 +11,8 @@ internal static class MarkerIconAssetGenerator
         new Dictionary<string, Action<Graphics>>(StringComparer.Ordinal)
         {
             ["extract_pmc.png"] = graphics => DrawExit(graphics, Color.FromArgb(66, 160, 92)),
-            ["extract_scav.png"] = graphics => DrawExit(graphics, Color.FromArgb(19, 145, 137)),
+            // Scav 撤离使用橙色，避免与 PMC 的绿色在复杂底图上混淆。
+            ["extract_scav.png"] = graphics => DrawExit(graphics, Color.FromArgb(245, 124, 0)),
             ["extract_shared.png"] = graphics => DrawSharedExit(graphics, Color.FromArgb(48, 130, 201)),
             ["extract_transit.png"] = graphics => DrawTransit(graphics, Color.FromArgb(126, 87, 194)),
             ["spawn_pmc.png"] = graphics => DrawSpawn(graphics, Color.FromArgb(104, 159, 56), true),

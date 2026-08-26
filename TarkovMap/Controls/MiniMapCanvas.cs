@@ -225,6 +225,8 @@ public sealed class MiniMapCanvas : Control
         using var labelBrush = new SolidBrush(Color.FromArgb(255, 255, 255));
         using var labelShadow = new SolidBrush(Color.FromArgb(220, 0, 0, 0));
         using var nameFont = new Font("Microsoft YaHei UI", 8.25f, FontStyle.Bold, GraphicsUnit.Point);
+        using var pmcExtractBrush = new SolidBrush(Color.FromArgb(172, 235, 181));
+        using var scavExtractBrush = new SolidBrush(Color.FromArgb(255, 209, 128));
         using var extractBrush = new SolidBrush(Color.FromArgb(255, 255, 214));
         using var hazardBrush = new SolidBrush(Color.FromArgb(255, 82, 82));
         using var bossBrush = new SolidBrush(Color.FromArgb(255, 112, 112));
@@ -265,6 +267,8 @@ public sealed class MiniMapCanvas : Control
             {
                 var brush = m.Type == MarkerType.Hazard ? hazardBrush
                     : m.Type == MarkerType.Boss ? bossBrush
+                    : m.Type == MarkerType.ExtractPmc ? pmcExtractBrush
+                    : m.Type == MarkerType.ExtractScav ? scavExtractBrush
                     : extractBrush;
                 var nameSize = g.MeasureString(m.Name, nameFont);
                 var nx = s.X - nameSize.Width / 2;

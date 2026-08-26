@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.08.26.1-pve",
+  "manualAcceptance": {
+    "result": "passed",
+    "maps": [
+      "customs",
+      "ground-zero",
+      "streets-of-tarkov",
+      "the-lab"
+    ],
+    "confirmedAt": "2026-08-26T09:04:42.8309701+08:00",
+    "note": "项目所有者已确认 PMC 撤离使用绿色、Scav 撤离使用橙色；自动化界面检查确认主地图与悬浮小地图均按分类显示，地图点位、底图、校准和数量未变化。"
+  },
+  "approvals": []
+}

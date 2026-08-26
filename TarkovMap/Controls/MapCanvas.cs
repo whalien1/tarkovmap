@@ -295,6 +295,8 @@ public sealed class MapCanvas : Control
         using var labelShadow = new SolidBrush(Color.FromArgb(220, 0, 0, 0));
         // 撤离点名称：图标旁的小字标注
         using var extractFont = new Font("Microsoft YaHei UI", 8.25f, FontStyle.Bold, GraphicsUnit.Point);
+        using var pmcExtractBrush = new SolidBrush(Color.FromArgb(172, 235, 181));
+        using var scavExtractBrush = new SolidBrush(Color.FromArgb(255, 209, 128));
         using var extractBrush = new SolidBrush(Color.FromArgb(255, 255, 214));
         using var extractShadow = new SolidBrush(Color.FromArgb(220, 0, 0, 0));
 
@@ -338,8 +340,11 @@ public sealed class MapCanvas : Control
                 var nameSize = g.MeasureString(m.Name, extractFont);
                 var nx = sx - nameSize.Width / 2;
                 var ny = sy + half + 1;
+                var brush = m.Type == MarkerType.ExtractPmc ? pmcExtractBrush
+                    : m.Type == MarkerType.ExtractScav ? scavExtractBrush
+                    : extractBrush;
                 g.DrawString(m.Name, extractFont, extractShadow, nx + 1, ny + 1);
-                g.DrawString(m.Name, extractFont, extractBrush, nx, ny);
+                g.DrawString(m.Name, extractFont, brush, nx, ny);
             }
 
             // 危险区：图标下方红色醒目名称（即死机制）

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "2026.08.25.5-pve",
+  "dataVersion": "2026.08.26.1-pve",
   "gameMode": "pve",
-  "generatedAt": "2026-08-25T15:23:35.6223005+00:00",
+  "generatedAt": "2026-08-26T01:02:45.7341799+00:00",
   "sources": [
     "json.tarkov.dev/pve",
     "the-hideout/tarkov-dev-svg-maps",
@@ -11,102 +11,102 @@
   "sourceSnapshots": [
     {
       "name": "https://json.tarkov.dev/pve/maps",
-      "location": "snapshots/2026.08.25.5-pve/json.tarkov.dev/maps.json",
+      "location": "snapshots/2026.08.26.1-pve/json.tarkov.dev/maps.json",
       "revision": "sha256:e62d1c6326d86d55",
       "retrievedAt": "2026-08-25T14:38:14.278678+00:00",
       "sha256": "e62d1c6326d86d550340ace97cca5c9988ec4561dc687ebbb8accdc0a3742b5b"
     },
     {
       "name": "https://json.tarkov.dev/pve/maps_zh",
-      "location": "snapshots/2026.08.25.5-pve/json.tarkov.dev/maps_zh.json",
+      "location": "snapshots/2026.08.26.1-pve/json.tarkov.dev/maps_zh.json",
       "revision": "sha256:6168722835b5f8bc",
       "retrievedAt": "2026-08-25T14:38:14.278678+00:00",
       "sha256": "6168722835b5f8bc0ea0808b5765d3b8a578c82e8f05ad95ed37b2fe5ea3e332"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Customs.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Customs.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Customs.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "7c4713ff1d97fdcc92a8440b8c77ec68672e0f23577c1c4de4d7913fd402f7f0"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Factory.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Factory.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Factory.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "c8e576ca7974e086b78151f9bff532b5a99b2fc4a130b080e5be030236bc07bd"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/GroundZero.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/GroundZero.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/GroundZero.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "2a7bc873fa9270ec0bef99476145066ca76d17a05c36753fa93f781f3b970c4a"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Interchange.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Interchange.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Interchange.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "31a44112cd5fe33484ce6be7b7dc80d13db6077cba2583a4425ed94c665f47c4"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Labs.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Labs.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Labs.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "099a9eaabc305431d906151e03c45d6f06bb885ec46234735e93cc2ab02a222a"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Lighthouse.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Lighthouse.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Lighthouse.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "c1b2603ac306e66900c0db8b68807554e7c6230c031142a3541fc7c065f8d013"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Reserve.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Reserve.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Reserve.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "fdb20697675ed153cb5f80f62c6feb3ae4642efbb779931bb349ae7b8310184e"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Shoreline.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Shoreline.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Shoreline.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "dabe88b2908659524e5a0abf598429c52e158624c2ec12def42d2374c5d439ee"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/StreetsOfTarkov.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/StreetsOfTarkov.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/StreetsOfTarkov.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "700965797067ec8f044d297806f9306ea4a5f06983665626afe18890b1480f0a"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Woods.svg",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/Woods.svg",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/Woods.svg",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "b356ded5e763e81edc1710d58c2fc7943f6ad6f48cd261c83dd0a192f45f0b9a"
     },
     {
       "name": "https://raw.githubusercontent.com/the-hideout/tarkov-dev-svg-maps/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/LICENSE.md",
-      "location": "snapshots/2026.08.25.5-pve/the-hideout/tarkov-dev-svg-maps/LICENSE.md",
+      "location": "snapshots/2026.08.26.1-pve/the-hideout/tarkov-dev-svg-maps/LICENSE.md",
       "revision": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
       "retrievedAt": "2026-08-25T14:38:32.2209819+00:00",
       "sha256": "1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1"
     },
     {
       "name": "TarkovMap calibration metadata",
-      "location": "snapshots/2026.08.25.5-pve/TarkovMap/calibration.json",
+      "location": "snapshots/2026.08.26.1-pve/TarkovMap/calibration.json",
       "revision": "TarkovMap-v1.1.1",
-      "retrievedAt": "2026-08-25T15:23:35.6223005+00:00",
+      "retrievedAt": "2026-08-26T01:02:45.7341799+00:00",
       "sha256": "4c075b1ba0117c8dc2c1f7b0ed577d3558dc7cdd6e699daa2a01f26b79c2ce7e"
     }
   ],
-  "contentHash": "eebbbb02d456b211be0ee8b8f5c1d19c19684a5bf30eede45e5e019315b05bed"
+  "contentHash": "9c65a9b1ab14e068acb30c9868f4087fea2d7bded6fcf5a336dfe6892f4ba2c1"
 }
