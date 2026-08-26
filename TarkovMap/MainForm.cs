@@ -12,6 +12,8 @@ namespace TarkovMap;
 /// </summary>
 public sealed class MainForm : Form
 {
+    private static readonly Size PreferredNormalClientSize = new(1800, 1000);
+
     private readonly MapCanvas _canvas;
     private readonly IconCache _icons;
     private readonly StatusStrip _statusStrip;
@@ -40,15 +42,16 @@ public sealed class MainForm : Form
     {
         Text = "TarkovMap";
         StartPosition = FormStartPosition.CenterScreen;
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = true;
+        MinimizeBox = true;
 
         _config = new ConfigService(AppContext.BaseDirectory);
         _config.Load();
         ErrorLogger.Init(AppContext.BaseDirectory);
         _watcher.LocationFound += OnLocationFound;
 
-        ClientSize = new Size(
-            Math.Max(800, _config.Config.WindowWidth),
-            Math.Max(500, _config.Config.WindowHeight));
+        ClientSize = PreferredNormalClientSize;
         TopMost = _config.Config.TopMost;
 
         _mapLabel = new ToolStripStatusLabel { Text = "-" };
@@ -92,6 +95,7 @@ public sealed class MainForm : Form
         Controls.Add(BuildMenuStrip());
 
         Load += OnFormLoad;
+        Shown += OnFormShown;
         Resize += OnFormResize;
         FormClosing += OnFormClosing;
         FormClosed += (_, _) =>
@@ -623,6 +627,24 @@ public sealed class MainForm : Form
         }
     }
 
+    private void OnFormShown(object? sender, EventArgs e)
+    {
+        // 固定普通窗口优先使用 1800×1000 ClientSize；小屏则自动缩到工作区内。
+        // 仅首次显示时处理，最大化后由 WinForms 保留正确的 RestoreBounds。
+        if (WindowState != FormWindowState.Normal)
+        {
+            return;
+        }
+
+        var screen = Screen.FromControl(this);
+        var nonClientSize = new Size(Width - ClientSize.Width, Height - ClientSize.Height);
+        ClientSize = WindowSizePolicy.FitClientSizeToWorkingArea(
+            PreferredNormalClientSize, screen.WorkingArea.Size, nonClientSize);
+        Location = new Point(
+            screen.WorkingArea.Left + Math.Max(0, (screen.WorkingArea.Width - Width) / 2),
+            screen.WorkingArea.Top + Math.Max(0, (screen.WorkingArea.Height - Height) / 2));
+    }
+
     /// <summary>窗口最大化 / 还原时，地图重新适配视口；普通拖边框保持当前视图。</summary>
     private void OnFormResize(object? sender, EventArgs e)
     {
@@ -646,11 +668,6 @@ public sealed class MainForm : Form
             _miniMap.Close();
         }
 
-        if (WindowState == FormWindowState.Normal)
-        {
-            _config.Config.WindowWidth = ClientSize.Width;
-            _config.Config.WindowHeight = ClientSize.Height;
-        }
         _config.Save();
     }
 }
