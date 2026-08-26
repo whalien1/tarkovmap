@@ -13,6 +13,8 @@ namespace TarkovMap;
 public sealed class MainForm : Form
 {
     private static readonly Size PreferredNormalClientSize = new(1800, 1000);
+    private const int SidePanelWidth = 235;
+    private const int SidePanelContentWidth = 215;
 
     private readonly MapCanvas _canvas;
     private readonly IconCache _icons;
@@ -85,7 +87,7 @@ public sealed class MainForm : Form
             Dock = DockStyle.Fill,
             FixedPanel = FixedPanel.Panel1,
             IsSplitterFixed = true,
-            Panel1MinSize = 200
+            Panel1MinSize = SidePanelWidth
         };
         split.Panel1.Controls.Add(BuildSidePanel());
         split.Panel2.Controls.Add(_canvas);
@@ -167,13 +169,13 @@ public sealed class MainForm : Form
         {
             Text = "地图",
             Dock = DockStyle.Top,
-            Height = 72
+            Height = 66
         };
         _mapCombo = new ComboBox
         {
             Left = 10,
             Top = 24,
-            Width = 172,
+            Width = SidePanelContentWidth,
             DropDownStyle = ComboBoxStyle.DropDownList
         };
         _mapCombo.SelectedIndexChanged += (_, _) => OnMapSelected();
@@ -186,7 +188,7 @@ public sealed class MainForm : Form
             Height = 300
         };
 
-        // 默认开启：撤离点/出生点/Boss；默认关闭：物资/门锁/危险/固定武器/标注（文档 §14）
+        // 默认开启：撤离点/出生点/Boss/危险/地图标注；其余低频类别默认关闭。
         var items = new (MarkerType Type, string Text, bool DefaultOn)[]
         {
             (MarkerType.ExtractPmc, "PMC 撤离点", true),
@@ -200,7 +202,7 @@ public sealed class MainForm : Form
             (MarkerType.Lock, "门锁 / 钥匙", false),
             (MarkerType.Hazard, "危险区域", true),
             (MarkerType.StationaryWeapon, "固定武器", false),
-            (MarkerType.Label, "地图标注", false),
+            (MarkerType.Label, "地图标注", true),
         };
 
         _loading = true;
@@ -236,21 +238,21 @@ public sealed class MainForm : Form
         _loading = false;
 
         // WinForms Dock 顺序：后加入的控件排在更靠上的位置
-        panel.Controls.Add(BuildMiniMapPanel());
         panel.Controls.Add(BuildLocatePanel());
         panel.Controls.Add(group);
+        panel.Controls.Add(BuildMiniMapPanel());
         panel.Controls.Add(mapGroup);
         return panel;
     }
 
-    /// <summary>悬浮小地图功能区：显示开关 + 形状/大小/透明度，全部立即生效。</summary>
+    /// <summary>悬浮小地图功能区：高频的开关/大小/透明度常驻，形状收进更多设置。</summary>
     private Control BuildMiniMapPanel()
     {
         var group = new GroupBox
         {
             Text = "悬浮小地图",
             Dock = DockStyle.Top,
-            Height = 148
+            Height = _config.Config.MiniMap.MoreSettingsExpanded ? 238 : 148
         };
 
         var settings = _config.Config.MiniMap;
@@ -288,27 +290,104 @@ public sealed class MainForm : Form
             ShowMiniMap();
         }
 
-        // 三行下拉框：形状 / 大小 / 透明度（下拉框在高 DPI 下不会互相遮挡）
-        BuildComboRow(group, 46, "形状",
-            ("方形", MiniMapSettings.ShapeKind.Square), ("圆形", MiniMapSettings.ShapeKind.Circle),
-            settings.Shape, v => { settings.Shape = v; _miniMap?.ApplySettings(); });
-        BuildComboRow(group, 74, "大小",
-            ("小", MiniMapSettings.SizeKind.Small), ("大", MiniMapSettings.SizeKind.Large),
-            settings.Size, v => { settings.Size = v; _miniMap?.ApplySettings(); });
-        BuildComboRow(group, 102, "透明度",
+        BuildComboRow(group, 50, "大小",
+            ("小", MiniMapSettings.SizeKind.Small), ("中", MiniMapSettings.SizeKind.Medium),
+            settings.Size, v => { settings.Size = v; _miniMap?.ApplySettings(); },
+            third: ("大", MiniMapSettings.SizeKind.Large));
+        BuildComboRow(group, 78, "透明度",
             ("低（50%）", MiniMapSettings.OpacityKind.Low), ("中（75%）", MiniMapSettings.OpacityKind.Medium),
             settings.Opacity, v => { settings.Opacity = v; _miniMap?.ApplySettings(); },
             third: ("高（100%）", MiniMapSettings.OpacityKind.High));
 
-        var hint = new Label
+        var shapeCaption = new Label
         {
-            Text = "小地图可左键拖动，滚轮缩放",
-            Left = 10,
-            Top = 130,
-            Width = 180,
-            ForeColor = Color.Gray
+            Text = "形状",
+            Left = 8,
+            Top = 142,
+            AutoSize = true,
+            Visible = settings.MoreSettingsExpanded
         };
-        group.Controls.Add(hint);
+        var shape = new ComboBox
+        {
+            Left = 62,
+            Top = 138,
+            Width = 110,
+            DropDownStyle = ComboBoxStyle.DropDownList,
+            Visible = settings.MoreSettingsExpanded
+        };
+        shape.Items.AddRange(["方形", "圆形"]);
+        shape.SelectedIndex = settings.Shape == MiniMapSettings.ShapeKind.Circle ? 1 : 0;
+        shape.SelectedIndexChanged += (_, _) =>
+        {
+            settings.Shape = shape.SelectedIndex == 1
+                ? MiniMapSettings.ShapeKind.Circle
+                : MiniMapSettings.ShapeKind.Square;
+            _miniMap?.ApplySettings();
+            if (!_loading)
+            {
+                _config.Save();
+            }
+        };
+
+        var more = new Button
+        {
+            Text = settings.MoreSettingsExpanded ? "收起更多设置" : "更多设置",
+            Left = 10,
+            Top = 108,
+            Width = SidePanelContentWidth,
+            Height = 26
+        };
+        var resetPosition = new Button
+        {
+            Text = "重置小地图位置",
+            Left = 10,
+            Top = 170,
+            Width = SidePanelContentWidth,
+            Height = 26,
+            Visible = settings.MoreSettingsExpanded
+        };
+        resetPosition.Click += (_, _) =>
+        {
+            settings.X = -1;
+            settings.Y = -1;
+            _miniMap?.ResetPosition();
+            _config.Save();
+        };
+        var resetZoom = new Button
+        {
+            Text = "重置小地图缩放",
+            Left = 10,
+            Top = 200,
+            Width = SidePanelContentWidth,
+            Height = 26,
+            Visible = settings.MoreSettingsExpanded
+        };
+        resetZoom.Click += (_, _) =>
+        {
+            settings.Zoom = MiniMapSettings.DefaultZoom;
+            _miniMap?.ResetZoom();
+            _config.Save();
+        };
+        more.Click += (_, _) =>
+        {
+            var expanded = !shape.Visible;
+            shape.Visible = expanded;
+            shapeCaption.Visible = expanded;
+            resetPosition.Visible = expanded;
+            resetZoom.Visible = expanded;
+            group.Height = expanded ? 238 : 148;
+            more.Text = expanded ? "收起更多设置" : "更多设置";
+            settings.MoreSettingsExpanded = expanded;
+            if (!_loading)
+            {
+                _config.Save();
+            }
+        };
+        group.Controls.Add(shapeCaption);
+        group.Controls.Add(shape);
+        group.Controls.Add(more);
+        group.Controls.Add(resetPosition);
+        group.Controls.Add(resetZoom);
         return group;
     }
 
@@ -384,7 +463,7 @@ public sealed class MainForm : Form
         {
             Left = 10,
             Top = 22,
-            Width = 172,
+            Width = SidePanelContentWidth,
             Height = 32,
             Text = "截图目录未配置",
             ForeColor = Color.Gray
@@ -395,7 +474,7 @@ public sealed class MainForm : Form
             Text = "选择目录...",
             Left = 10,
             Top = 58,
-            Width = 172
+            Width = SidePanelContentWidth
         };
         browse.Click += (_, _) => OnBrowseScreenshotDirectory();
 
@@ -403,7 +482,7 @@ public sealed class MainForm : Form
         {
             Left = 10,
             Top = 92,
-            Width = 172,
+            Width = SidePanelContentWidth,
             Text = "状态：未配置",
             ForeColor = Color.Gray
         };
@@ -559,7 +638,7 @@ public sealed class MainForm : Form
         var split = Controls.OfType<SplitContainer>().FirstOrDefault();
         if (split is not null && split.Width > 260)
         {
-            split.SplitterDistance = 200;
+            split.SplitterDistance = SidePanelWidth;
         }
 
         try

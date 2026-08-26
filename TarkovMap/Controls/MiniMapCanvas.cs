@@ -14,7 +14,7 @@ public sealed class MiniMapCanvas : Control
     private const double ZoomStep = 1.10;
     private const double MinZoom = 0.10;
     private const double MaxZoom = 4.0;
-    private const double DefaultZoom = 0.5;
+    private const double DefaultZoom = MiniMapSettings.DefaultZoom;
 
     private MapViewState? _state;
     private IconCache? _icons;

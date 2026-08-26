@@ -5,24 +5,30 @@ namespace TarkovMap.Models;
 /// <summary>悬浮小地图外观/位置设置（存于主配置 config.json 的 miniMap 段）。</summary>
 public sealed class MiniMapSettings
 {
+    public const double DefaultZoom = 0.5;
+
     public enum ShapeKind { Square, Circle }
-    public enum SizeKind { Small, Large }
+    public enum SizeKind { Small, Medium, Large }
     public enum OpacityKind { Low, Medium, High }
 
     [JsonPropertyName("visible")]
-    public bool Visible { get; set; }
+    public bool Visible { get; set; } = true;
 
     [JsonPropertyName("shape")]
     public ShapeKind Shape { get; set; } = ShapeKind.Square;
 
     [JsonPropertyName("size")]
-    public SizeKind Size { get; set; } = SizeKind.Large;
+    public SizeKind Size { get; set; } = SizeKind.Medium;
 
     [JsonPropertyName("opacity")]
     public OpacityKind Opacity { get; set; } = OpacityKind.Medium;
 
+    /// <summary>更多设置是否在侧栏展开；默认收起。</summary>
+    [JsonPropertyName("moreSettingsExpanded")]
+    public bool MoreSettingsExpanded { get; set; }
+
     [JsonPropertyName("zoom")]
-    public double Zoom { get; set; } = 0.5;
+    public double Zoom { get; set; } = DefaultZoom;
 
     /// <summary>窗口位置；-1 表示未设置（用默认右上角）。</summary>
     [JsonPropertyName("x")]
@@ -38,5 +44,10 @@ public sealed class MiniMapSettings
         _ => 0.75
     };
 
-    public int PixelSize => Size == SizeKind.Small ? 280 : 300;
+    public int PixelSize => Size switch
+    {
+        SizeKind.Small => 260,
+        SizeKind.Large => 340,
+        _ => 300
+    };
 }

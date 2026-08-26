@@ -96,6 +96,21 @@ public sealed class MiniMapForm : Form
         }
     }
 
+    /// <summary>将悬浮小地图放回主屏右上角，并清除已保存的位置。</summary>
+    public void ResetPosition()
+    {
+        _settings.X = -1;
+        _settings.Y = -1;
+        RestorePosition();
+    }
+
+    /// <summary>恢复默认缩放，便于从过度放大或缩小中快速回到可用视野。</summary>
+    public void ResetZoom()
+    {
+        _settings.Zoom = MiniMapSettings.DefaultZoom;
+        _canvas.ZoomLevel = _settings.Zoom;
+    }
+
     /// <summary>恢复位置：优先上次保存值；越出屏幕则回到主屏右上角。</summary>
     private void RestorePosition()
     {
