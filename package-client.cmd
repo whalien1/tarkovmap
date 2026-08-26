@@ -1,10 +1,10 @@
 @echo off
-REM Publish the TarkovMap v1.1.1 client with the checked-in MapData.
+REM Publish the TarkovMap v1.1.2 client with the checked-in MapData.
 REM The output directory is disposable build output under repository dist.
 setlocal
 set "ROOT=%~dp0"
-set "OUT=%ROOT%dist\TarkovMap-v1.1.1"
-set "ZIP=%ROOT%dist\TarkovMap-v1.1.1.zip"
+set "OUT=%ROOT%dist\TarkovMap-v1.1.2"
+set "ZIP=%ROOT%dist\TarkovMap-v1.1.2.zip"
 
 if exist "%OUT%" rmdir /S /Q "%OUT%"
 
