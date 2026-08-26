@@ -712,6 +712,57 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_93821",
+      "type": "label",
+      "name": "1号房",
+      "x": -45,
+      "z": 52,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_78465",
+      "type": "label",
+      "name": "2号房",
+      "x": 3.5,
+      "z": -26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_8695",
+      "type": "label",
+      "name": "3号房",
+      "x": -38,
+      "z": -8,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_99209",
+      "type": "label",
+      "name": "4号房",
+      "x": 10,
+      "z": 66,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_22991",
+      "type": "label",
+      "name": "5号房",
+      "x": 40,
+      "z": 41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

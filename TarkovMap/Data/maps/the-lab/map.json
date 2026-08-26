@@ -406,6 +406,317 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_3459",
+      "type": "label",
+      "name": "停车场",
+      "x": -230,
+      "z": -400,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_8079",
+      "type": "label",
+      "name": "木梯1",
+      "x": -246,
+      "z": -379,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_43511",
+      "type": "label",
+      "name": "木梯2",
+      "x": -216,
+      "z": -379,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_56652",
+      "type": "label",
+      "name": "主工作区",
+      "x": -172,
+      "z": -342,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_9257",
+      "type": "label",
+      "name": "谈判室",
+      "x": -148,
+      "z": -398,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_38953",
+      "type": "label",
+      "name": "蓝卡",
+      "x": -130,
+      "z": -398,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_39111",
+      "type": "label",
+      "name": "黑卡",
+      "x": -130,
+      "z": -356,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_18107",
+      "type": "label",
+      "name": "机房",
+      "x": -125,
+      "z": -308,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_14435",
+      "type": "label",
+      "name": "机库隧道",
+      "x": -116,
+      "z": -266,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_91863",
+      "type": "label",
+      "name": "机库",
+      "x": -163,
+      "z": -269,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_43435",
+      "type": "label",
+      "name": "机库大门",
+      "x": -170,
+      "z": -248,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_5063",
+      "type": "label",
+      "name": "Lecture Hall",
+      "x": -207,
+      "z": -305,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45725",
+      "type": "label",
+      "name": "消遣区",
+      "x": -221,
+      "z": -343,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_64682",
+      "type": "label",
+      "name": "健身房",
+      "x": -236,
+      "z": -302,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_84037",
+      "type": "label",
+      "name": "♂更衣室",
+      "x": -241,
+      "z": -280,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_9486",
+      "type": "label",
+      "name": "♀更衣室",
+      "x": -232,
+      "z": -280,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_29872",
+      "type": "label",
+      "name": "锅炉房",
+      "x": -259,
+      "z": -366,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_8172",
+      "type": "label",
+      "name": "营房",
+      "x": -260,
+      "z": -319,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_69672",
+      "type": "label",
+      "name": "接待处",
+      "x": -260,
+      "z": -342,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_33447",
+      "type": "label",
+      "name": "管理办",
+      "x": -260,
+      "z": -364,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_90489",
+      "type": "label",
+      "name": "红紫卡",
+      "x": -254,
+      "z": -320,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_46430",
+      "type": "label",
+      "name": "安保房",
+      "x": -244,
+      "z": -378,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_53528",
+      "type": "label",
+      "name": "黄卡",
+      "x": -215,
+      "z": -379,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_40569",
+      "type": "label",
+      "name": "会议室",
+      "x": -229,
+      "z": -343,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45918",
+      "type": "label",
+      "name": "餐厅",
+      "x": -219,
+      "z": -302,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_56250",
+      "type": "label",
+      "name": "办公室 #1",
+      "x": -189,
+      "z": -401,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_41168",
+      "type": "label",
+      "name": "办公室 #2",
+      "x": -149,
+      "z": -401,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_17549",
+      "type": "label",
+      "name": "医务室",
+      "x": -130,
+      "z": -401,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_54218",
+      "type": "label",
+      "name": "绿卡",
+      "x": -130,
+      "z": -361,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82997",
+      "type": "label",
+      "name": "控制室",
+      "x": -169,
+      "z": -288,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_61018",
+      "type": "label",
+      "name": "实验室走廊 #2",
+      "x": -250,
+      "z": -281,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

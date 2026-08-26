@@ -656,6 +656,277 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_65679",
+      "type": "label",
+      "name": "办公楼",
+      "x": 21,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_58591",
+      "type": "label",
+      "name": "主办公室",
+      "x": 15.5,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_29160",
+      "type": "label",
+      "name": "踹门房",
+      "x": 24.5,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_30210",
+      "type": "label",
+      "name": "上锁办",
+      "x": 30.5,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_65050",
+      "type": "label",
+      "name": "北楼梯",
+      "x": 35,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_38390",
+      "type": "label",
+      "name": "南楼梯",
+      "x": 9,
+      "z": 39,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_74430",
+      "type": "label",
+      "name": "天桥",
+      "x": 34,
+      "z": 26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82847",
+      "type": "label",
+      "name": "连接",
+      "x": 29.5,
+      "z": 17,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_10878",
+      "type": "label",
+      "name": "更衣室",
+      "x": 29,
+      "z": 41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_46808",
+      "type": "label",
+      "name": "浴室",
+      "x": 15,
+      "z": 41,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_23668",
+      "type": "label",
+      "name": "洞",
+      "x": 20,
+      "z": 42,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_73477",
+      "type": "label",
+      "name": "平台",
+      "x": -3,
+      "z": 37,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_59379",
+      "type": "label",
+      "name": "服务器",
+      "x": -21,
+      "z": 27,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_7824",
+      "type": "label",
+      "name": "医疗帐篷",
+      "x": -18,
+      "z": -29,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_99858",
+      "type": "label",
+      "name": "筒仓",
+      "x": 4.5,
+      "z": 10.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_86204",
+      "type": "label",
+      "name": "坠机",
+      "x": 30,
+      "z": -8.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_97751",
+      "type": "label",
+      "name": "坑道",
+      "x": -1,
+      "z": 16,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_40033",
+      "type": "label",
+      "name": "地下贮藏",
+      "x": -2,
+      "z": -24.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_91166",
+      "type": "label",
+      "name": "Scav 碉堡",
+      "x": -20.5,
+      "z": 23,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_17010",
+      "type": "label",
+      "name": "蓝集装箱",
+      "x": -18,
+      "z": 50,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_1689",
+      "type": "label",
+      "name": "木屋",
+      "x": -45.5,
+      "z": 61,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_53826",
+      "type": "label",
+      "name": "玻璃通",
+      "x": 68.25,
+      "z": -20,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_6030",
+      "type": "label",
+      "name": "锅炉",
+      "x": 56,
+      "z": 5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_33375",
+      "type": "label",
+      "name": "泵站",
+      "x": 41,
+      "z": -11,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_94983",
+      "type": "label",
+      "name": "东走廊",
+      "x": 44,
+      "z": -36,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_58098",
+      "type": "label",
+      "name": "叉车区",
+      "x": 66,
+      "z": -42,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_33710",
+      "type": "label",
+      "name": "起重机",
+      "x": 18,
+      "z": 4,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

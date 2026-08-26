@@ -11,4 +11,11 @@
     <FileVersion>1.1.1.0</FileVersion>
   </PropertyGroup>
 
+  <!-- 开发构建也必须携带当前地图数据，避免调试时误用旧版 Data 副本。 -->
+  <ItemGroup>
+    <None Update="Data\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

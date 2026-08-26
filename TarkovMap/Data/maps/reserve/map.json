@@ -1018,6 +1018,277 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_75971",
+      "type": "label",
+      "name": "K 仓",
+      "x": 28,
+      "z": -102,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_70391",
+      "type": "label",
+      "name": "白皇",
+      "x": -25,
+      "z": 180,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_48827",
+      "type": "label",
+      "name": "白兵",
+      "x": -104,
+      "z": 93,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_96493",
+      "type": "label",
+      "name": "黑主",
+      "x": -140,
+      "z": -14.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_32887",
+      "type": "label",
+      "name": "白主",
+      "x": -67,
+      "z": -30,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_72376",
+      "type": "label",
+      "name": "白王",
+      "x": -49.5,
+      "z": 15.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_72404",
+      "type": "label",
+      "name": "黑骑士",
+      "x": 14.5,
+      "z": -10.8,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_50332",
+      "type": "label",
+      "name": "白骑士",
+      "x": 82.2,
+      "z": -30.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_32252",
+      "type": "label",
+      "name": "白车",
+      "x": 149,
+      "z": -124,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_27728",
+      "type": "label",
+      "name": "火车站",
+      "x": 161,
+      "z": -149,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_633",
+      "type": "label",
+      "name": "黑兵",
+      "x": -165,
+      "z": 57,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_24192",
+      "type": "label",
+      "name": "军营",
+      "x": 167,
+      "z": -222,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_75750",
+      "type": "label",
+      "name": "E1 碉堡",
+      "x": -220,
+      "z": -13,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_58960",
+      "type": "label",
+      "name": "E2 碉堡",
+      "x": 173,
+      "z": -3,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_36867",
+      "type": "label",
+      "name": "д - 仓库地堡",
+      "x": 80,
+      "z": -167,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_58335",
+      "type": "label",
+      "name": "车库",
+      "x": 96,
+      "z": 30,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_6089",
+      "type": "label",
+      "name": "修车间",
+      "x": 55.5,
+      "z": 60.6,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_73139",
+      "type": "label",
+      "name": "加油站",
+      "x": 29.7,
+      "z": 29.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_41695",
+      "type": "label",
+      "name": "运输区",
+      "x": -31,
+      "z": -150,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_19100",
+      "type": "label",
+      "name": "K1",
+      "x": -1,
+      "z": -71,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_14275",
+      "type": "label",
+      "name": "K2",
+      "x": 66,
+      "z": -90,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_72719",
+      "type": "label",
+      "name": "K3",
+      "x": -5.5,
+      "z": -94,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_21876",
+      "type": "label",
+      "name": "K4",
+      "x": 60,
+      "z": -112,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_52205",
+      "type": "label",
+      "name": "K5",
+      "x": -10.5,
+      "z": -115,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_56008",
+      "type": "label",
+      "name": "K6",
+      "x": 54,
+      "z": -132,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_95405",
+      "type": "label",
+      "name": "穹顶",
+      "x": -8.5,
+      "z": 175,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_44820",
+      "type": "label",
+      "name": "停机坪",
+      "x": -120,
+      "z": 37,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

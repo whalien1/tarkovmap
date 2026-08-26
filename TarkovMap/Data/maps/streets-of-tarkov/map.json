@@ -9918,6 +9918,467 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_66065",
+      "type": "label",
+      "name": "Primorsky 大道",
+      "x": 9,
+      "z": 308,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_77615",
+      "type": "label",
+      "name": "Primorsky 大道",
+      "x": 9,
+      "z": 104,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45168",
+      "type": "label",
+      "name": "Primorsky 大道",
+      "x": 9,
+      "z": -80,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_32483",
+      "type": "label",
+      "name": "Kilmov 街",
+      "x": 125,
+      "z": 10,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_39443",
+      "type": "label",
+      "name": "Kilmov 街",
+      "x": -104,
+      "z": 28,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_20776",
+      "type": "label",
+      "name": "Nikitskaya 街",
+      "x": -125,
+      "z": 210,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_28950",
+      "type": "label",
+      "name": "Verhnyaya 街",
+      "x": -112,
+      "z": 361,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_83445",
+      "type": "label",
+      "name": "Malevecha 街",
+      "x": -200,
+      "z": 290,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_72956",
+      "type": "label",
+      "name": "Chekannaya 街",
+      "x": 111,
+      "z": 251,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82856",
+      "type": "label",
+      "name": "Nizhnyaya 街",
+      "x": -101,
+      "z": 441,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_12041",
+      "type": "label",
+      "name": "Razvedchikov 街",
+      "x": 174,
+      "z": 430,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_90164",
+      "type": "label",
+      "name": "Zmejskij 巷",
+      "x": 140,
+      "z": 150,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_4308",
+      "type": "label",
+      "name": "Kamchatskaya 街",
+      "x": 232,
+      "z": 100,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_8804",
+      "type": "label",
+      "name": "Kilmov 购物中心",
+      "x": -128,
+      "z": -35,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_3772",
+      "type": "label",
+      "name": "Beluga 饭店",
+      "x": -45,
+      "z": -52,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_65998",
+      "type": "label",
+      "name": "Cardinal 公寓",
+      "x": 99,
+      "z": -71,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_71242",
+      "type": "label",
+      "name": "建筑工地",
+      "x": 230,
+      "z": 295,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_57317",
+      "type": "label",
+      "name": "Lexos 车行",
+      "x": 66,
+      "z": 305,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_65230",
+      "type": "label",
+      "name": "Sparja 杂货店",
+      "x": 140,
+      "z": 300,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_54520",
+      "type": "label",
+      "name": "剧院",
+      "x": -175,
+      "z": 400,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_63518",
+      "type": "label",
+      "name": "内务部",
+      "x": -218,
+      "z": 135,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_44255",
+      "type": "label",
+      "name": "Pinewood 酒店",
+      "x": -35,
+      "z": 64,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_13701",
+      "type": "label",
+      "name": "酒吧",
+      "x": 65,
+      "z": 398,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_32847",
+      "type": "label",
+      "name": "Concordia 公寓",
+      "x": 140,
+      "z": 362,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_23689",
+      "type": "label",
+      "name": "Cardinal 银行",
+      "x": 89,
+      "z": -20,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_11851",
+      "type": "label",
+      "name": "展览馆",
+      "x": 239,
+      "z": -60,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_55544",
+      "type": "label",
+      "name": "Sparja 货运",
+      "x": -64,
+      "z": 166,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_76554",
+      "type": "label",
+      "name": "憨包汪",
+      "x": -30,
+      "z": 138,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_24857",
+      "type": "label",
+      "name": "邮局",
+      "x": 42,
+      "z": 97,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_18111",
+      "type": "label",
+      "name": "药店 #1",
+      "x": 42,
+      "z": 160,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_90330",
+      "type": "label",
+      "name": "金融办",
+      "x": -173,
+      "z": 226,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_63576",
+      "type": "label",
+      "name": "街角餐厅",
+      "x": -197,
+      "z": 340,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45343",
+      "type": "label",
+      "name": "药店 #2",
+      "x": -43,
+      "z": 335,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_50253",
+      "type": "label",
+      "name": "药店 #3",
+      "x": 90,
+      "z": -277,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_17288",
+      "type": "label",
+      "name": "Tar银行",
+      "x": 67,
+      "z": 230,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_6106",
+      "type": "label",
+      "name": "学校",
+      "x": 211,
+      "z": 129,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_38749",
+      "type": "label",
+      "name": "宠物医院",
+      "x": 222,
+      "z": 173,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_99084",
+      "type": "label",
+      "name": "红浪漫",
+      "x": -212,
+      "z": 300,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_72242",
+      "type": "label",
+      "name": "家庭商店",
+      "x": -223,
+      "z": 279,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_69507",
+      "type": "label",
+      "name": "标点酒店",
+      "x": -200,
+      "z": 248,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82363",
+      "type": "label",
+      "name": "南方酒店",
+      "x": -175,
+      "z": 297,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_48443",
+      "type": "label",
+      "name": "废弃工厂",
+      "x": -119,
+      "z": 287,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_19538",
+      "type": "label",
+      "name": "餐吧",
+      "x": -80,
+      "z": 235,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_47101",
+      "type": "label",
+      "name": "Primorskij 49",
+      "x": -13,
+      "z": 244,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_16263",
+      "type": "label",
+      "name": "Prestigio 咖啡",
+      "x": 39,
+      "z": 230,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_37420",
+      "type": "label",
+      "name": "Bilbo 咖啡",
+      "x": -70,
+      "z": 343,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

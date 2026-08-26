@@ -69,7 +69,10 @@ internal static class PveTestPackBuilder
             Directory.CreateDirectory(mapDirectory);
             var image = MapImageBuilder.Build(calibration, svgSnapshot, fallbackDataDirectory,
                 Path.Combine(mapDirectory, "map.png"));
-            var markers = RuntimeMapProjector.Project(sourceMap, calibration);
+            var markers = RuntimeMapProjector.Project(sourceMap, calibration).ToList();
+            // 上游 PvE API 不提供地图地名。保留现有 Data 中已校准的中文地名，
+            // 使后续数据更新不会把“地图标注”功能清空。
+            markers.AddRange(LoadFallbackLabels(fallbackDataDirectory, calibration.MapId));
 
             var mapDocument = new
             {
@@ -170,6 +173,38 @@ internal static class PveTestPackBuilder
             {
                 throw new InvalidDataException($"地图 {entry.Id} 的图片尺寸与 map.json 不一致。");
             }
+        }
+    }
+
+    private static IReadOnlyList<RuntimeMarker> LoadFallbackLabels(
+        string fallbackDataDirectory,
+        string mapId)
+    {
+        var mapFile = Path.Combine(fallbackDataDirectory, "maps", mapId, "map.json");
+        if (!File.Exists(mapFile))
+        {
+            return [];
+        }
+
+        try
+        {
+            var definition = JsonSerializer.Deserialize<MapDefinition>(File.ReadAllText(mapFile), JsonOptions);
+            return definition?.Markers
+                .Where(marker => marker.Type == MarkerType.Label)
+                .Select(marker => new RuntimeMarker
+                {
+                    Id = marker.Id,
+                    Type = "label",
+                    Name = marker.Name,
+                    X = marker.X,
+                    Z = marker.Z,
+                    Metadata = new { source = "TarkovMap curated map labels" }
+                })
+                .ToList() ?? [];
+        }
+        catch (JsonException ex)
+        {
+            throw new InvalidDataException($"地图 {mapId} 的保留地名无法读取。", ex);
         }
     }
 

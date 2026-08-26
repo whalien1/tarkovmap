@@ -4060,6 +4060,167 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_70753",
+      "type": "label",
+      "name": "锯木厂",
+      "x": 10,
+      "z": -3,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_93855",
+      "type": "label",
+      "name": "村镇",
+      "x": -485,
+      "z": -390,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_74941",
+      "type": "label",
+      "name": "老锯木厂",
+      "x": -517,
+      "z": -210,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_77148",
+      "type": "label",
+      "name": "邪教村",
+      "x": -80,
+      "z": -680,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_32599",
+      "type": "label",
+      "name": "USEC 营地",
+      "x": 290,
+      "z": -475,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_55357",
+      "type": "label",
+      "name": "医疗 营地",
+      "x": -188,
+      "z": 235,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_69868",
+      "type": "label",
+      "name": "池塘",
+      "x": -5,
+      "z": -515,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_40123",
+      "type": "label",
+      "name": "坠机点",
+      "x": -252,
+      "z": -37,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_73172",
+      "type": "label",
+      "name": "USEC 检查站",
+      "x": 239,
+      "z": -65,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_871",
+      "type": "label",
+      "name": "棚屋",
+      "x": 244,
+      "z": 125,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_20901",
+      "type": "label",
+      "name": "木堆",
+      "x": -16,
+      "z": -122,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_9748",
+      "type": "label",
+      "name": "木屋",
+      "x": -3,
+      "z": -74,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_98657",
+      "type": "label",
+      "name": "公交站",
+      "x": -234,
+      "z": 357,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_39697",
+      "type": "label",
+      "name": "Jaeger 营地",
+      "x": -327,
+      "z": 19,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_91424",
+      "type": "label",
+      "name": "狙击岩",
+      "x": 85,
+      "z": -147,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_97658",
+      "type": "label",
+      "name": "车队",
+      "x": 200,
+      "z": -606,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

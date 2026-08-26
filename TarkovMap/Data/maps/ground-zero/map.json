@@ -1878,6 +1878,137 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_46303",
+      "type": "label",
+      "name": "TerraGroup",
+      "x": -50,
+      "z": 0,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_70793",
+      "type": "label",
+      "name": "天上人间",
+      "x": 150,
+      "z": 1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_25387",
+      "type": "label",
+      "name": "聚变大厦",
+      "x": 141,
+      "z": 142,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_4153",
+      "type": "label",
+      "name": "帝国大厦",
+      "x": 14,
+      "z": 201,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_50565",
+      "type": "label",
+      "name": "洞悉资本",
+      "x": 115,
+      "z": 285,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_22585",
+      "type": "label",
+      "name": "Nakatani 大厦",
+      "x": 2,
+      "z": 324,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_56926",
+      "type": "label",
+      "name": "元素国际",
+      "x": 80,
+      "z": -118,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_89290",
+      "type": "label",
+      "name": "绿洲",
+      "x": 115,
+      "z": 104,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_83305",
+      "type": "label",
+      "name": "酒商店",
+      "x": 115,
+      "z": 30,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_68148",
+      "type": "label",
+      "name": "Tar银行",
+      "x": 43,
+      "z": 150,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_29931",
+      "type": "label",
+      "name": "GAGRIN 酒店",
+      "x": 58,
+      "z": 234,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_27248",
+      "type": "label",
+      "name": "车展厅",
+      "x": 97,
+      "z": 223,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_73979",
+      "type": "label",
+      "name": "科学办",
+      "x": -13,
+      "z": 48,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

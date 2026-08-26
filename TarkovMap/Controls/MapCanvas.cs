@@ -319,6 +319,11 @@ public sealed class MapCanvas : Control
 
             if (m.Type == MarkerType.Label)
             {
+                if (!MarkerNameVisibilityPolicy.ShouldDrawName(m.Type, _zoom))
+                {
+                    continue;
+                }
+
                 // 描边：四个方向画阴影再画正文
                 g.DrawString(m.Name, labelFont, labelShadow, sx + 1, sy);
                 g.DrawString(m.Name, labelFont, labelShadow, sx - 1, sy);

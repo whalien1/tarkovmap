@@ -1806,6 +1806,247 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_47925",
+      "type": "label",
+      "name": "海关办",
+      "x": -215,
+      "z": -119,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_10763",
+      "type": "label",
+      "name": "宿舍",
+      "x": 200,
+      "z": 150,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_37028",
+      "type": "label",
+      "name": "新加油站",
+      "x": 404,
+      "z": 31,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_79633",
+      "type": "label",
+      "name": "老加油站",
+      "x": 331,
+      "z": -173,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_74157",
+      "type": "label",
+      "name": "要塞",
+      "x": 201,
+      "z": -127,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_23460",
+      "type": "label",
+      "name": "危房",
+      "x": 83,
+      "z": -153,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_62109",
+      "type": "label",
+      "name": "主播房",
+      "x": 567,
+      "z": -67,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_16948",
+      "type": "label",
+      "name": "大桥",
+      "x": -69,
+      "z": 9,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_97769",
+      "type": "label",
+      "name": "狙击丘",
+      "x": 110,
+      "z": 85,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_24779",
+      "type": "label",
+      "name": "仓储区",
+      "x": -288,
+      "z": -134,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_88426",
+      "type": "label",
+      "name": "拖车停车场",
+      "x": -211,
+      "z": -219,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_8849",
+      "type": "label",
+      "name": "破桥",
+      "x": -66,
+      "z": 46,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_94838",
+      "type": "label",
+      "name": "修车间",
+      "x": 106,
+      "z": -90,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_24009",
+      "type": "label",
+      "name": "狙击脊",
+      "x": 491,
+      "z": 63,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_94263",
+      "type": "label",
+      "name": "老工地",
+      "x": 75,
+      "z": -9,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_89972",
+      "type": "label",
+      "name": "建筑框架",
+      "x": 200,
+      "z": -13,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_92085",
+      "type": "label",
+      "name": "三号仓库",
+      "x": 390,
+      "z": -94,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_79405",
+      "type": "label",
+      "name": "火车站",
+      "x": 472,
+      "z": -67,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_92936",
+      "type": "label",
+      "name": "7号仓",
+      "x": 555,
+      "z": -118,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_60111",
+      "type": "label",
+      "name": "军事基地检查站",
+      "x": 572,
+      "z": 0,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_77813",
+      "type": "label",
+      "name": "公交站",
+      "x": 238,
+      "z": 53,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_92835",
+      "type": "label",
+      "name": "4号仓",
+      "x": 333,
+      "z": -67,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_36519",
+      "type": "label",
+      "name": "输电塔",
+      "x": 497,
+      "z": 110,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_75619",
+      "type": "label",
+      "name": "17号仓",
+      "x": 46,
+      "z": -59,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

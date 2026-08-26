@@ -1476,6 +1476,777 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_54909",
+      "type": "label",
+      "name": "发电站",
+      "x": -186.4,
+      "z": -318.7,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_15254",
+      "type": "label",
+      "name": "Go 卡丁",
+      "x": 155,
+      "z": -253,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_95214",
+      "type": "label",
+      "name": "四帐",
+      "x": 158,
+      "z": -78.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_81729",
+      "type": "label",
+      "name": "货物集装箱区",
+      "x": 68.2,
+      "z": 312.9,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_5923",
+      "type": "label",
+      "name": "破墙",
+      "x": -260.2,
+      "z": 123.8,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_80852",
+      "type": "label",
+      "name": "坡道",
+      "x": -175.5,
+      "z": 145.1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45236",
+      "type": "label",
+      "name": "Oli 塔",
+      "x": 202.3,
+      "z": 219.4,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_71388",
+      "type": "label",
+      "name": "Idea 塔",
+      "x": 46.5,
+      "z": -358.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_30453",
+      "type": "label",
+      "name": "Scav 营地",
+      "x": 263.2,
+      "z": -11.1,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_92601",
+      "type": "label",
+      "name": "高速工地",
+      "x": 373.5,
+      "z": -391.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_65657",
+      "type": "label",
+      "name": "车库 A区",
+      "x": 33,
+      "z": -222,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_95722",
+      "type": "label",
+      "name": "车库 B区",
+      "x": 47,
+      "z": -112,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_23260",
+      "type": "label",
+      "name": "车库 C区",
+      "x": 0,
+      "z": 47,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_50215",
+      "type": "label",
+      "name": "车库 D区",
+      "x": 20,
+      "z": 138,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_54305",
+      "type": "label",
+      "name": "IDEA",
+      "x": -34,
+      "z": -235,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_93073",
+      "type": "label",
+      "name": "Goshan",
+      "x": -115,
+      "z": -45,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_97353",
+      "type": "label",
+      "name": "OLI",
+      "x": -28,
+      "z": 140,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_16330",
+      "type": "label",
+      "name": "Nortex",
+      "x": 87,
+      "z": -165,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_79918",
+      "type": "label",
+      "name": "TRend",
+      "x": 60,
+      "z": -152,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_98580",
+      "type": "label",
+      "name": "Mode7",
+      "x": 69.5,
+      "z": -134,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_66265",
+      "type": "label",
+      "name": "TTS",
+      "x": 19,
+      "z": -129,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_62595",
+      "type": "label",
+      "name": "Book Store",
+      "x": -38,
+      "z": -129,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_19973",
+      "type": "label",
+      "name": "Dino Clothes",
+      "x": 91,
+      "z": -119,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_13730",
+      "type": "label",
+      "name": "EMERCOM",
+      "x": 18,
+      "z": -103,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_53212",
+      "type": "label",
+      "name": "Kostin",
+      "x": -28,
+      "z": -103,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_97532",
+      "type": "label",
+      "name": "Bizarro",
+      "x": -65,
+      "z": -103,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_51213",
+      "type": "label",
+      "name": "Spiel",
+      "x": 92,
+      "z": -87,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_16996",
+      "type": "label",
+      "name": "Voyage",
+      "x": -18,
+      "z": -87,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_80640",
+      "type": "label",
+      "name": "Viking",
+      "x": 57,
+      "z": -66,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_94839",
+      "type": "label",
+      "name": "Mantis",
+      "x": 13,
+      "z": -66,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_25553",
+      "type": "label",
+      "name": "German",
+      "x": -18,
+      "z": -72,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_15604",
+      "type": "label",
+      "name": "The National",
+      "x": 57,
+      "z": -32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_57519",
+      "type": "label",
+      "name": "Brutal",
+      "x": 13,
+      "z": -32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_66251",
+      "type": "label",
+      "name": "Kiba",
+      "x": -18,
+      "z": -25,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_19669",
+      "type": "label",
+      "name": "Pretty Lights",
+      "x": -34,
+      "z": -20,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_95783",
+      "type": "label",
+      "name": "Telespot",
+      "x": 92,
+      "z": -18,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_85286",
+      "type": "label",
+      "name": "Revis",
+      "x": 62,
+      "z": -12,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82941",
+      "type": "label",
+      "name": "ADIK",
+      "x": 19,
+      "z": -6,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_61071",
+      "type": "label",
+      "name": "Generic",
+      "x": -28,
+      "z": 0.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_39996",
+      "type": "label",
+      "name": "Top Brand",
+      "x": 92,
+      "z": 15,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_74817",
+      "type": "label",
+      "name": "Sports",
+      "x": 61,
+      "z": 15,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_86285",
+      "type": "label",
+      "name": "Yushka",
+      "x": 70,
+      "z": 32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_73305",
+      "type": "label",
+      "name": "Rasmussen",
+      "x": 19.5,
+      "z": 26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_88244",
+      "type": "label",
+      "name": "Avokado",
+      "x": -37,
+      "z": 26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_24528",
+      "type": "label",
+      "name": "Boots 4 Life",
+      "x": 91,
+      "z": 55,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_7585",
+      "type": "label",
+      "name": "Texho",
+      "x": 61,
+      "z": 50,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_16077",
+      "type": "label",
+      "name": "Dom",
+      "x": 6,
+      "z": 49,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_43676",
+      "type": "label",
+      "name": "Father & Sons",
+      "x": 38,
+      "z": -170,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_72017",
+      "type": "label",
+      "name": "Tarkovstar",
+      "x": 69,
+      "z": -150,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45693",
+      "type": "label",
+      "name": "Eastland",
+      "x": 26,
+      "z": -149,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_68689",
+      "type": "label",
+      "name": "Arena",
+      "x": 71,
+      "z": -130,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_49304",
+      "type": "label",
+      "name": "ТАРЗДРАВ",
+      "x": 54,
+      "z": -128,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_56899",
+      "type": "label",
+      "name": "МЕБЕЛЬ МК",
+      "x": 20,
+      "z": -128,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_67252",
+      "type": "label",
+      "name": "Intourist",
+      "x": 69,
+      "z": -116,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_77868",
+      "type": "label",
+      "name": "憨包汪",
+      "x": -27,
+      "z": -103,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_13355",
+      "type": "label",
+      "name": "FCK",
+      "x": 70,
+      "z": -94,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_55463",
+      "type": "label",
+      "name": "McDaniels",
+      "x": 70,
+      "z": -87,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82709",
+      "type": "label",
+      "name": "Tarducks",
+      "x": 64,
+      "z": -69,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_7545",
+      "type": "label",
+      "name": "Coffee Joy",
+      "x": 43,
+      "z": -69,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_19482",
+      "type": "label",
+      "name": "Jacob & Jacob",
+      "x": 15,
+      "z": -74,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_87785",
+      "type": "label",
+      "name": "ПУШКИН",
+      "x": -34,
+      "z": -79,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_3163",
+      "type": "label",
+      "name": "Sushi Huyushi",
+      "x": 64,
+      "z": -34,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_54929",
+      "type": "label",
+      "name": "Underway",
+      "x": -17,
+      "z": -32,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82633",
+      "type": "label",
+      "name": "Burger House",
+      "x": 67,
+      "z": -23.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_1374",
+      "type": "label",
+      "name": "Philly Cute",
+      "x": -34,
+      "z": -24,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_91677",
+      "type": "label",
+      "name": "Shiccos",
+      "x": 67,
+      "z": -16,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_14398",
+      "type": "label",
+      "name": "МУЗЕЙ ИСТОРИИ",
+      "x": 17,
+      "z": 0,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_42136",
+      "type": "label",
+      "name": "Papillon",
+      "x": 92,
+      "z": 17,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_7428",
+      "type": "label",
+      "name": "ЗАКРЫТО НА РЕМОНТ",
+      "x": 58,
+      "z": 13,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_88503",
+      "type": "label",
+      "name": "НА-СВЯЗИ",
+      "x": 70,
+      "z": 27,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_30229",
+      "type": "label",
+      "name": "СКОРО ОТКРЫТИЕ",
+      "x": 54,
+      "z": 24,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_9397",
+      "type": "label",
+      "name": "Figaro",
+      "x": 19,
+      "z": 26,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_64317",
+      "type": "label",
+      "name": "АПТЕКА",
+      "x": 71,
+      "z": 47,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_11727",
+      "type": "label",
+      "name": "SARA",
+      "x": 53,
+      "z": 47,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_80308",
+      "type": "label",
+      "name": "Urban Clothes",
+      "x": 26,
+      "z": 46,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_91061",
+      "type": "label",
+      "name": "TECHLIGHT",
+      "x": 91,
+      "z": 54,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_21841",
+      "type": "label",
+      "name": "Fashion Store",
+      "x": 39,
+      "z": 67,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }

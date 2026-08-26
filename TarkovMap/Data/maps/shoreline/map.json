@@ -2250,6 +2250,207 @@
       "metadata": {
         "source": "json.tarkov.dev/pve/maps"
       }
+    },
+    {
+      "id": "label_95794",
+      "type": "label",
+      "name": "疗养院",
+      "x": -258.2,
+      "z": -71.2,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_26684",
+      "type": "label",
+      "name": "发电站",
+      "x": -215.8,
+      "z": 178.4,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_79038",
+      "type": "label",
+      "name": "加油站",
+      "x": -189.3,
+      "z": 420,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_96770",
+      "type": "label",
+      "name": "气象站",
+      "x": -496,
+      "z": 257,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_17415",
+      "type": "label",
+      "name": "无线电塔",
+      "x": -708.9,
+      "z": 93.91,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_81527",
+      "type": "label",
+      "name": "沼泽",
+      "x": 326,
+      "z": -118.5,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_71298",
+      "type": "label",
+      "name": "村庄",
+      "x": 418.4,
+      "z": 118,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_45233",
+      "type": "label",
+      "name": "木屋",
+      "x": 288,
+      "z": 144,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_14958",
+      "type": "label",
+      "name": "村庄",
+      "x": 128,
+      "z": 93,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_80322",
+      "type": "label",
+      "name": "坦克桥",
+      "x": -355,
+      "z": 188,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_75080",
+      "type": "label",
+      "name": "小码头",
+      "x": -338.6,
+      "z": 525,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_69382",
+      "type": "label",
+      "name": "Scav 岛",
+      "x": 216,
+      "z": 424,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_43333",
+      "type": "label",
+      "name": "公交站",
+      "x": -96,
+      "z": -6,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_87694",
+      "type": "label",
+      "name": "建筑工地",
+      "x": 52,
+      "z": 134,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_82343",
+      "type": "label",
+      "name": "碉堡",
+      "x": -153,
+      "z": -290,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_77398",
+      "type": "label",
+      "name": "塔吊",
+      "x": -625,
+      "z": 484,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_43167",
+      "type": "label",
+      "name": "走私者营地",
+      "x": -622,
+      "z": -202,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_12896",
+      "type": "label",
+      "name": "西楼",
+      "x": -171,
+      "z": -83,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_44181",
+      "type": "label",
+      "name": "东楼",
+      "x": -329,
+      "z": -83,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
+    },
+    {
+      "id": "label_88032",
+      "type": "label",
+      "name": "行政楼",
+      "x": -252,
+      "z": -146,
+      "metadata": {
+        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+      }
     }
+
   ]
 }
