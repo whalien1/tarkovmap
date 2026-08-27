@@ -66,8 +66,9 @@ public sealed class MapRepository
     public Bitmap LoadMapImage(MapDefinition map)
     {
         var file = Path.Combine(map.Directory, map.Image.File);
-        // 读进内存流再构造 Bitmap，避免文件被句柄锁定
+        // 返回独立副本，避免 Bitmap 在后续绘制时依赖已释放的源文件流。
         using var stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
-        return new Bitmap(stream);
+        using var source = new Bitmap(stream);
+        return new Bitmap(source);
     }
 }

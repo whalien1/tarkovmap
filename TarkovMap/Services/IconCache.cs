@@ -62,7 +62,8 @@ public sealed class IconCache : IDisposable
             return null;
         }
         using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-        return new Bitmap(stream);
+        using var source = new Bitmap(stream);
+        return new Bitmap(source);
     }
 
     private static Image GenerateLetterIcon(MarkerType type)
