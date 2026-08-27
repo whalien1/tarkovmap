@@ -60,6 +60,7 @@ public sealed class MainForm : Form
         _config.Load();
         ErrorLogger.Init(AppContext.BaseDirectory);
         _watcher.LocationFound += OnLocationFound;
+        _watcher.WatcherError += OnWatcherError;
 
         _trayIcon = new NotifyIcon
         {
@@ -748,6 +749,34 @@ public sealed class MainForm : Form
                 _infoLabel.Text = "当前位置与当前地图不匹配";
             }
         });
+    }
+
+    /// <summary>文件监听器异常时停止监听，并在线程安全地提示用户重新选择目录。</summary>
+    private void OnWatcherError(Exception exception)
+    {
+        ErrorLogger.Log("ScreenshotWatcher", exception);
+        if (IsDisposed || Disposing || !IsHandleCreated)
+        {
+            return;
+        }
+
+        try
+        {
+            BeginInvoke(() =>
+            {
+                if (IsDisposed || Disposing)
+                {
+                    return;
+                }
+
+                SetLocateStatus("状态：监听异常，请重新选择目录", Color.DarkRed);
+                _infoLabel.Text = "截图监听已停止";
+            });
+        }
+        catch (InvalidOperationException)
+        {
+            // 窗口正在退出，忽略晚到的后台监听回调。
+        }
     }
 
     // ── 地图加载 ───────────────────────────────────────────

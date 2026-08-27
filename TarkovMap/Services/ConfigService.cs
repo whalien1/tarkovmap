@@ -61,8 +61,8 @@ public sealed class ConfigService
         {
             if (File.Exists(_configFile))
             {
-                Config = JsonSerializer.Deserialize<AppConfig>(
-                    File.ReadAllText(_configFile), JsonOptions) ?? new AppConfig();
+                Config = Normalize(JsonSerializer.Deserialize<AppConfig>(
+                    File.ReadAllText(_configFile), JsonOptions) ?? new AppConfig());
             }
         }
         catch
@@ -83,5 +83,12 @@ public sealed class ConfigService
         {
             // 配置保存失败不影响使用
         }
+    }
+
+    private static AppConfig Normalize(AppConfig config)
+    {
+        config.MarkerVisibility ??= new Dictionary<string, bool>();
+        config.MiniMap ??= new MiniMapSettings();
+        return config;
     }
 }

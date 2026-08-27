@@ -14,7 +14,9 @@ public sealed class MiniMapForm : Form
 {
     // 原生窗口拖动（无边框窗口的标准方案）
     private const int WM_NCLBUTTONDOWN = 0xA1;
+    private const int WM_MOUSEACTIVATE = 0x21;
     private const int HTCAPTION = 0x2;
+    private const int MA_NOACTIVATE = 0x3;
     [DllImport("user32.dll")] private static extern bool ReleaseCapture();
     [DllImport("user32.dll")] private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
 
@@ -53,6 +55,21 @@ public sealed class MiniMapForm : Form
         Controls.Add(_canvas);
 
         ApplySettings();
+    }
+
+    /// <summary>
+    /// 小地图始终置顶但不能因鼠标操作抢走游戏焦点。
+    /// MA_NOACTIVATE 保留后续鼠标消息，因此拖动和滚轮缩放仍然有效。
+    /// </summary>
+    protected override void WndProc(ref Message m)
+    {
+        if (m.Msg == WM_MOUSEACTIVATE)
+        {
+            m.Result = (IntPtr)MA_NOACTIVATE;
+            return;
+        }
+
+        base.WndProc(ref m);
     }
 
     /// <summary>应用外观设置（形状/尺寸/透明度），立即生效。</summary>

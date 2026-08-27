@@ -17,6 +17,9 @@ public sealed class ScreenshotWatcher : IDisposable
     /// <summary>解析出合法的玩家位置时触发（在线程池线程上，UI 使用需 Invoke）。</summary>
     public event Action<PlayerLocation>? LocationFound;
 
+    /// <summary>底层文件监听异常时触发；当前监听会停止，调用方应提示用户重新选择目录。</summary>
+    public event Action<Exception>? WatcherError;
+
     public string? Directory { get; private set; }
     public bool IsWatching => _watcher?.EnableRaisingEvents == true;
 
@@ -36,6 +39,7 @@ public sealed class ScreenshotWatcher : IDisposable
         };
         _watcher.Created += OnFileEvent;
         _watcher.Renamed += OnFileEvent;
+        _watcher.Error += OnWatcherError;
         Directory = directory;
     }
 
@@ -46,6 +50,7 @@ public sealed class ScreenshotWatcher : IDisposable
             _watcher.EnableRaisingEvents = false;
             _watcher.Created -= OnFileEvent;
             _watcher.Renamed -= OnFileEvent;
+            _watcher.Error -= OnWatcherError;
             _watcher.Dispose();
             _watcher = null;
         }
@@ -68,6 +73,18 @@ public sealed class ScreenshotWatcher : IDisposable
             LocationFound?.Invoke(location);
         }
         // 不符合命名格式的文件（如结算画面截图）静默跳过
+    }
+
+    private void OnWatcherError(object sender, ErrorEventArgs e)
+    {
+        if (!ReferenceEquals(sender, _watcher))
+        {
+            return;
+        }
+
+        var exception = e.GetException();
+        Stop();
+        WatcherError?.Invoke(exception);
     }
 
     private bool IsDuplicate(string path)

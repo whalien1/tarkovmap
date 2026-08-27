@@ -21,6 +21,7 @@ internal sealed class BuilderForm : Form
     private readonly Label status = new();
     private readonly TextBox log = new();
     private readonly List<Button> operationButtons = [];
+    private bool _operationRunning;
 
     public BuilderForm(BuilderWorkspace workspace)
     {
@@ -313,6 +314,7 @@ internal sealed class BuilderForm : Form
 
     private async Task RunCommandAsync(string title, string[] args, Action? onSuccess = null)
     {
+        _operationRunning = true;
         SetBusy(true, $"状态：正在{title}……");
         AppendLog("");
         AppendLog($"> {title}");
@@ -356,12 +358,12 @@ internal sealed class BuilderForm : Form
             process.BeginErrorReadLine();
             await process.WaitForExitAsync();
             var exitCode = process.ExitCode;
-            if (exitCode == 0)
+            if (!IsDisposed && !Disposing && exitCode == 0)
             {
                 status.Text = $"状态：{title}完成";
                 onSuccess?.Invoke();
             }
-            else
+            else if (!IsDisposed && !Disposing)
             {
                 status.Text = $"状态：{title}未通过（代码 {exitCode}）";
                 MessageBox.Show(this, "操作未通过，请查看下方日志。", title,
@@ -370,20 +372,39 @@ internal sealed class BuilderForm : Form
         }
         catch (Exception exception)
         {
-            status.Text = $"状态：{title}失败";
-            ShowError(exception.Message);
+            if (!IsDisposed && !Disposing)
+            {
+                status.Text = $"状态：{title}失败";
+                ShowError(exception.Message);
+            }
         }
         finally
         {
-            SetBusy(false, status.Text);
+            _operationRunning = false;
+            if (!IsDisposed && !Disposing)
+            {
+                SetBusy(false, status.Text);
+            }
         }
     }
 
     private void AppendLog(string line)
     {
+        if (IsDisposed || Disposing || !IsHandleCreated)
+        {
+            return;
+        }
+
         if (InvokeRequired)
         {
-            BeginInvoke(() => AppendLog(line));
+            try
+            {
+                BeginInvoke(() => AppendLog(line));
+            }
+            catch (InvalidOperationException)
+            {
+                // 窗口已关闭时忽略晚到的子进程输出。
+            }
             return;
         }
 
@@ -392,9 +413,26 @@ internal sealed class BuilderForm : Form
 
     private void SetBusy(bool busy, string statusText)
     {
+        if (IsDisposed || Disposing)
+        {
+            return;
+        }
+
         status.Text = statusText;
         foreach (var button in operationButtons) button.Enabled = !busy;
         UseWaitCursor = busy;
+    }
+
+    protected override void OnFormClosing(FormClosingEventArgs e)
+    {
+        if (_operationRunning && e.CloseReason == CloseReason.UserClosing)
+        {
+            e.Cancel = true;
+            MessageBox.Show(this, "当前操作仍在进行。请等待完成后再关闭窗口，避免丢失执行结果。",
+                "MapData Builder", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        base.OnFormClosing(e);
     }
 
     private bool ValidateInputs(bool requireData)
