@@ -12,7 +12,7 @@
       "x1": -280,
       "z1": 530,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": -6,
       "maxY": 10
     },
@@ -68,7 +68,7 @@
       "x1": -435.7,
       "z1": 424.7,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": -1000,
       "maxY": 25
     },
@@ -82,7 +82,7 @@
       "x1": -81,
       "z1": -197,
       "reverseCoordinate": true,
-      "coordinateRotation": 180,
+      "coordinateRotation": 0,
       "minY": -0.9,
       "maxY": 3
     },
@@ -96,7 +96,7 @@
       "x1": -545,
       "z1": 725,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": null,
       "maxY": null
     },
@@ -110,7 +110,7 @@
       "x1": -303,
       "z1": 271.5,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": -7,
       "maxY": 10000
     },
@@ -124,7 +124,7 @@
       "x1": -1056,
       "z1": 618,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": -1000,
       "maxY": -1
     },
@@ -138,7 +138,7 @@
       "x1": -762,
       "z1": 443.5,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": null,
       "maxY": null
     },
@@ -152,7 +152,7 @@
       "x1": 52,
       "z1": 75,
       "reverseCoordinate": true,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "minY": null,
       "maxY": null
     }

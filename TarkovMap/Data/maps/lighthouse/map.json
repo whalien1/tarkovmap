@@ -13,7 +13,7 @@
     "x1": -545,
     "z1": 725,
     "reverseCoordinate": false,
-    "coordinateRotation": 180
+    "coordinateRotation": 90
   },
   "floors": [],
   "markers": [
@@ -14750,7 +14750,7 @@
       "x": -30,
       "z": -882,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14760,7 +14760,7 @@
       "x": -120,
       "z": -841,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14770,7 +14770,7 @@
       "x": -65,
       "z": -600,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14780,7 +14780,7 @@
       "x": 40,
       "z": -618,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14790,7 +14790,7 @@
       "x": -97,
       "z": -737,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14800,7 +14800,7 @@
       "x": -189,
       "z": -665,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14810,7 +14810,7 @@
       "x": -182,
       "z": -552,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14820,7 +14820,7 @@
       "x": 18,
       "z": -453,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14830,7 +14830,7 @@
       "x": -177,
       "z": -356,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14840,7 +14840,7 @@
       "x": -278,
       "z": -323,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14850,7 +14850,7 @@
       "x": -162,
       "z": -225,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14860,7 +14860,7 @@
       "x": -55,
       "z": -288,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14870,7 +14870,7 @@
       "x": -75,
       "z": -284,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14880,7 +14880,7 @@
       "x": -151,
       "z": -243,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14890,7 +14890,7 @@
       "x": 125,
       "z": -153,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14900,7 +14900,7 @@
       "x": 62,
       "z": -60,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14910,7 +14910,7 @@
       "x": 0,
       "z": -188,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14920,7 +14920,7 @@
       "x": -107,
       "z": -53,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14930,7 +14930,7 @@
       "x": -133,
       "z": 100,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14940,7 +14940,7 @@
       "x": -70,
       "z": 129,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14950,7 +14950,7 @@
       "x": 382,
       "z": 496,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     },
     {
@@ -14960,9 +14960,8 @@
       "x": -125,
       "z": 296,
       "metadata": {
-        "source": "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)"
+        "source": "TarkovMap curated map labels"
       }
     }
-
   ]
 }

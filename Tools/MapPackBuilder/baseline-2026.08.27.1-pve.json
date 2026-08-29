@@ -1,5 +1,5 @@
 {
-  "baselineVersion": "2026.08.26.1-pve",
+  "baselineVersion": "2026.08.27.1-pve",
   "mapCount": 11,
   "maps": [
     {
@@ -76,7 +76,7 @@
       "x1": -435.7,
       "z1": 424.7,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 223,
       "markerTypes": {
         "boss": 5,
@@ -97,7 +97,7 @@
       "x1": -545,
       "z1": 725,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 477,
       "markerTypes": {
         "boss": 10,
@@ -120,7 +120,7 @@
       "x1": -303,
       "z1": 271.5,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 120,
       "markerTypes": {
         "boss": 5,
@@ -143,7 +143,7 @@
       "x1": -1056,
       "z1": 618,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 202,
       "markerTypes": {
         "boss": 9,
@@ -166,7 +166,7 @@
       "x1": -280,
       "z1": 530,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 624,
       "markerTypes": {
         "boss": 3,
@@ -189,7 +189,7 @@
       "x1": -81,
       "z1": -197,
       "reverseCoordinate": true,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 70,
       "markerTypes": {
         "boss": 5,
@@ -210,7 +210,7 @@
       "x1": 52,
       "z1": 75,
       "reverseCoordinate": true,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 40,
       "markerTypes": {
         "extract_pmc": 2,
@@ -229,7 +229,7 @@
       "x1": -762,
       "z1": 443.5,
       "reverseCoordinate": false,
-      "coordinateRotation": 180,
+      "coordinateRotation": 90,
       "markerCount": 294,
       "markerTypes": {
         "boss": 4,

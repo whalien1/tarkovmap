@@ -2,7 +2,7 @@
 
 > 面向后续接手的 AI 智能体：记录本项目的构建方法、已踩过的坑、常见 Bug 与修复定式。
 > 阅读顺序：先读本手册，再读《TarkovMap_MapData_下一阶段开发计划书.md》（当前数据供应链决策）、《Tools/MapPackBuilder/README.md》（操作方法），最后按需查阅客户端历史文档。
-> 当前基线：客户端 **v1.1.2**；正式 MapData **2026.08.26.1-pve**（PvE，11 张地图）。
+> 当前基线：客户端 **v1.1.2**；正式 MapData **2026.08.29.1-pve**（PvE，11 张地图）。
 
 ## 1. 环境与构建（最容易踩的坑）
 
@@ -43,12 +43,12 @@ PS 路径：`C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`。
 
 ### 3.1 朝向/箭头方向（历史上反复修，已锁定公式）
 
-- **定稿公式**：箭头角度 = **Yaw + coordinateRotation + 90°**（工厂/中心区/海关三张图实测通过）。
+- **定稿公式**：箭头角度 = **Yaw + coordinateRotation + 90°**（公共算法保持不变；工厂/中心区/海关实测通过，立交桥/灯塔已有高质量样本支持）。
 - Yaw 由截图文件名四元数算出，公式在 `Services/PlayerDirectionService.cs`（源自 ref/Tarkov_webmap 的 ScreenshotCoordinateParser）。
-- **每张地图的 coordinateRotation 可能错**：修正表在 `Tools/MapPackBuilder/Program.cs` 的 `RotationOverrides`（重生成数据不丢）。已修正：ground-zero 180→90、customs 180→90。
-- **两张 map.json 要同步改**：源 `TarkovMap/Data/maps/<id>/map.json` 和 bin 输出目录那份。
+- **每张地图的 coordinateRotation 可能错**：普通坐标地图当前以 `90°` 为候选值；实验室因 `reverseCoordinate=true` 经 2026-08-29 实测改为 `0°`。校准登记在 `Tools/MapPackBuilder/calibration-v1.1.1.json`，并同步当前正式 `Data/maps/<id>/map.json`；旧 `ref/` 构建入口的 `RotationOverrides` 也保持一致，重生成数据不丢。其余地图仍需实机逐图验证。
+- **两处数据要同步**：校准源 `Tools/MapPackBuilder/calibration-v1.1.1.json` 与当前 `TarkovMap/Data/maps/<id>/map.json`；发布/重建后以 Builder 生成结果为准。
 - 用户报方向偏时的标准流程：让用户在已知地标**正对/背对**各截一张图 → 算 Yaw 差 → 调 `RotationOverrides`。
-- 调试现象参考：箭头刚好反 180° = rotation 差 180；偏 90° = 缺 +90° 常量。
+- 调试现象参考：箭头刚好反 180° = rotation 差 180；若仅个别地图偏 90°，优先检查该地图的 `coordinateRotation` 是否仍为 180°；只有所有地图同时偏移时才考虑公共常量。
 
 ### 3.2 性能 / 内存
 
@@ -106,7 +106,7 @@ CLI、审批格式、快照重放与故障返回码详见 `Tools/MapPackBuilder/
 ## 7. 悬挂待办
 
 - 立交桥"河畔之路（信号弹）"撤离点坐标是**估算值**，待用户本地模式实测截图校准。
-- 其余地图（街区/海岸线/森林/灯塔/储备站/实验室/迷宫）的 coordinateRotation 未逐一实测，方向偏了按 §3.1 流程处理。
+- 地图朝向：中心区、海关、工厂、立交桥、灯塔、海岸线、储备站、森林已实测通过；实验室因 `reverseCoordinate=true` 使用 `0°`，并于 2026-08-30 实测通过。迷宫同为反向坐标，仍待单独实机验证；若有地图方向异常，按 §3.1 逐图复测并单独调整。
 - 楼层/高度机制、游戏内时钟等迭代方向见《后续迭代借鉴记录.md》。
 
 ## 8. 用户协作规则（必须遵守）

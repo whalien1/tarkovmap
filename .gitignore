@@ -3,6 +3,7 @@ dist/
 test-shots/
 .phase*/
 TarkovMap/Data.backup/
+TarkovMap/Data.backup-*/
 *.zip
 screenshot-full.png
 **/bin/

@@ -16,7 +16,7 @@
   <ItemGroup>
     <None Update="calibration-v1.1.1.json" CopyToOutputDirectory="PreserveNewest" />
     <None Update="baseline-v1.1.1.json" CopyToOutputDirectory="PreserveNewest" />
-    <None Update="baseline-2026.08.26.1-pve.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="baseline-2026.08.29.1-pve.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

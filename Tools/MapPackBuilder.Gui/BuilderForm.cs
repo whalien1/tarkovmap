@@ -7,7 +7,7 @@ namespace MapPackBuilder.Gui;
 
 internal sealed class BuilderForm : Form
 {
-    private const string CurrentBaselineFileName = "baseline-2026.08.26.1-pve.json";
+    private const string CurrentBaselineFileName = "baseline-2026.08.29.1-pve.json";
     private static readonly Regex VersionPattern = new(
         "^\\d{4}\\.\\d{2}\\.\\d{2}\\.[1-9]\\d*-pve$",
         RegexOptions.CultureInvariant);

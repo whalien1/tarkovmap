@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.08.27.1-pve",
+  "manualAcceptance": {
+    "result": "passed",
+    "maps": [
+      "customs",
+      "ground-zero",
+      "streets-of-tarkov",
+      "the-lab"
+    ],
+    "confirmedAt": "2026-08-29T22:56:59.1885598+08:00",
+    "note": "项目所有者已确认地图朝向校正，并授权将通过 Validation 的 2026.08.27.1-pve MapData 正式打包和应用；海岸线最新截图的移动轨迹已复核，coordinateRotation=90 与实际地图方向一致。"
+  },
+  "approvals": []
+}

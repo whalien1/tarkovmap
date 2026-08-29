@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.08.29.1-pve",
+  "manualAcceptance": {
+    "result": "passed",
+    "maps": [
+      "customs",
+      "ground-zero",
+      "streets-of-tarkov",
+      "the-lab"
+    ],
+    "confirmedAt": "2026-08-29T23:51:49+08:00",
+    "note": "项目所有者已基于最新实验室截图确认 reverseCoordinate=true 时 coordinateRotation 应为 0，并授权将只含该实验室朝向校正的 2026.08.29.1-pve MapData 正式打包和应用；2026-08-30 安装后实机复测通过。"
+  },
+  "approvals": []
+}

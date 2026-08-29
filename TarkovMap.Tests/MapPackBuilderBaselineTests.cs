@@ -12,7 +12,7 @@ public sealed class MapPackBuilderBaselineTests
         var repoRoot = FindRepositoryRoot();
         var dataDirectory = Path.Combine(repoRoot, "TarkovMap", "Data");
         var baselineFile = Path.Combine(AppContext.BaseDirectory, "TestData",
-            "baseline-2026.08.26.1-pve.json");
+            "baseline-2026.08.29.1-pve.json");
 
         using var baselineDoc = JsonDocument.Parse(File.ReadAllText(baselineFile));
         using var mapListDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataDirectory, "maps.json")));

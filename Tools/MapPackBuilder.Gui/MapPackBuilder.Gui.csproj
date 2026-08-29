@@ -19,8 +19,8 @@
     <None Include="..\MapPackBuilder\calibration-v1.1.1.json"
           Link="calibration-v1.1.1.json"
           CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\MapPackBuilder\baseline-2026.08.26.1-pve.json"
-          Link="baseline-2026.08.26.1-pve.json"
+    <None Include="..\MapPackBuilder\baseline-2026.08.29.1-pve.json"
+          Link="baseline-2026.08.29.1-pve.json"
           CopyToOutputDirectory="PreserveNewest" />
     <None Update="README.md" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\NOTICE.md"

@@ -16,7 +16,7 @@ namespace MapPackBuilder;
 /// </summary>
 internal static class Program
 {
-    private const string CurrentBaselineFileName = "baseline-2026.08.26.1-pve.json";
+    private const string CurrentBaselineFileName = "baseline-2026.08.29.1-pve.json";
     private const string SourceTag = "Re5pawnn/Tarkov_webmap maps_detail.json (author: the-hideout/tarkov-dev-svg-maps)";
 
     // 跳过变体条目（夜间工厂 / 中心区21+ 与主条目同 key）
@@ -30,6 +30,16 @@ internal static class Program
     {
         ["ground-zero"] = 90.0, // 中心区：源数据 180 有误，2026-08-24 实测 90（正对 Emercom 检查点校准）
         ["customs"] = 90.0,     // 海关：源数据 180 有误，2026-08-24 实测 90（正对 Scav 检查站校准）
+        // 其余普通坐标地图按 90° 校正；reverseCoordinate 地图必须单独实测。
+        ["factory"] = 90.0,
+        ["interchange"] = 90.0,
+        ["lighthouse"] = 90.0,
+        ["reserve"] = 90.0,
+        ["shoreline"] = 90.0,
+        ["streets-of-tarkov"] = 90.0,
+        ["the-lab"] = 0.0, // 实验室 reverseCoordinate=true：2026-08-29 实测，90° 会使箭头顺时针偏 90°
+        ["the-labyrinth"] = 90.0,
+        ["woods"] = 90.0,
     };
 
     private static int Main(string[] args)

@@ -2,7 +2,7 @@
 
 《逃离塔科夫》本地互动地图工具（Windows 原生桌面程序）。
 
-当前内置地图数据：`2026.08.26.1-pve`（PvE，11 张地图）。
+当前内置地图数据：`2026.08.29.1-pve`（PvE，11 张地图）。
 
 MapData Schema v1 第一轮供应链已经完成并冻结；维护入口和故障处理见 [MapPackBuilder 说明](Tools/MapPackBuilder/README.md) 与 [AI 交接维护手册](AI交接维护手册.md)。
 
