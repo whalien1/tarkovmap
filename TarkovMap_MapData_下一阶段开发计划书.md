@@ -3,7 +3,8 @@
 **文档版本：** v1.1（15 项决策收口版）  
 **制定日期：** 2026-08-25  
 **适用项目：** TarkovMap  
-**当前主程序版本基线：** v1.1.1  
+**计划制定时主程序版本基线：** v1.1.1
+**当前冻结基线（2026-08-30）：** 客户端 v1.1.2；正式 MapData `2026.08.29.1-pve`；Schema v1；Git 标签 `v1.1.2-final`
 **开发方式：** AI 辅助开发 / 个人自用 / MVP 优先
 
 ---
@@ -41,7 +42,7 @@
 - **Phase 7 已完成：** 8 个核心类别的自有 Marker 图标已完成设计和目测验收；`2026.08.25.5-pve` 已通过确定性打包、隔离应用/恢复演练并写入正式 MapData，`.4` 保留在唯一备份槽；详见 `Tools/MapPackBuilder/PHASE7_ICON_REPORT.md`。
 - **Phase 8 已完成：** WinForms GUI 已覆盖获取、构建、Diff、校验、人工验收、导出、一键应用、恢复和报告入口；所有实际操作由独立 CLI 子进程执行，避免 GUI DPI 环境影响 SVG 确定性输出；详见 `Tools/MapPackBuilder/PHASE8_GUI_REPORT.md`。
 - **Phase 9 已完成：** README、Schema、Builder、许可和 AI 交接文档已按当前实现统一；固定快照完成 `.4 → .5 → .4` 隔离应用/恢复模拟，29 个恢复文件 SHA 差异为 0；详见 `Tools/MapPackBuilder/PHASE9_CLOSEOUT_REPORT.md`。
-- **当前状态：** MapData Schema v1 第一轮开发冻结；后续仅在真实数据变化、缺陷或明确新需求出现时重新开启。
+- **当前状态：** MapData Schema v1 第一轮开发已冻结。上方各 Phase 的版本号、测试数量和报告结论均为阶段历史记录；当前正式实例以 `TarkovMap/Data/manifest.json` 为准，即 `2026.08.29.1-pve`。后续仅在真实数据变化、缺陷或明确新需求出现时重新开启。
 
 ---
 

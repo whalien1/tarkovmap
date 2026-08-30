@@ -1,9 +1,10 @@
 # TarkovMap MapData Schema v1
 
 **状态：** 已冻结用于 PvE MapData 第一轮开发  
-**日期：** 2026-08-25  
-**兼容基线：** TarkovMap v1.1.1
-**当前正式实例：** `2026.08.25.5-pve`
+**制定日期：** 2026-08-25
+**当前客户端：** TarkovMap v1.1.2
+**最低兼容基线：** TarkovMap v1.1.1
+**当前正式实例：** `2026.08.29.1-pve`
 
 ## 1. 兼容原则
 
@@ -13,7 +14,7 @@ Schema v1 在现有 `Data/` 结构上增量扩展：
 - 保留 `maps/<id>/map.json` 与 `map.png`。
 - 保留现有 `image`、`worldBounds` 和 Marker Type。
 - 新增根目录 `manifest.json`。
-- 旧版 Data 没有 `manifest.json` 时，客户端继续按 v1.1.1 方式加载。
+- 旧版 Data 没有 `manifest.json` 时，客户端继续按既有兼容逻辑加载（与 v1.1.1 基线行为一致）。
 - 存在 `manifest.json` 时，客户端必须先验证 Schema、数据版本、游戏模式、来源快照和内容 Hash。
 
 ## 2. 目录结构
@@ -140,7 +141,7 @@ Schema v1 固定算法：
 }
 ```
 
-`defaultFloor` 与 `floors` 为预留字段，客户端 v1.1.1 可以忽略；第一轮不实现楼层 UI。
+`defaultFloor` 与 `floors` 为预留字段，当前客户端 v1.1.2 可以忽略；第一轮不实现楼层 UI。
 
 ## 6. Marker
 
@@ -177,7 +178,7 @@ Schema v1 固定算法：
 
 ```text
 manifest.json 不存在
-  → 按 v1.1.1 旧数据兼容加载
+  → 按旧数据兼容逻辑加载（与 v1.1.1 基线行为一致）
 
 manifest.json 存在
   → 解析

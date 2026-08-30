@@ -1,7 +1,7 @@
 # TarkovMap `coordinateRotation` 实测校准方法
 
 > 文档用途：用于逐张地图校准 `coordinateRotation`，不修改通用朝向算法。  
-> 适用版本：TarkovMap v1.1.1 及后续兼容版本  
+> 适用版本：TarkovMap v1.1.2 及后续兼容版本
 > 当前锁定显示公式：
 >
 > ```text
@@ -14,9 +14,9 @@
 
 ## 1. 校准原则
 
-当前通用朝向算法已经通过工厂、中心区、海关实测，不应因单张地图方向异常而修改。
+当前通用朝向算法已通过多张地图实测，不应因单张地图方向异常而修改；截至 v1.1.2 冻结，迷宫之外的现有地图均已完成方向实测。
 
-如果某张地图的玩家箭头方向错误，优先检查 `coordinateRotation`，并通过 `Tools/MapPackBuilder` 中的 `RotationOverrides` 做地图级修正。
+如果某张地图的玩家箭头方向错误，优先检查 `coordinateRotation`，并在 `Tools/MapPackBuilder/calibration-v1.1.1.json` 中登记地图级校准值后重建 MapData。
 
 原则：
 
@@ -450,7 +450,7 @@ Yaw 变化：1.8°
 ["woods"] = 90.0
 ```
 
-工具不得自动修改 `RotationOverrides`，最终写入必须人工确认。
+工具不得自动修改校准数据，最终写入 `calibration-v1.1.1.json` 必须人工确认。
 
 ---
 
@@ -503,18 +503,15 @@ Yaw 变化：1.8°
 
 ---
 
-## 13. 写入 RotationOverrides
+## 13. 写入当前校准数据源
 
-只有实测通过后才更新：
+只有实测通过后才更新 `Tools/MapPackBuilder/calibration-v1.1.1.json` 中对应地图的 `coordinateRotation`。该文件是当前 PvE 构建链的校准来源；生成后的运行时值会写入 `Data/maps/<地图>/map.json`。
 
-```csharp
-private static readonly Dictionary<string, double> RotationOverrides =
-    new(StringComparer.Ordinal)
+```json
 {
-    ["ground-zero"] = 90.0,
-    ["customs"] = 90.0,
-    ["woods"] = 90.0, // YYYY-MM-DD，3 组直线移动实测
-};
+  "mapId": "woods",
+  "coordinateRotation": 90
+}
 ```
 
 然后：
@@ -536,18 +533,18 @@ private static readonly Dictionary<string, double> RotationOverrides =
 工厂
 中心区
 海关
+街区
+立交桥
+实验室（`reverseCoordinate=true`，`coordinateRotation=0`）
+灯塔
+储备站
+海岸线
+森林
 ```
 
 仍需逐图确认：
 
 ```text
-街区
-立交桥
-实验室
-灯塔
-储备站
-海岸线
-森林
 迷宫
 以及后续新增地图
 ```
@@ -583,7 +580,7 @@ WorldToImage
 ↓
 人工确认
 ↓
-写入 RotationOverrides
+写入 `calibration-v1.1.1.json`
 ↓
 MapPackBuilder 重建
 ↓
